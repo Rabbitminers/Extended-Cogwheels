@@ -22,7 +22,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 
-version = '1.0'
+version = '1.18.2-0.5.0e-1.0.0'
 // TODO: update group and archive name
 group = 'com.rabbitminers.extendedgears' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'extendedgears'
@@ -129,16 +129,15 @@ dependencies {
 
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.68'
 
-    // Create Flywheel and Registrate
-    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:all") { transitive = false }
+    // Create and flywheel
+    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
-    // Sponge
     annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
     testAnnotationProcessor "org.spongepowered:mixin:0.8.3:processor"
 }
