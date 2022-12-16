@@ -46,33 +46,6 @@ public class AddonBlocks {
                     .build()
                     .register();
     }
-
-
-    public static final BlockEntry<MetalCogWheel> COGWHEEL =
-            REGISTRATE.block("cogwheel", p -> MetalCogWheel.small(p, ECPartials.METAL_COGWHEEL))
-            .initialProperties(SharedProperties::stone)
-            .properties(p -> p.sound(SoundType.WOOD))
-            .properties(p -> p.color(MaterialColor.DIRT))
-            .transform(BlockStressDefaults.setNoImpact())
-            .transform(axeOrPickaxe())
-            .blockstate(BlockStateGen.axisBlockProvider(false))
-            .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
-            .item(MetalCogWheelItem::new)
-            .build()
-            .register();
-
-    public static final BlockEntry<MetalCogWheel> LARGE_COGWHEEL =
-            REGISTRATE.block("large_cogwheel", p -> MetalCogWheel.large(p, ECPartials.LARGE_METAL_COGWHEEL))
-                    .initialProperties(SharedProperties::stone)
-                    .properties(p -> p.sound(SoundType.WOOD))
-                    .properties(p -> p.color(MaterialColor.DIRT))
-                    .transform(axeOrPickaxe())
-                    .transform(BlockStressDefaults.setNoImpact())
-                    .blockstate(BlockStateGen.axisBlockProvider(false))
-                    .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
-                    .item(MetalCogWheelItem::new)
-                    .build()
-                    .register();
     public static final BlockEntry<MetalCogWheel> BIRCH_COGWHEEL = cogWheelFactory("birch", ECPartials.BIRCH_COGWHEEL);
     public static final BlockEntry<MetalCogWheel> LARGE_BIRCH_COGWHEEL = largeCogWheelFactory("birch", ECPartials.LARGE_BIRCH_COGWHEEL);
 
