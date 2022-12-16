@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "extendedgears:iron_cogwheel"
+  },
+  "result": "extendedgears:steel_cogwheel",
+  "experience": 0.1,
+  "cookingtime": 100
+}

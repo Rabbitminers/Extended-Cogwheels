@@ -1,0 +1,17 @@
+
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:crimson_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:crimson_cogwheel"
+    }
+  ]
+}

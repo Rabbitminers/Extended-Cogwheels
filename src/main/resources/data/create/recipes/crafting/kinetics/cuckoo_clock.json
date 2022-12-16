@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SAS",
+    "BPB"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:planks"
+    },
+    "A": {
+      "item": "minecraft:clock"
+    },
+    "B": {
+      "tag": "minecraft:logs"
+    },
+    "P": {
+      "tag": "forge:cogwheels"
+    }
+  },
+  "result": {
+    "item": "create:cuckoo_clock"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "extendedgears:block/large_oak_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "extendedgears:block/large_oak_cogwheel"
+    },
+    "axis=z": {
+      "model": "extendedgears:block/large_oak_cogwheel",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

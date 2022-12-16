@@ -1,0 +1,18 @@
+
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:crimson_planks"
+    },
+    {
+      "item": "minecraft:crimson_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_crimson_cogwheel"
+  }
+}

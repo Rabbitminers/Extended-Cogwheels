@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P",
+    "S"
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:cogwheels"
+    },
+    "S": {
+      "item": "create:fluid_pipe"
+    }
+  },
+  "result": {
+    "item": "create:mechanical_pump"
+  }
+}

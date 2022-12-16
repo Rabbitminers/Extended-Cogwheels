@@ -1,0 +1,18 @@
+
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:birch_planks"
+    },
+    {
+      "item": "minecraft:birch_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_birch_cogwheel"
+  }
+}

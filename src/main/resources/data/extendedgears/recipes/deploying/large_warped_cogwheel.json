@@ -1,0 +1,17 @@
+
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:warped_cogwheel"
+    },
+    {
+      "item": "minecraft:warped_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_warped_cogwheel"
+    }
+  ]
+}

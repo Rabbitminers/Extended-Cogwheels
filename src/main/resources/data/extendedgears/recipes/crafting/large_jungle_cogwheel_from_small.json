@@ -1,0 +1,15 @@
+
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:jungle_cogwheel"
+    },
+    {
+      "item": "minecraft:jungle_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_jungle_cogwheel"
+  }
+}

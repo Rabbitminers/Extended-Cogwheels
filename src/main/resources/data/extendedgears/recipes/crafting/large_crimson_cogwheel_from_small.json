@@ -1,0 +1,15 @@
+
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:crimson_cogwheel"
+    },
+    {
+      "item": "minecraft:crimson_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_crimson_cogwheel"
+  }
+}
