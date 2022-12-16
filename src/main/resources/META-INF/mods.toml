@@ -35,13 +35,13 @@ A small addon to create adding more types of cogs
 [[dependencies.extendedgears]]
     modId="create"
     mandatory=true
-    versionRange="[0.5.0.d,)"
+    versionRange="[0.5.0.g,)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.extendedgears]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.19.2,1.20)"
     ordering="NONE"
     side="BOTH"
