@@ -1,0 +1,39 @@
+{
+  "itemGroup.extendedgears": "Extended Cogs",
+
+  "block.extendedgears.acacia_cogwheel": "아카시아 톱니바퀴",
+  "block.extendedgears.large_acacia_cogwheel": "큰 아카시아 톱니바퀴",
+
+
+  "block.extendedgears.oak_cogwheel": "참나무 톱니바퀴",
+  "block.extendedgears.large_oak_cogwheel": "큰 참나무 톱니바퀴",
+
+
+  "block.extendedgears.dark_oak_cogwheel": "짙은 참나무 톱니바퀴",
+  "block.extendedgears.large_dark_oak_cogwheel": "큰 짙은 참나무 톱니바퀴",
+
+
+  "block.extendedgears.birch_cogwheel": "자작나무 톱니바퀴",
+  "block.extendedgears.large_birch_cogwheel": "큰 자작나무 톱니바퀴",
+
+
+  "block.extendedgears.crimson_cogwheel": "진홍빛 톱니바퀴",
+  "block.extendedgears.large_crimson_cogwheel": "큰 진홍빛 톱니바퀴",
+
+
+  "block.extendedgears.jungle_cogwheel": "정글 나무 톱니바퀴",
+  "block.extendedgears.large_jungle_cogwheel": "큰 정글 나무 톱니바퀴",
+
+
+  "block.extendedgears.warped_cogwheel": "뒤틀린 톱니바퀴",
+  "block.extendedgears.large_warped_cogwheel": "큰 뒤틀린 톱니바퀴",
+
+  "block.extendedgears.steel_cogwheel": "강철 톱니바퀴",
+  "block.extendedgears.large_steel_cogwheel": "큰 강철 톱니바퀴",
+
+  "block.extendedgears.copper_cogwheel": "구리 톱니바퀴",
+  "block.extendedgears.large_copper_cogwheel": "큰 구리 톱니바퀴",
+
+  "block.extendedgears.iron_cogwheel": "철 톱니바퀴",
+  "block.extendedgears.large_iron_cogwheel": "큰 철 톱니바퀴"
+}
