@@ -1,0 +1,39 @@
+{
+  "itemGroup.extendedgears": "机械动力：更多齿轮",
+
+  "block.extendedgears.acacia_cogwheel": "金合欢木齿轮",
+  "block.extendedgears.large_acacia_cogwheel": "金合欢木大齿轮",
+
+
+  "block.extendedgears.oak_cogwheel": "橡木齿轮",
+  "block.extendedgears.large_oak_cogwheel": "橡木大齿轮",
+
+
+  "block.extendedgears.dark_oak_cogwheel": "深色橡木齿轮",
+  "block.extendedgears.large_dark_oak_cogwheel": "深色橡木大齿轮",
+
+
+  "block.extendedgears.birch_cogwheel": "白桦木齿轮",
+  "block.extendedgears.large_birch_cogwheel": "白桦木大齿轮",
+
+
+  "block.extendedgears.crimson_cogwheel": "绯红木齿轮",
+  "block.extendedgears.large_crimson_cogwheel": "绯红木大齿轮",
+
+
+  "block.extendedgears.jungle_cogwheel": "丛林木齿轮",
+  "block.extendedgears.large_jungle_cogwheel": "丛林木大齿轮",
+
+
+  "block.extendedgears.warped_cogwheel": "诡异木齿轮",
+  "block.extendedgears.large_warped_cogwheel": "诡异木大齿轮",
+
+  "block.extendedgears.steel_cogwheel": "钢制齿轮",
+  "block.extendedgears.large_steel_cogwheel": "钢制大齿轮",
+
+  "block.extendedgears.copper_cogwheel": "铜制齿轮",
+  "block.extendedgears.large_copper_cogwheel": "铜制大齿轮",
+
+  "block.extendedgears.iron_cogwheel": "铁质齿轮",
+  "block.extendedgears.large_iron_cogwheel": "铁质大齿轮"
+}
