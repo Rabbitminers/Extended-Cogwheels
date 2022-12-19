@@ -6,7 +6,7 @@
       "item": "extendedgears:steel_cogwheel"
     },
     {
-      "item": "forge:ingots/steel"
+      "tag": "forge:ingots/steel"
     }
   ],
   "result": {

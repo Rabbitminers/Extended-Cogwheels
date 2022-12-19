@@ -1,12 +1,18 @@
 package com.rabbitminers.extendedgears.basecog;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.config.ECConfig;
 import com.rabbitminers.extendedgears.index.AddonTileEntities;
+import com.rabbitminers.extendedgears.tileentities.CogWheelKineticTileEntity;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -14,22 +20,30 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class MetalCogWheel extends CogWheelBlock implements ICustomCogWheel {
     public PartialModel model;
-    protected MetalCogWheel(boolean large, Properties properties, PartialModel model) {
+    public ForgeConfigSpec.IntValue maxRPM;
+
+    protected MetalCogWheel(boolean large, Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
         super(large, properties);
         this.model = model;
+        this.maxRPM = maxRPM;
     }
-    public static MetalCogWheel small(Properties properties, PartialModel model) {
-        return new MetalCogWheel(false, properties, model);
-    }
-
-    public static MetalCogWheel large(Properties properties, PartialModel model) {
-        return new MetalCogWheel(true, properties, model);
+    public static MetalCogWheel small(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
+        return new MetalCogWheel(false, properties, model, maxRPM);
     }
 
+    public static MetalCogWheel large(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
+        return new MetalCogWheel(true, properties, model, maxRPM);
+    }
     @Override
     public PartialModel getPartialModelType() {
         return this.model;
     }
+
+    @Override
+    public int getMaxRPM() {
+        return maxRPM.get();
+    }
+
     @Override
     public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
         return AddonTileEntities.BRACKETED_KINETIC.get();

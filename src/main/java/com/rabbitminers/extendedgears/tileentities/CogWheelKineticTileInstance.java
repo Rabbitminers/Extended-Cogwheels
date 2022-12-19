@@ -27,6 +27,7 @@ public class CogWheelKineticTileInstance extends BracketedKineticTileInstance {
     private PoseStack rotateToAxis(Direction.Axis axis) {
         Direction facing = Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE);
         PoseStack poseStack = new PoseStack();
+
         TransformStack.cast(poseStack)
                 .centre()
                 .rotateToFace(facing)
@@ -43,6 +44,7 @@ public class CogWheelKineticTileInstance extends BracketedKineticTileInstance {
             return;
 
         float speed = blockEntity.getSpeed();
+
         Direction.Axis axis = KineticTileEntityRenderer.getRotationAxisOf(blockEntity);
         BlockPos pos = blockEntity.getBlockPos();
         float offset = BracketedKineticTileRenderer.getShaftAngleOffset(axis, pos);

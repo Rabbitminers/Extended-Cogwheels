@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "steampowered.refmap.json",
   "mixins": [
+    "MixinKineticTileEntity"
   ],
   "client": [
   ]

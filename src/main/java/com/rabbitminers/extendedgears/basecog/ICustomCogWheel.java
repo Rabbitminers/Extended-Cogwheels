@@ -17,6 +17,10 @@ public interface ICustomCogWheel {
         return cogWheel.getPartialModelType();
     }
 
+    default int getMaxRPM() {
+        return 0;
+    }
+
     default PartialModel getPartialModelType() {
         return ECPartials.METAL_COGWHEEL;
     }

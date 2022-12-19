@@ -1,10 +1,12 @@
 package com.rabbitminers.extendedgears;
 
 import com.mojang.logging.LogUtils;
+import com.rabbitminers.extendedgears.config.ECConfig;
 import com.rabbitminers.extendedgears.index.AddonBlocks;
 import com.rabbitminers.extendedgears.index.AddonItems;
 import com.rabbitminers.extendedgears.index.AddonTileEntities;
 import com.rabbitminers.extendedgears.index.ECPartials;
+import com.rabbitminers.extendedgears.network.Packets;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +16,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -39,18 +43,20 @@ public class ExtendedGears {
                 .getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        /*
-         For adding simple kinetic blocks this is all you need but for fluids etc.
-         see the Create GitHub repo -
-         https://github.com/Creators-of-Create/Create/tree/mc1.18/dev/src/main/java/com/simibubi/create
-         */
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ECConfig.spec);
 
         AddonBlocks.register();
         AddonItems.register(modEventBus);
         AddonTileEntities.register();
 
+        modEventBus.addListener(this::commonSetup);
+
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT,
                 () -> ECPartials::init);
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        Packets.register();
     }
 
     private void setup(final FMLCommonSetupEvent event) {}
