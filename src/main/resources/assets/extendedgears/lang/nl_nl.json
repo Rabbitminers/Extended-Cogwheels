@@ -1,0 +1,23 @@
+{ 
+	"itemGroup.extendedgears": "Uitgebreide tandwielen",
+	"block.extendedgears.acacia_cogwheel": "Acaciahouten tandwiel",
+	"block.extendedgears.large_acacia_cogwheel": "Groot acaciahouten tandwiel",
+	"block.extendedgears.oak_cogwheel": "Eikenhouten tandwiel",
+	"block.extendedgears.large_oak_cogwheel": "Groot eikenhouten tandwiel",
+	"block.extendedgears.dark_oak_cogwheel": "Donkereikenhouten tandwiel",
+	"block.extendedgears.large_dark_oak_cogwheel": "Groot donkereikenhouten tandwiel",
+	"block.extendedgears.birch_cogwheel": "Berkenhouten tandwiel",
+	"block.extendedgears.large_birch_cogwheel": "Groot berkenhouten tandwiel",
+	"block.extendedgears.crimson_cogwheel": "Karmijnrood tandwiel",
+	"block.extendedgears.large_crimson_cogwheel": "Groot karmijnrood tandwiel",
+	"block.extendedgears.jungle_cogwheel": "Junglehouten tandwiel",
+	"block.extendedgears.large_jungle_cogwheel": "Groot junglehouten tandwiel",
+	"block.extendedgears.warped_cogwheel": "Warblauw tandwiel",
+	"block.extendedgears.large_warped_cogwheel": "Groot warblauw tandwiel",
+	"block.extendedgears.steel_cogwheel": "Stalen tandwiel",
+	"block.extendedgears.large_steel_cogwheel": "Groot stalen tandwiel",
+	"block.extendedgears.copper_cogwheel": "Koperen tandwiel",
+	"block.extendedgears.large_copper_cogwheel": "Groot koperen tandwiel",
+	"block.extendedgears.iron_cogwheel": "IJzeren tandwiel",
+	"block.extendedgears.large_iron_cogwheel": "Groot ijzeren tandwiel"
+}

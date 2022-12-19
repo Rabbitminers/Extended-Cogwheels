@@ -1,0 +1,39 @@
+{
+  "itemGroup.extendedgears": "Extended Cogs",
+
+  "block.extendedgears.acacia_cogwheel": "Akazienholzzahnrad",
+  "block.extendedgears.large_acacia_cogwheel": "Großes Akazienholzzahnrad",
+
+
+  "block.extendedgears.oak_cogwheel": "Eichenholzzahnrad",
+  "block.extendedgears.large_oak_cogwheel": "Großes Eichenholzzahnrad",
+
+
+  "block.extendedgears.dark_oak_cogwheel": "Schwarzeichenzahnrad",
+  "block.extendedgears.large_dark_oak_cogwheel": "Großes Schwarzeichenzahnrad",
+
+
+  "block.extendedgears.birch_cogwheel": "Birkenholzzahnrad",
+  "block.extendedgears.large_birch_cogwheel": "Großes Birkenholzzahnrad",
+
+
+  "block.extendedgears.crimson_cogwheel": "Karmesinzahnrad",
+  "block.extendedgears.large_crimson_cogwheel": "Großes Karmesinzahnrad",
+
+
+  "block.extendedgears.jungle_cogwheel": "Tropenholzzahnrad",
+  "block.extendedgears.large_jungle_cogwheel": "Großes Tropenholzzahnrad",
+
+
+  "block.extendedgears.warped_cogwheel": "Wirrzahnrad",
+  "block.extendedgears.large_warped_cogwheel": "Großes Wirrzahnrad",
+
+  "block.extendedgears.steel_cogwheel": "Stahlzahnrad",
+  "block.extendedgears.large_steel_cogwheel": "Großes Stahlzahnrad",
+
+  "block.extendedgears.copper_cogwheel": "Kupferzahnrad",
+  "block.extendedgears.large_copper_cogwheel": "Großes Kuperzahnrad",
+
+  "block.extendedgears.iron_cogwheel": "Eisenzahnrad",
+  "block.extendedgears.large_iron_cogwheel": "Großes Eisenzahnrad"
+}
