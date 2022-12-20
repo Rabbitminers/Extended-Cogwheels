@@ -6,10 +6,12 @@ import com.rabbitminers.extendedgears.config.ECConfig;
 import com.rabbitminers.extendedgears.network.BreakCogwheelPacket;
 import com.rabbitminers.extendedgears.network.Packets;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
 import com.simibubi.create.content.contraptions.relays.elementary.ICogWheel;
+import com.simibubi.create.foundation.config.AllConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
@@ -40,6 +42,7 @@ public abstract class MixinKineticTileEntity {
     @Shadow public abstract boolean hasSource();
 
     @Shadow protected float speed;
+    @Shadow protected float capacity;
     public BlockPos pos;
 
     @Inject(at = @At("TAIL"), method = "<init>")
@@ -50,12 +53,11 @@ public abstract class MixinKineticTileEntity {
     private void tick(CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level != null && mc.level.getBlockState(pos).getBlock() instanceof CogWheelBlock cogWheel) {
-            if (cogWheel instanceof ICustomCogWheel) {
+            if (cogWheel instanceof ICustomCogWheel)
                 return;
-            }
-            if (Math.abs(speed) > ECConfig.COGWHEEL_LIMITATIONS.maxSpruceRPM.get()) {
+            if (Math.abs(speed) > ECConfig.COGWHEEL_LIMITATIONS.maxSpruceRPM.get()
+                    || capacity > ECConfig.COGWHEEL_LIMITATIONS.maxSpruceSU.get())
                 Packets.breakCogwheelServerSide(new BreakCogwheelPacket(pos));
-            }
         }
     }
 }

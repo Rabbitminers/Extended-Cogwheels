@@ -26,18 +26,23 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class MetalCogWheel extends CogWheelBlock implements ICustomCogWheel {
     public PartialModel model;
     public ForgeConfigSpec.IntValue maxRPM;
+    public ForgeConfigSpec.IntValue maxSU;
 
-    protected MetalCogWheel(boolean large, Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
+    protected MetalCogWheel(boolean large, Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM,
+            ForgeConfigSpec.IntValue maxSU) {
         super(large, properties);
         this.model = model;
         this.maxRPM = maxRPM;
+        this.maxSU = maxSU;
     }
-    public static MetalCogWheel small(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
-        return new MetalCogWheel(false, properties, model, maxRPM);
+    public static MetalCogWheel small(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM,
+          ForgeConfigSpec.IntValue maxSU) {
+        return new MetalCogWheel(false, properties, model, maxRPM, maxSU);
     }
 
-    public static MetalCogWheel large(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM) {
-        return new MetalCogWheel(true, properties, model, maxRPM);
+    public static MetalCogWheel large(Properties properties, PartialModel model, ForgeConfigSpec.IntValue maxRPM,
+            ForgeConfigSpec.IntValue maxSU) {
+        return new MetalCogWheel(true, properties, model, maxRPM, maxSU);
     }
     @Override
     public PartialModel getPartialModelType() {
@@ -47,6 +52,10 @@ public class MetalCogWheel extends CogWheelBlock implements ICustomCogWheel {
     @Override
     public int getMaxRPM() {
         return maxRPM.get();
+    }
+    @Override
+    public int getMaxSU() {
+        return maxSU.get();
     }
 
     @Override
