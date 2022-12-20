@@ -49,9 +49,11 @@ public abstract class MixinKineticTileEntity {
     public void KineticTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state, CallbackInfo ci) {
         this.pos = pos;
     }
+    @OnlyIn(Dist.CLIENT)
     @Inject(at = @At("TAIL"), method = "tick", remap = false)
     private void tick(CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
+
         if (mc.level != null && mc.level.getBlockState(pos).getBlock() instanceof CogWheelBlock cogWheel) {
             if (cogWheel instanceof ICustomCogWheel)
                 return;
