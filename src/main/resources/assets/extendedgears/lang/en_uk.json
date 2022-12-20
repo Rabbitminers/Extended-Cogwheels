@@ -1,0 +1,39 @@
+{
+  "itemGroup.extendedgears": "Extended Cogs",
+
+  "block.extendedgears.acacia_cogwheel": "Acacia Cogwheel",
+  "block.extendedgears.large_acacia_cogwheel": "Large Acacia Cogwheel",
+
+
+  "block.extendedgears.oak_cogwheel": "Oak Cogwheel",
+  "block.extendedgears.large_oak_cogwheel": "Large Oak Cogwheel",
+
+
+  "block.extendedgears.dark_oak_cogwheel": "Dark Oak Cogwheel",
+  "block.extendedgears.large_dark_oak_cogwheel": "Large Dark Oak Cogwheel",
+
+
+  "block.extendedgears.birch_cogwheel": "Birch Cogwheel",
+  "block.extendedgears.large_birch_cogwheel": "Large Birch Cogwheel",
+
+
+  "block.extendedgears.crimson_cogwheel": "Crimson Cogwheel",
+  "block.extendedgears.large_crimson_cogwheel": "Large Crimson Cogwheel",
+
+
+  "block.extendedgears.jungle_cogwheel": "Jungle Cogwheel",
+  "block.extendedgears.large_jungle_cogwheel": "Large Jungle Cogwheel",
+
+
+  "block.extendedgears.warped_cogwheel": "Warped Cogwheel",
+  "block.extendedgears.large_warped_cogwheel": "Large Warped Cogwheel",
+
+  "block.extendedgears.steel_cogwheel": "Steel Cogwheel",
+  "block.extendedgears.large_steel_cogwheel": "Large Steel Cogwheel",
+
+  "block.extendedgears.copper_cogwheel": "Copper Cogwheel",
+  "block.extendedgears.large_copper_cogwheel": "Large Copper Cogwheel",
+
+  "block.extendedgears.iron_cogwheel": "Iron Cogwheel",
+  "block.extendedgears.large_iron_cogwheel": "Large Iron Cogwheel"
+}
