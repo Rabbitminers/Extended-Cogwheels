@@ -22,7 +22,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 
-version = '1.19.2-0.5.0g-1.1.1'
+version = '1.19.2-0.5.0g-1.1.2'
 // TODO: update group and archive name
 group = 'com.rabbitminers.extendedgears' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'extendedgears'
