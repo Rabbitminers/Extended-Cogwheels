@@ -1,16 +1,14 @@
 {
-	"type": "create:deploying",
-	"ingredients": [
-		{
-			"item": "create:shaft"
-		},
-		{
-			"item": "minecraft:spruce_planks"
-		}
-	],
-	"results": [
-		{
-			"item": "create:cogwheel"
-		}
-	]
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:spruce_planks"
+    }
+  ],
+  "result": {
+    "item": "create:cogwheel"
+  }
 }
