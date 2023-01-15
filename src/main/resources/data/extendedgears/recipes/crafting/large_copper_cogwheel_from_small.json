@@ -3,13 +3,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "extendedgears:oak_cogwheel"
+      "item": "extendedgears:copper_cogwheel"
     },
     {
-      "tag": "minecraft:copper_ingot"
+      "item": "minecraft:copper_ingot"
     }
   ],
   "result": {
-    "item": "extendedgears:large_oak_cogwheel"
+    "item": "extendedgears:large_copper_cogwheel"
   }
 }
