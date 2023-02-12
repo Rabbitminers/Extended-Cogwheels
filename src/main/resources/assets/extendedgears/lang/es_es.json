@@ -1,0 +1,39 @@
+{
+  "itemGroup.extendedgears": "Extended Cogs",
+
+  "block.extendedgears.acacia_cogwheel": "Engranaje de acacia",
+  "block.extendedgears.large_acacia_cogwheel": "Engranaje grande de acacia",
+
+
+  "block.extendedgears.oak_cogwheel": "Engranaje de roble",
+  "block.extendedgears.large_oak_cogwheel": "Engranaje grande de roble",
+
+
+  "block.extendedgears.dark_oak_cogwheel": "Engranaje de roble oscuro",
+  "block.extendedgears.large_dark_oak_cogwheel": "Engranaje grande de roble oscuro",
+
+
+  "block.extendedgears.birch_cogwheel": "Engranaje de abedul",
+  "block.extendedgears.large_birch_cogwheel": "Engranaje grande de abedul",
+
+
+  "block.extendedgears.crimson_cogwheel": "Engranaje carmesí",
+  "block.extendedgears.large_crimson_cogwheel": "Engranaje grande carmesí",
+
+
+  "block.extendedgears.jungle_cogwheel": "Engranaje de jungla",
+  "block.extendedgears.large_jungle_cogwheel": "Engranaje grande de jungla",
+
+
+  "block.extendedgears.warped_cogwheel": "Engranaje distorsionado",
+  "block.extendedgears.large_warped_cogwheel": "Engranaje grande distorsionado",
+
+  "block.extendedgears.steel_cogwheel": "Engranaje de acero",
+  "block.extendedgears.large_steel_cogwheel": "Engranaje grande de acero",
+
+  "block.extendedgears.copper_cogwheel": "Engranaje de cobre",
+  "block.extendedgears.large_copper_cogwheel": "Engranaje grande de cobre",
+
+  "block.extendedgears.iron_cogwheel": "Engranaje de hierro",
+  "block.extendedgears.large_iron_cogwheel": "Engranaje grande de hierro"
+}
