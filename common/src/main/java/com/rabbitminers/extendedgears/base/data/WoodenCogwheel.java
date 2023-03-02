@@ -6,4 +6,8 @@ import org.jetbrains.annotations.Nullable;
 public enum WoodenCogwheel {
     DARK_OAK, OAK, BIRCH, JUNGLE, ACACIA, WARPED, CRIMSON
     ;
+
+    public String asId() {
+        return name().toLowerCase();
+    }
 }
