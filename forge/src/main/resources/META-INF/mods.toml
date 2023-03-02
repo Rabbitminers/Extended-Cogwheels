@@ -1,33 +1,33 @@
 modLoader = "javafml"
 loaderVersion = "[${forge_version},)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "GNU GPLv3"
 
 [[mods]]
-modId = "examplemod"
+modId = "extendedgears"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
+displayName = "Extended Cogwheels"
+authors = "Rabbitminers"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A small mod adding more cogs to the create mod
 '''
 logoFile = "icon.png"
 
-[[dependencies.examplemod]]
+[[dependencies.extendedgears]]
 modId = "forge"
 mandatory = true
 versionRange = "[${forge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.extendedgears]]
 modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.extendedgears]]
 modId="create"
 mandatory=true
 versionRange="${create_version}"
