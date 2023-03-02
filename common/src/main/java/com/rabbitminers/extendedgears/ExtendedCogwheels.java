@@ -11,12 +11,11 @@ public class ExtendedCogwheels {
     public static final String NAME = "Extended Gears";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
 
-
     public static void init() {
         ExtendedCogwheelsBlocks.init(); // hold registrate in a separate class to avoid loading early on forge
     }
 
-    public static ResourceLocation id(String path) {
+    public static ResourceLocation asResource(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
 }
