@@ -1,8 +1,8 @@
 package com.rabbitminers.extendedgears.fabric;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
-import com.rabbitminers.extendedgears.ExampleBlocks;
 import net.fabricmc.api.ModInitializer;
 
 public class ExtendedCogwheelsFabric implements ModInitializer {
@@ -14,6 +14,6 @@ public class ExtendedCogwheelsFabric implements ModInitializer {
                 () -> () -> "{} is accessing Porting Lib on a Fabric server!"
                 ), ExtendedCogwheels.NAME);
         // on fabric, Registrates must be explicitly finalized and registered.
-        ExampleBlocks.REGISTRATE.register();
+        ExtendedCogwheelsBlocks.REGISTRATE.register();
     }
 }

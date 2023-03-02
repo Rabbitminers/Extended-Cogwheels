@@ -1,6 +1,6 @@
 package com.rabbitminers.extendedgears;
 
-import com.simibubi.create.Create;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ public class ExtendedCogwheels {
 
 
     public static void init() {
-        ExampleBlocks.init(); // hold registrate in a separate class to avoid loading early on forge
+        ExtendedCogwheelsBlocks.init(); // hold registrate in a separate class to avoid loading early on forge
     }
 
     public static ResourceLocation id(String path) {
