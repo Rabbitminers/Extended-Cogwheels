@@ -17,8 +17,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MaterialColor;
 
 public class ExtendedCogwheelsBlocks {
-	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID);
-
+	public static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> commonCogwheelTransformer() {
 		return b -> b.blockstate(BlockStateGen.axisBlockProvider(false))
 				.onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
