@@ -49,9 +49,20 @@ public class ExtendedCogwheelsBlocks {
 							.transform(woodenCogwheelTransformer()).register()
 	);
 
+	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
+			REGISTRATE.block("large_" + wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
+					ExtendedCogwheelsPartials.LARGE_WOODEN_COGWHEELS.get(wood)))
+						.transform(woodenCogwheelTransformer()).register());
+
 	public static final MetalBlockList<CustomCogwheelBlock> METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block(metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
 					ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal)))
+							.transform(metalCogwheelTransformer()).register()
+	);
+
+	public static final MetalBlockList<CustomCogwheelBlock> LARGE_METAL_COGWHEELS = new MetalBlockList<>(metal ->
+			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
+					ExtendedCogwheelsPartials.LARGE_METAL_COGWHEELS.get(metal)))
 							.transform(metalCogwheelTransformer()).register()
 	);
 
