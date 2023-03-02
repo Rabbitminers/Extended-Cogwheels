@@ -13,12 +13,19 @@ public class ExtendedCogwheelsPartials {
     public static final Map<MetalCogwheel, PartialModel> METAL_COGWHEELS = new EnumMap<>(MetalCogwheel.class);
     public static final Map<WoodenCogwheel, PartialModel> WOODEN_COGWHEELS = new EnumMap<>(WoodenCogwheel.class);
 
-    static {
-        for (MetalCogwheel metalCogwheel : MetalCogwheel.values())
-            METAL_COGWHEELS.put(metalCogwheel, block("block/cogwheel/" + metalCogwheel.name()));
+    public static final Map<MetalCogwheel, PartialModel> LARGE_METAL_COGWHEELS = new EnumMap<>(MetalCogwheel.class);
+    public static final Map<WoodenCogwheel, PartialModel> LARGE_WOODEN_COGWHEELS = new EnumMap<>(WoodenCogwheel.class);
 
-        for (WoodenCogwheel woodenCogwheel : WoodenCogwheel.values())
+    static {
+        for (MetalCogwheel metalCogwheel : MetalCogwheel.values()) {
+            METAL_COGWHEELS.put(metalCogwheel, block("block/cogwheel/" + metalCogwheel.name() + "_cogwheel"));
+            LARGE_METAL_COGWHEELS.put(metalCogwheel, block("block/cogwheel/large_" + metalCogwheel.name() + "_cogwheel"));
+        }
+
+        for (WoodenCogwheel woodenCogwheel : WoodenCogwheel.values()) {
             WOODEN_COGWHEELS.put(woodenCogwheel, block("block/cogwheel/" + woodenCogwheel.name()));
+            LARGE_WOODEN_COGWHEELS.put(woodenCogwheel, block("block/cogwheel/large_" + woodenCogwheel.name()));
+        }
     }
 
     private static PartialModel block(String path) {
