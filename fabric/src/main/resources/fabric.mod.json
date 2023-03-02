@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsFabric"
+    ],
+    "client": [
+      "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsClientImpl"
     ]
   },
   "mixins": [
