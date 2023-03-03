@@ -6,6 +6,31 @@ loom {
     accessWidenerPath = file("src/main/resources/examplemod.accesswidener")
 }
 
+
+sourceSets {
+    main {
+        resources {
+            srcDir("src/generated/resources")
+            srcDir(project(":common").file("src/generated/resources"))
+            exclude("**/.cache")
+        }
+    }
+}
+
+loom {
+    runs {
+        create("dataCommon") {
+            inherit(getByName("client"))
+            name("Data Common")
+            property("fabric-api.datagen")
+            property("fabric-api.datagen.modid", archives_base_name)
+            property("fabric-api.datagen.output-dir", project(":common").file("src/generated/resources").absolutePath)
+            property("fabric-api.datagen.strict-validation")
+            property("fabric-api.datagen.existing")
+        }
+    }
+}
+
 repositories {
     // mavens for Create Fabric and dependencies
     maven { url = "https://api.modrinth.com/maven" } // LazyDFU

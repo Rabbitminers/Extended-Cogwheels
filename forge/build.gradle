@@ -74,6 +74,10 @@ loom {
                 "examplemod-common.mixins.json",
                 "examplemod.mixins.json"
         )
+
+        dataGen {
+            mod archives_base_name
+        }
     }
 }
 
