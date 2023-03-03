@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,11 +25,11 @@ public class CustomCogwheelBlock extends CogWheelBlock implements ICustomCogwhee
 
     @Override
     public PartialModel getPartialModelType() {
-        return ICustomCogwheel.super.getPartialModelType();
+        return partialModel;
     }
 
     @Override
     public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
-        return super.getTileEntityType();
+        return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
     }
 }

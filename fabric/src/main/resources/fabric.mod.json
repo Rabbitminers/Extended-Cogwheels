@@ -20,6 +20,9 @@
     ],
     "client": [
       "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsClientImpl"
+    ],
+    "fabric-datagen": [
+      "com.rabbitminers.extendedgears.fabric.datagen.ExtendedCogwheelsData"
     ]
   },
   "mixins": [
