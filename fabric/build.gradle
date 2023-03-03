@@ -42,6 +42,7 @@ sourceSets {
 
 loom {
     runs {
+
         create("dataCommon") {
             inherit(getByName("client"))
             name("Data Common")

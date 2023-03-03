@@ -13,3 +13,4 @@ include("fabric")
 include("forge")
 
 rootProject.name = "create-multiloader-addon-tempate"
+

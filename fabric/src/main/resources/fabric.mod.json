@@ -25,9 +25,9 @@
       "com.rabbitminers.extendedgears.fabric.datagen.ExtendedCogwheelsData"
     ]
   },
+  "_":  "disable examplemod-common.mixins.json for datagen",
   "mixins": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
+    "examplemod.mixins.json"
   ],
   "depends": {
     "minecraft": "${minecraft_version}",
