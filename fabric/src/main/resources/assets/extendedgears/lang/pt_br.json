@@ -1,0 +1,30 @@
+{
+  "itemGroup.extendedcogs.main": "Rodas Extendidas",
+
+  "block.extendedcogs.acacia_cogwheel": "Roda dentada de Acácia",
+  "block.extendedcogs.large_acacia_cogwheel": "Roda dentada larga de Acácia",
+
+  "block.extendedcogs.oak_cogwheel": "Roda dentada de carvalho",
+  "block.extendedcogs.large_oak_cogwheel": "Roda dentada larga de carvalho",
+
+  "block.extendedcogs.dark_oak_cogwheel": "Roda dentada de carvalho escuro",
+  "block.extendedcogs.large_dark_oak_cogwheel": "Roda dentada larga de carvalho escuro",
+
+  "block.extendedcogs.birch_cogwheel": "Roda dentada de bétula",
+  "block.extendedcogs.large_birch_cogwheel": "Roda dentada larga de bétula",
+
+  "block.extendedcogs.crimson_cogwheel": "Roda dentada carmesim",
+  "block.extendedcogs.large_crimson_cogwheel": "Roda dentada larga carmesim",
+
+  "block.extendedcogs.jungle_cogwheel": "Roda dentada de madeira da selva",
+  "block.extendedcogs.large_jungle_cogwheel": "Roda dentada larga de madeira da selva",
+
+  "block.extendedcogs.warped_cogwheel": "Roda dentada distorcida",
+  "block.extendedcogs.large_warped_cogwheel": "Roda dentada larga distorcida",
+
+  "block.extendedcogs.steel_cogwheel": "Roda dentada de aço",
+  "block.extendedcogs.large_steel_cogwheel": "Roda dentada larga de aço",
+
+  "block.extendedcogs.copper_cogwheel": "Roda dentada de cobre",
+  "block.extendedcogs.large_copper_cogwheel": "Roda dentada larga de cobre"
+}
