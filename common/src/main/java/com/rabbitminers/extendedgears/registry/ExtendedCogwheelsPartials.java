@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.registry;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.simibubi.create.AllBlockPartials;
@@ -29,7 +30,7 @@ public class ExtendedCogwheelsPartials {
     }
 
     private static PartialModel block(String path) {
-        return new PartialModel(Create.asResource("block/" + path));
+        return new PartialModel(ExtendedCogwheels.asResource("block/" + path));
     }
     public static void init() {
 
