@@ -1,39 +1,39 @@
 {
-  "itemGroup.extendedcogs.main": "Extended Cogs",
+  "itemGroup.extendedgears.main": "Extended Cogs",
 
-  "block.extendedcogs.acacia_cogwheel": "Akazienholzzahnrad",
-  "block.extendedcogs.large_acacia_cogwheel": "Großes Akazienholzzahnrad",
-
-
-  "block.extendedcogs.oak_cogwheel": "Eichenholzzahnrad",
-  "block.extendedcogs.large_oak_cogwheel": "Großes Eichenholzzahnrad",
+  "block.extendedgears.acacia_cogwheel": "Akazienholzzahnrad",
+  "block.extendedgears.large_acacia_cogwheel": "Großes Akazienholzzahnrad",
 
 
-  "block.extendedcogs.dark_oak_cogwheel": "Schwarzeichenzahnrad",
-  "block.extendedcogs.large_dark_oak_cogwheel": "Großes Schwarzeichenzahnrad",
+  "block.extendedgears.oak_cogwheel": "Eichenholzzahnrad",
+  "block.extendedgears.large_oak_cogwheel": "Großes Eichenholzzahnrad",
 
 
-  "block.extendedcogs.birch_cogwheel": "Birkenholzzahnrad",
-  "block.extendedcogs.large_birch_cogwheel": "Großes Birkenholzzahnrad",
+  "block.extendedgears.dark_oak_cogwheel": "Schwarzeichenzahnrad",
+  "block.extendedgears.large_dark_oak_cogwheel": "Großes Schwarzeichenzahnrad",
 
 
-  "block.extendedcogs.crimson_cogwheel": "Karmesinzahnrad",
-  "block.extendedcogs.large_crimson_cogwheel": "Großes Karmesinzahnrad",
+  "block.extendedgears.birch_cogwheel": "Birkenholzzahnrad",
+  "block.extendedgears.large_birch_cogwheel": "Großes Birkenholzzahnrad",
 
 
-  "block.extendedcogs.jungle_cogwheel": "Tropenholzzahnrad",
-  "block.extendedcogs.large_jungle_cogwheel": "Großes Tropenholzzahnrad",
+  "block.extendedgears.crimson_cogwheel": "Karmesinzahnrad",
+  "block.extendedgears.large_crimson_cogwheel": "Großes Karmesinzahnrad",
 
 
-  "block.extendedcogs.warped_cogwheel": "Wirrzahnrad",
-  "block.extendedcogs.large_warped_cogwheel": "Großes Wirrzahnrad",
+  "block.extendedgears.jungle_cogwheel": "Tropenholzzahnrad",
+  "block.extendedgears.large_jungle_cogwheel": "Großes Tropenholzzahnrad",
 
-  "block.extendedcogs.steel_cogwheel": "Stahlzahnrad",
-  "block.extendedcogs.large_steel_cogwheel": "Großes Stahlzahnrad",
 
-  "block.extendedcogs.copper_cogwheel": "Kupferzahnrad",
-  "block.extendedcogs.large_copper_cogwheel": "Großes Kuperzahnrad",
+  "block.extendedgears.warped_cogwheel": "Wirrzahnrad",
+  "block.extendedgears.large_warped_cogwheel": "Großes Wirrzahnrad",
 
-  "block.extendedcogs.iron_cogwheel": "Eisenzahnrad",
-  "block.extendedcogs.large_iron_cogwheel": "Großes Eisenzahnrad"
+  "block.extendedgears.steel_cogwheel": "Stahlzahnrad",
+  "block.extendedgears.large_steel_cogwheel": "Großes Stahlzahnrad",
+
+  "block.extendedgears.copper_cogwheel": "Kupferzahnrad",
+  "block.extendedgears.large_copper_cogwheel": "Großes Kuperzahnrad",
+
+  "block.extendedgears.iron_cogwheel": "Eisenzahnrad",
+  "block.extendedgears.large_iron_cogwheel": "Großes Eisenzahnrad"
 }

@@ -5,8 +5,8 @@
   "parent": "create:block/large_wheels",
   "texture_size": [32, 32],
   "textures": {
-    "1_2": "extendedcogs:jungle_cogwheel",
-    "particle": "extendedcogs:jungle_cogwheel"
+    "1_2": "extendedgears:jungle_cogwheel",
+    "particle": "extendedgears:jungle_cogwheel"
   },
   "elements": [
     {

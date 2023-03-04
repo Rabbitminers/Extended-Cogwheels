@@ -3,8 +3,8 @@
   "parent": "create:block/large_wheels",
   "texture_size": [32, 32],
   "textures": {
-    "1_2": "extendedcogs:oak_cogwheel",
-    "particle": "extendedcogs:oak_cogwheel"
+    "1_2": "extendedgears:oak_cogwheel",
+    "particle": "extendedgears:oak_cogwheel"
   },
   "elements": [
     {

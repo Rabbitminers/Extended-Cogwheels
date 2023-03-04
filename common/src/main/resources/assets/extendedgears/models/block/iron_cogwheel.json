@@ -5,8 +5,8 @@
   "parent": "create:block/large_wheels",
   "texture_size": [32, 32],
   "textures": {
-    "1_2": "extendedcogs:iron_cogwheel",
-    "particle": "extendedcogs:iron_cogwheel"
+    "1_2": "extendedgears:iron_cogwheel",
+    "particle": "extendedgears:iron_cogwheel"
   },
   "elements": [
     {

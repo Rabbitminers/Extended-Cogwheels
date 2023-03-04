@@ -6,8 +6,8 @@
 	"textures": {
 		"0": "create:block/cogwheel_axis",
 		"3": "create:block/axis_top",
-		"1_2": "extendedcogs:steel_cogwheel",
-        "particle": "extendedcogs:steel_cogwheel"
+		"1_2": "extendedgears:steel_cogwheel",
+        "particle": "extendedgears:steel_cogwheel"
 	},
 	"elements": [
 		{

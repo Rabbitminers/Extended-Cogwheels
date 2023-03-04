@@ -1,39 +1,39 @@
 {
-  "itemGroup.extendedcogs.main": "Ulepszone zębatki",
+  "itemGroup.extendedgears.main": "Ulepszone zębatki",
 
-  "block.extendedcogs.acacia_cogwheel": "Akacjowe Koło Zębate",
-  "block.extendedcogs.large_acacia_cogwheel": "Duże Akacjowe Koło Zębate",
-
-
-  "block.extendedcogs.oak_cogwheel": "Dębowe Koło Zębate",
-  "block.extendedcogs.large_oak_cogwheel": "Duże Dębowe Koło Zębate",
+  "block.extendedgears.acacia_cogwheel": "Akacjowe Koło Zębate",
+  "block.extendedgears.large_acacia_cogwheel": "Duże Akacjowe Koło Zębate",
 
 
-  "block.extendedcogs.dark_oak_cogwheel": "Ciemne Dębowe Koło Zębate",
-  "block.extendedcogs.large_dark_oak_cogwheel": "Duże Ciemne Dębowe Koło Zębate",
+  "block.extendedgears.oak_cogwheel": "Dębowe Koło Zębate",
+  "block.extendedgears.large_oak_cogwheel": "Duże Dębowe Koło Zębate",
 
 
-  "block.extendedcogs.birch_cogwheel": "Brzozowe Koło Zębate",
-  "block.extendedcogs.large_birch_cogwheel": "Duże Brzozowe Koło Zębate",
+  "block.extendedgears.dark_oak_cogwheel": "Ciemne Dębowe Koło Zębate",
+  "block.extendedgears.large_dark_oak_cogwheel": "Duże Ciemne Dębowe Koło Zębate",
 
 
-  "block.extendedcogs.crimson_cogwheel": "Szkarłatne Koło Zębate",
-  "block.extendedcogs.large_crimson_cogwheel": "Duże Szkarłatne Koło Zębate",
+  "block.extendedgears.birch_cogwheel": "Brzozowe Koło Zębate",
+  "block.extendedgears.large_birch_cogwheel": "Duże Brzozowe Koło Zębate",
 
 
-  "block.extendedcogs.jungle_cogwheel": "Dżunglowe Koło Zębate",
-  "block.extendedcogs.large_jungle_cogwheel": "Duże Dżunglowe Koło Zębate",
+  "block.extendedgears.crimson_cogwheel": "Szkarłatne Koło Zębate",
+  "block.extendedgears.large_crimson_cogwheel": "Duże Szkarłatne Koło Zębate",
 
 
-  "block.extendedcogs.warped_cogwheel": "Spaczone Koło Zębate",
-  "block.extendedcogs.large_warped_cogwheel": "Duże Spaczone Koło Zębate",
+  "block.extendedgears.jungle_cogwheel": "Dżunglowe Koło Zębate",
+  "block.extendedgears.large_jungle_cogwheel": "Duże Dżunglowe Koło Zębate",
 
-  "block.extendedcogs.steel_cogwheel": "Stalowe Koło Zębate",
-  "block.extendedcogs.large_steel_cogwheel": "Duże Stalowe Koło Zębate",
 
-  "block.extendedcogs.copper_cogwheel": "Miedziane Koło Zębate"
-  "block.extendedcogs.large_copper_cogwheel": "Duże Miedziane Koło Zębate",
+  "block.extendedgears.warped_cogwheel": "Spaczone Koło Zębate",
+  "block.extendedgears.large_warped_cogwheel": "Duże Spaczone Koło Zębate",
 
-  "block.extendedcogs.iron_cogwheel": "Żelazne Koło Zębate",
-  "block.extendedcogs.large_iron_cogwheel": "Duże Żelazne Koło Zębate"
+  "block.extendedgears.steel_cogwheel": "Stalowe Koło Zębate",
+  "block.extendedgears.large_steel_cogwheel": "Duże Stalowe Koło Zębate",
+
+  "block.extendedgears.copper_cogwheel": "Miedziane Koło Zębate"
+  "block.extendedgears.large_copper_cogwheel": "Duże Miedziane Koło Zębate",
+
+  "block.extendedgears.iron_cogwheel": "Żelazne Koło Zębate",
+  "block.extendedgears.large_iron_cogwheel": "Duże Żelazne Koło Zębate"
 }
