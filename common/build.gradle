@@ -6,48 +6,6 @@ loom {
     accessWidenerPath = file("src/main/resources/examplemod.accesswidener")
 }
 
-
-sourceSets {
-    main {
-        resources {
-            srcDir("src/generated/resources")
-            srcDir("src/main/resources")
-            srcDir(project(":common").file("src/generated/resources"))
-            exclude("**/.cache")
-        }
-    }
-
-    sourceSets {
-        datagen {
-            compileClasspath += main.compileClasspath
-            runtimeClasspath += main.runtimeClasspath
-            compileClasspath += main.output
-            runtimeClasspath += main.output
-        }
-    }
-}
-
-sourceSets.main {
-    resources { // include generated resources in resources
-        srcDir("src/generated/resources")
-        exclude("src/generated/resources/.cache")
-    }
-}
-
-loom {
-    runs {
-        create("dataCommon") {
-            inherit(getByName("client"))
-            name("Data Common")
-            property("fabric-api.datagen")
-            property("fabric-api.datagen.modid", archives_base_name)
-            property("fabric-api.datagen.output-dir", project(":common").file("src/generated/resources").absolutePath)
-            property("fabric-api.datagen.strict-validation")
-            property("fabric-api.datagen.existing")
-        }
-    }
-}
-
 repositories {
     // mavens for Create Fabric and dependencies
     maven { url = "https://api.modrinth.com/maven" } // LazyDFU
@@ -58,11 +16,6 @@ repositories {
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
     maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
 }
-
-processResources {
-    exclude("*") // resources will be copied into each loader project
-}
-
 
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
