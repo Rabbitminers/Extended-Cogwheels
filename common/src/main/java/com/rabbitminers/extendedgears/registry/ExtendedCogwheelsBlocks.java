@@ -4,6 +4,7 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.datatypes.MetalBlockList;
 import com.rabbitminers.extendedgears.base.datatypes.WoodenBlockList;
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticBlockModel;
 import com.simibubi.create.content.contraptions.relays.elementary.CogwheelBlockItem;
 import com.simibubi.create.foundation.block.BlockStressDefaults;
@@ -22,6 +23,7 @@ public class ExtendedCogwheelsBlocks {
 		return b -> b.blockstate(BlockStateGen.axisBlockProvider(false))
 				.onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
 				.transform(BlockStressDefaults.setNoImpact())
+				.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.COGWHEEL.tag)
 				.item(CogwheelBlockItem::new)
 				.build();
 	}
@@ -31,6 +33,7 @@ public class ExtendedCogwheelsBlocks {
 				.properties(p -> p.sound(SoundType.WOOD))
 				.properties(p -> p.color(MaterialColor.DIRT))
 				.transform(TagGen.axeOrPickaxe())
+				.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.WOODEN_COGWHEEL.tag)
 				.transform(commonCogwheelTransformer());
 	}
 
@@ -39,30 +42,39 @@ public class ExtendedCogwheelsBlocks {
 				.properties(p -> p.sound(SoundType.METAL))
 				.properties(p -> p.color(MaterialColor.METAL))
 				.transform(TagGen.pickaxeOnly())
+				.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.METAL_COGWHEEL.tag)
 				.transform(commonCogwheelTransformer());
 	}
 
 	public static final WoodenBlockList<CustomCogwheelBlock> WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
 			REGISTRATE.block(wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
 					ExtendedCogwheelsPartials.WOODEN_COGWHEELS.get(wood)))
-							.transform(woodenCogwheelTransformer()).register()
+					.transform(woodenCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register()
 	);
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
 			REGISTRATE.block("large_" + wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
 					ExtendedCogwheelsPartials.LARGE_WOODEN_COGWHEELS.get(wood)))
-						.transform(woodenCogwheelTransformer()).register());
+					.transform(woodenCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block(metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
 					ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal)))
-							.transform(metalCogwheelTransformer()).register()
+					.transform(metalCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register()
 	);
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
 					ExtendedCogwheelsPartials.LARGE_METAL_COGWHEELS.get(metal)))
-							.transform(metalCogwheelTransformer()).register()
+					.transform(metalCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register()
 	);
 
 	public static void init() {
