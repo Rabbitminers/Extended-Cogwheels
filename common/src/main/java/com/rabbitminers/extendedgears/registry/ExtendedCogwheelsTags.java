@@ -136,7 +136,11 @@ public class ExtendedCogwheelsTags {
         return TagKey.create(registry.key(), id);
     }
 
-    public static void init() {}
+    public static void init() {
+        ExtendedCogwheelsBlockTags.COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+        ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+        ExtendedCogwheelsBlockTags.WOODEN_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+    }
 
     @ExpectPlatform
     public static <T> TagsProvider.TagAppender<T> builder(RegistrateTagsProvider<T> prov, TagKey<T> tag) {
