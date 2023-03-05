@@ -9,9 +9,12 @@ import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.AllSections;
+import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
+import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
@@ -39,20 +42,35 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheels(EnumMap<T, GeneratedRecipe> map, Class<T> materialType) {
+
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheel(Class<T> materialType, boolean isLarge) {
         return Arrays.stream(materialType.getEnumConstants())
                 .flatMap(material -> Arrays.stream(material.getIngredients())
-                .map(provider -> new AbstractMap.SimpleEntry<>(material, create(provider.namespace.asId(), material.getCogwheel(false))
-                .unlockedBy(I::andesite)
-                .viaShapeless(builder -> builder.requires(I.shaft())
-                .requires(provider.ingredient)))))
+                        .map(provider -> new AbstractMap.SimpleEntry<>(material, create(provider.namespace.asId(), material.getCogwheel(isLarge))
+                                .unlockedBy(I::andesite)
+                                .viaShapeless(builder -> builder.requires(I.shaft())
+                                .requires(provider.ingredient, isLarge ? 2 : 1)))))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
     }
 
-    final Map<MetalCogwheel, GeneratedRecipe> METAL_COGWHEELS =
-            createCogwheels(new EnumMap<>(MetalCogwheel.class), MetalCogwheel.class);
-    final Map<WoodenCogwheel, GeneratedRecipe> WOODEN_COGWHEELS =
-            createCogwheels(new EnumMap<>(WoodenCogwheel.class), WoodenCogwheel.class);
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheels(Class<T> materialType) {
+        return createCogwheel(materialType, false);
+    }
+
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createLargeCogwheels(Class<T> materialType) {
+        return createCogwheel(materialType, true);
+    }
+
+
+    final Map<MetalCogwheel, GeneratedRecipe>
+        METAL_COGWHEELS = createCogwheels(MetalCogwheel.class),
+        LARGE_METAL_COGWHEELS = createLargeCogwheels(MetalCogwheel.class)
+    ;
+
+    final Map<WoodenCogwheel, GeneratedRecipe>
+        WOODEN_COGWHEELS = createCogwheels(WoodenCogwheel.class),
+        LARGE_WOODEN_COGWHEELS = createLargeCogwheels(WoodenCogwheel.class);
+
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
         return new GeneratedRecipeBuilder("/", result);
