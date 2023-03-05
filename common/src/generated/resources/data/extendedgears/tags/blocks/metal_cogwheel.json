@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "extendedgears:iron_cogwheel",
+    "extendedgears:steel_cogwheel",
+    "extendedgears:copper_cogwheel",
+    "extendedgears:large_iron_cogwheel",
+    "extendedgears:large_steel_cogwheel",
+    "extendedgears:large_copper_cogwheel"
+  ]
+}

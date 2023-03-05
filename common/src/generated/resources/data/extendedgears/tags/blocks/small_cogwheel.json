@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "extendedgears:dark_oak_cogwheel",
+    "extendedgears:oak_cogwheel",
+    "extendedgears:birch_cogwheel",
+    "extendedgears:jungle_cogwheel",
+    "extendedgears:acacia_cogwheel",
+    "extendedgears:warped_cogwheel",
+    "extendedgears:crimson_cogwheel",
+    "extendedgears:iron_cogwheel",
+    "extendedgears:steel_cogwheel",
+    "extendedgears:copper_cogwheel"
+  ]
+}
