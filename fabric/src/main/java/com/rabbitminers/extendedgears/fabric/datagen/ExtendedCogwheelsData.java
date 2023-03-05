@@ -9,6 +9,7 @@ public class ExtendedCogwheelsData implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         ExistingFileHelper helper = ExistingFileHelper.standard();
+        ExtendedCogwheels.gatherData(fabricDataGenerator, true);
         ExtendedCogwheels.registrate().setupDatagen(fabricDataGenerator, helper);
     }
 }

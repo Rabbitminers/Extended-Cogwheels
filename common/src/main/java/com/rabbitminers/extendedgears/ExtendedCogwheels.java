@@ -1,10 +1,12 @@
 package com.rabbitminers.extendedgears;
 
+import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsItems;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,12 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
+    }
+
+    public static void gatherData(DataGenerator gen, boolean isServer) {
+        if (isServer) {
+            gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
+        }
     }
 
     public static ResourceLocation asResource(String path) {
