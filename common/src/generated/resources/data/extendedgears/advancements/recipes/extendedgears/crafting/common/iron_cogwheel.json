@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "extendedgears:crafting/iron0/iron_cogwheel"
+      "extendedgears:crafting/common/iron_cogwheel"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "extendedgears:crafting/iron0/iron_cogwheel"
+        "recipe": "extendedgears:crafting/common/iron_cogwheel"
       }
     }
   },

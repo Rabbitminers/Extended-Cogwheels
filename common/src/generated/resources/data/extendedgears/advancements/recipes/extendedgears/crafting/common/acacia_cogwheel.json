@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "extendedgears:crafting/steel1/steel_cogwheel"
+      "extendedgears:crafting/common/acacia_cogwheel"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "extendedgears:crafting/steel1/steel_cogwheel"
+        "recipe": "extendedgears:crafting/common/acacia_cogwheel"
       }
     }
   },
