@@ -2,6 +2,7 @@ package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsItems;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +19,7 @@ public class ExtendedCogwheels {
             .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
 
     public static void init() {
+        ExtendedCogwheelsTags.init();
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
