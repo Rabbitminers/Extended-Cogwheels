@@ -19,13 +19,13 @@ public class ExtendedCogwheelsPartials {
 
     static {
         for (MetalCogwheel metalCogwheel : MetalCogwheel.values()) {
-            METAL_COGWHEELS.put(metalCogwheel, block("block/cogwheel/" + metalCogwheel.asId() + "_cogwheel"));
-            LARGE_METAL_COGWHEELS.put(metalCogwheel, block("block/cogwheel/large_" + metalCogwheel.asId() + "_cogwheel"));
+            METAL_COGWHEELS.put(metalCogwheel, block(metalCogwheel.asId() + "_cogwheel"));
+            LARGE_METAL_COGWHEELS.put(metalCogwheel, block("large_" + metalCogwheel.asId() + "_cogwheel"));
         }
 
         for (WoodenCogwheel woodenCogwheel : WoodenCogwheel.values()) {
-            WOODEN_COGWHEELS.put(woodenCogwheel, block("block/cogwheel/" + woodenCogwheel.asId()));
-            LARGE_WOODEN_COGWHEELS.put(woodenCogwheel, block("block/cogwheel/large_" + woodenCogwheel.asId()));
+            WOODEN_COGWHEELS.put(woodenCogwheel, block(woodenCogwheel.asId() + "_cogwheel"));
+            LARGE_WOODEN_COGWHEELS.put(woodenCogwheel, block("large_" + woodenCogwheel.asId() + "_cogwheel"));
         }
     }
 
