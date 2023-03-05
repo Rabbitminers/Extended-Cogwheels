@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [{
+            "item": "create:cogwheel"
+        },
+        {
+            "item": "minecraft:spruce_planks"
+        }
+    ],
+    "result": {
+        "item": "create:large_cogwheel"
+    }
+}

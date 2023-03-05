@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:brass_casing"
+    },
+    {
+      "tag": "extendedgears:small_cogwheel"
+    },
+    {
+      "item": "create:electron_tube"
+    }
+  ],
+  "result": {
+    "item": "create:sequenced_gearshift"
+  }
+}
