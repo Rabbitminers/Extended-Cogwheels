@@ -1,8 +1,11 @@
 package com.rabbitminers.extendedgears.datagen;
 
+import com.mojang.datafixers.types.templates.List;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
+import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.AllSections;
@@ -24,28 +27,32 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
-    final EnumMap<MetalCogwheel, GeneratedRecipe> METAL_COGWHEELS = new EnumMap<>(MetalCogwheel.class);
-    final EnumMap<WoodenCogwheel, GeneratedRecipe> WOODEN_COGWHEELS = new EnumMap<>(WoodenCogwheel.class);
-
-    {
-        for (MetalCogwheel material : MetalCogwheel.values()) {
-            for (int i = 0; i < material.ingredients.length; i++) {
-                Ingredient ingredient = material.ingredients[i];
-                METAL_COGWHEELS.put(material, create(material.asId() + i, ExtendedCogwheelsBlocks.METAL_COGWHEELS
-                    .get(material))
-                    .unlockedBy(I::andesite)
-                    .viaShapeless(b -> b.requires(I.shaft())
-                    .requires(ingredient)));
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheels(EnumMap<T, GeneratedRecipe> map, Class<T> materialType) {
+        for (T material : materialType.getEnumConstants()) {
+            for (IngredientProvider provider : material.getIngredients()) {
+                map.put(material, create(provider.namespace.asId(),
+                        material.getCogwheel(false))
+                        .unlockedBy(I::andesite)
+                        .viaShapeless(builder -> builder.requires(I.shaft())
+                        .requires(provider.ingredient)));
             }
         }
+        return map;
     }
+
+    final Map<MetalCogwheel, GeneratedRecipe> METAL_COGWHEELS =
+            createCogwheels(new EnumMap<>(MetalCogwheel.class), MetalCogwheel.class);
+    final Map<WoodenCogwheel, GeneratedRecipe> WOODEN_COGWHEELs =
+            createCogwheels(new EnumMap<>(WoodenCogwheel.class), WoodenCogwheel.class);
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
         return new GeneratedRecipeBuilder("/", result);
