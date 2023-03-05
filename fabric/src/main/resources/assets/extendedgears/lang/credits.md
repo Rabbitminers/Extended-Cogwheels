@@ -1,0 +1,11 @@
+## Localisations
+- en_us
+- en_uk
+- pl_pl - RBus
+- de_de - Itszz_Fabi
+- nl_nl - Siepart
+- ko_kr - AsseyGithub
+- zh_cn - Junnaturefox
+- pt_br - Makzzin 
+- es_mx - IceBeam1
+- zh_tw - EvanHsieh0415
