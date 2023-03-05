@@ -30,28 +30,28 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.AbstractMap;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheels(EnumMap<T, GeneratedRecipe> map, Class<T> materialType) {
-        for (T material : materialType.getEnumConstants()) {
-            for (IngredientProvider provider : material.getIngredients()) {
-                map.put(material, create(provider.namespace.asId(),
-                        material.getCogwheel(false))
-                        .unlockedBy(I::andesite)
-                        .viaShapeless(builder -> builder.requires(I.shaft())
-                        .requires(provider.ingredient)));
-            }
-        }
-        return map;
+        return Arrays.stream(materialType.getEnumConstants())
+                .flatMap(material -> Arrays.stream(material.getIngredients())
+                .map(provider -> new AbstractMap.SimpleEntry<>(material, create(provider.namespace.asId(), material.getCogwheel(false))
+                .unlockedBy(I::andesite)
+                .viaShapeless(builder -> builder.requires(I.shaft())
+                .requires(provider.ingredient)))))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
     }
 
     final Map<MetalCogwheel, GeneratedRecipe> METAL_COGWHEELS =
             createCogwheels(new EnumMap<>(MetalCogwheel.class), MetalCogwheel.class);
-    final Map<WoodenCogwheel, GeneratedRecipe> WOODEN_COGWHEELs =
+    final Map<WoodenCogwheel, GeneratedRecipe> WOODEN_COGWHEELS =
             createCogwheels(new EnumMap<>(WoodenCogwheel.class), WoodenCogwheel.class);
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
