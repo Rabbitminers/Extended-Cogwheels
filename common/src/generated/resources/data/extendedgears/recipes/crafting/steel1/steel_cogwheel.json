@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:steel_cogwheel"
+  }
+}

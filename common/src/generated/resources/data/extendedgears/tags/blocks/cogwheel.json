@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    {
+      "id": "create:cogwheel",
+      "required": false
+    },
     "extendedgears:dark_oak_cogwheel",
     "extendedgears:oak_cogwheel",
     "extendedgears:birch_cogwheel",
