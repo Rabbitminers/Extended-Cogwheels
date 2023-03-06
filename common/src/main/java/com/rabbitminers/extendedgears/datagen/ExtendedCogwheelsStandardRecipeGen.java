@@ -88,6 +88,28 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         FROM_SMALL_METAL = largeFromSmall(WoodenCogwheel.class)
     ;
 
+    private GeneratedRecipe cogwheelSmeltingRecipe(MetalBlockList<CustomCogwheelBlock> blockEntries, MetalCogwheel outputMaterial,
+                                                   MetalCogwheel inputMaterial) {
+        return create(blockEntries.get(outputMaterial))
+                .withSuffix("_from_" + inputMaterial.asId())
+                .viaCookingIngredient(() -> Ingredient.of(blockEntries.get(inputMaterial).get()))
+                .rewardXP(1)
+                .inBlastFurnace();
+    }
+
+    final GeneratedRecipe
+        SMALL_IRON_TO_STEEL = create(MetalCogwheel.STEEL.getSmallCogwheel())
+            .withSuffix("_from_" + MetalCogwheel.IRON.asId())
+            .viaCooking(MetalCogwheel.IRON.getSmallCogwheel())
+            .rewardXP(1f)
+            .inBlastFurnace(),
+        LARGE_IRON_TO_STEEL = create(MetalCogwheel.STEEL.getLargeCogwheel())
+            .withSuffix("_from_" + MetalCogwheel.STEEL.asId())
+            .viaCooking(MetalCogwheel.IRON.getLargeCogwheel())
+            .rewardXP(1f)
+            .inBlastFurnace()
+    ;
+
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
         return new GeneratedRecipeBuilder("/", result);
