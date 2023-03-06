@@ -1,27 +1,20 @@
 package com.rabbitminers.extendedgears.datagen;
 
-import com.mojang.datafixers.types.templates.List;
+import com.google.gson.JsonObject;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
-import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.content.AllSections;
-import com.simibubi.create.foundation.data.BuilderTransformers;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
+import com.rabbitminers.extendedgears.base.datatypes.MetalBlockList;
+import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
-import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
-import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -30,13 +23,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
@@ -51,6 +41,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 .flatMap(material -> Arrays.stream(material.getIngredients())
                         .map(provider -> new AbstractMap.SimpleEntry<>(material, create(BASE + provider.namespace.asId(), material.getCogwheel(isLarge))
                                 .unlockedBy(I::andesite)
+                                .whenTagsPopulated(material.getRecipeTags())
                                 .viaShapeless(builder -> builder.requires(I.shaft())
                                 .requires(provider.ingredient, isLarge ? 2 : 1)))))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
@@ -61,8 +52,8 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 .flatMap(material -> Arrays.stream(material.getIngredients())
                         .map(provider -> new AbstractMap.SimpleEntry<>(material, create(FROM_SMALL + provider.namespace.asId(), material.getCogwheel(true))
                                 .unlockedBy(I::andesite)
-                                .viaShapeless(builder -> builder.requires(I.shaft())
-                                        .requires(material.getCogwheel(false).get())
+                                .whenTagsPopulated(material.getRecipeTags())
+                                .viaShapeless(builder -> builder.requires(material.getCogwheel(false).get())
                                         .requires(provider.ingredient)))))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
     }
@@ -74,7 +65,6 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createLargeCogwheels(Class<T> materialType) {
         return createCogwheel(materialType, true);
     }
-
 
     final Map<MetalCogwheel, GeneratedRecipe>
         METAL_COGWHEELS = createCogwheels(MetalCogwheel.class),
@@ -152,11 +142,13 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         private java.util.function.Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
         private java.util.function.Supplier<ItemPredicate> unlockedBy;
+        List<ConditionJsonProvider> recipeConditions;
         private int amount;
 
         private GeneratedRecipeBuilder(String path) {
             this.path = path;
             this.suffix = "";
+            this.recipeConditions = new ArrayList<>();
             this.amount = 1;
         }
 
@@ -189,6 +181,34 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
             return this;
         }
 
+        GeneratedRecipeBuilder whenModLoaded(String modid) {
+            return withCondition(DefaultResourceConditions.allModsLoaded(modid));
+        }
+
+        GeneratedRecipeBuilder whenModMissing(String modid) {
+            return withCondition(DefaultResourceConditions
+                    .not(DefaultResourceConditions.allModsLoaded(modid)));
+        }
+
+        @SafeVarargs
+        final GeneratedRecipeBuilder whenTagsPopulated(@Nullable TagKey<Item>... tagKey) {
+            return tagKey == null ? this : withCondition(DefaultResourceConditions
+                    .or(DefaultResourceConditions.itemTagsPopulated(tagKey)));
+        }
+
+        @SafeVarargs
+        final GeneratedRecipeBuilder whenTagEmpty(@Nullable TagKey<Item>... tagKey) {
+            return tagKey == null ? this : withCondition(DefaultResourceConditions
+                    .or(DefaultResourceConditions
+                            .not(DefaultResourceConditions.itemTagsPopulated(tagKey))));
+        }
+
+        GeneratedRecipeBuilder withCondition(ConditionJsonProvider condition) {
+            recipeConditions.add(condition);
+            return this;
+        }
+
+
         GeneratedRecipeBuilder withSuffix(String suffix) {
             this.suffix = suffix;
             return this;
@@ -208,7 +228,10 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 ShapelessRecipeBuilder b = builder.apply(ShapelessRecipeBuilder.shapeless(result.get(), amount));
                 if (unlockedBy != null)
                     b.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
-                b.save(consumer, createLocation("crafting"));
+                b.save(result -> consumer.accept(
+                        recipeConditions.isEmpty() ? result
+                                : new ConditionalRecipeResult(result, getRegistryName(), recipeConditions)
+                ), createLocation("crafting"));
             });
         }
 
@@ -295,17 +318,58 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 return register(consumer -> {
                     boolean isOtherMod = compatDatagenOutput != null;
 
-                    SimpleCookingRecipeBuilder b = builder.apply(
-                            SimpleCookingRecipeBuilder.cooking(ingredient.get(), isOtherMod ? Items.DIRT : result.get(),
+                    SimpleCookingRecipeBuilder b = builder.apply(SimpleCookingRecipeBuilder
+                            .cooking(ingredient.get(), isOtherMod ? Items.DIRT : result.get(),
                                     exp, (int) (cookingTime * cookingTimeModifier), serializer));
                     if (unlockedBy != null)
                         b.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
                     b.save(result -> {
-                        consumer.accept(result);
+                            consumer.accept(result);
                     }, createSimpleLocation(RegisteredObjects.getKeyOrThrow(serializer)
                             .getPath()));
                 });
             }
+        }
+    }
+
+    private static class ConditionalRecipeResult implements FinishedRecipe {
+        private FinishedRecipe wrapped;
+        private ResourceLocation outputOverride;
+        private List<ConditionJsonProvider> conditions;
+
+        public ConditionalRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride,
+                                         List<ConditionJsonProvider> conditions) {
+            this.wrapped = wrapped;
+            this.outputOverride = outputOverride;
+            this.conditions = conditions;
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return wrapped.getId();
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            return wrapped.getType();
+        }
+
+        @Override
+        public JsonObject serializeAdvancement() {
+            return wrapped.serializeAdvancement();
+        }
+
+        @Override
+        public ResourceLocation getAdvancementId() {
+            return wrapped.getAdvancementId();
+        }
+
+        @Override
+        public void serializeRecipeData(@NotNull JsonObject object) {
+            wrapped.serializeRecipeData(object);
+            object.addProperty("result", outputOverride.toString());
+
+            ConditionJsonProvider.write(object, conditions.toArray(new ConditionJsonProvider[0]));
         }
     }
 }

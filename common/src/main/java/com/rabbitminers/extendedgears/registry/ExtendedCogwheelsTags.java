@@ -14,6 +14,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -141,6 +142,11 @@ public class ExtendedCogwheelsTags {
         ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
         ExtendedCogwheelsBlockTags.WOODEN_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
     }
+
+    public static TagKey<Item>
+            forgeSteel = AllTags.forgeItemTag("ingots/steel"),
+            fabricSteel = AllTags.optionalTag(Registry.ITEM, new ResourceLocation("c", "steel_ingots"));
+    ;
 
     @ExpectPlatform
     public static <T> TagsProvider.TagAppender<T> builder(RegistrateTagsProvider<T> prov, TagKey<T> tag) {
