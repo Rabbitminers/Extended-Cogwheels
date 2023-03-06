@@ -42,14 +42,28 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
+    private static final String CRAFTING = "crafting/";
+    private static final String BASE = CRAFTING + "base/";
+    private static final String FROM_SMALL = CRAFTING + "from_small/";
 
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> createCogwheel(Class<T> materialType, boolean isLarge) {
         return Arrays.stream(materialType.getEnumConstants())
                 .flatMap(material -> Arrays.stream(material.getIngredients())
-                        .map(provider -> new AbstractMap.SimpleEntry<>(material, create(provider.namespace.asId(), material.getCogwheel(isLarge))
+                        .map(provider -> new AbstractMap.SimpleEntry<>(material, create(BASE + provider.namespace.asId(), material.getCogwheel(isLarge))
                                 .unlockedBy(I::andesite)
                                 .viaShapeless(builder -> builder.requires(I.shaft())
                                 .requires(provider.ingredient, isLarge ? 2 : 1)))))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
+    }
+
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> largeFromSmall(Class<T> materialType) {
+        return Arrays.stream(materialType.getEnumConstants())
+                .flatMap(material -> Arrays.stream(material.getIngredients())
+                        .map(provider -> new AbstractMap.SimpleEntry<>(material, create(FROM_SMALL + provider.namespace.asId(), material.getCogwheel(true))
+                                .unlockedBy(I::andesite)
+                                .viaShapeless(builder -> builder.requires(I.shaft())
+                                        .requires(material.getCogwheel(false).get())
+                                        .requires(provider.ingredient)))))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () -> new EnumMap<>(materialType)));
     }
 
@@ -64,12 +78,15 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
     final Map<MetalCogwheel, GeneratedRecipe>
         METAL_COGWHEELS = createCogwheels(MetalCogwheel.class),
-        LARGE_METAL_COGWHEELS = createLargeCogwheels(MetalCogwheel.class)
+        LARGE_METAL_COGWHEELS = createLargeCogwheels(MetalCogwheel.class),
+        FROM_SMALL_WOOD = largeFromSmall(MetalCogwheel.class)
     ;
 
     final Map<WoodenCogwheel, GeneratedRecipe>
         WOODEN_COGWHEELS = createCogwheels(WoodenCogwheel.class),
-        LARGE_WOODEN_COGWHEELS = createLargeCogwheels(WoodenCogwheel.class);
+        LARGE_WOODEN_COGWHEELS = createLargeCogwheels(WoodenCogwheel.class),
+        FROM_SMALL_METAL = largeFromSmall(WoodenCogwheel.class)
+    ;
 
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
@@ -112,7 +129,6 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         private String suffix;
         private java.util.function.Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
-
         private java.util.function.Supplier<ItemPredicate> unlockedBy;
         private int amount;
 
