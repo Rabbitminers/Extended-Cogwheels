@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:jungle_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:jungle_cogwheel"
+    }
+  ]
+}

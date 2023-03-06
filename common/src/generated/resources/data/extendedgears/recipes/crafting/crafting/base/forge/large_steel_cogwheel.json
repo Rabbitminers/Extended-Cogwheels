@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "tag": "c:ingots/steel"
+    },
+    {
+      "tag": "c:ingots/steel"
+    }
+  ],
+  "result": "extendedgears:large_steel_cogwheel",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:or",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:ingots/steel",
+            "c:steel_ingots"
+          ]
+        }
+      ]
+    }
+  ]
+}
