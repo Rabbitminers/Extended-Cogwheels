@@ -19,8 +19,8 @@ public class ExtendedCogwheelsRecipeProvider extends RecipeProvider {
         super(pGenerator);
     }
 
-    public void registerRecipes(@NotNull Consumer<FinishedRecipe> p_200404_1_) {
-        all.forEach(c -> c.register(p_200404_1_));
+    public void registerRecipes(@NotNull Consumer<FinishedRecipe> wrapped) {
+        all.forEach(c -> c.register(wrapped));
     }
 
     protected static class I {
