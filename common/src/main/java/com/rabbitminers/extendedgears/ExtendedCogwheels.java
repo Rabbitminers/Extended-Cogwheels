@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears;
 
+import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsItems;
@@ -30,6 +31,7 @@ public class ExtendedCogwheels {
     public static void gatherData(DataGenerator gen, boolean isServer) {
         if (isServer) {
             gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
+            gen.addProvider(ExtendedCogwheelsDeployingRecipeGen.create(gen));
         }
     }
 
