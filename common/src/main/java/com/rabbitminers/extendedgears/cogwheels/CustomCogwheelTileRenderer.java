@@ -54,10 +54,12 @@ public class CustomCogwheelTileRenderer extends BracketedKineticTileRenderer {
         float time = AnimationTickHolder.getRenderTime(te.getLevel());
         float angle = ((time * te.getSpeed() * 3f / 10 + offset) % 360) / 180 * (float) Math.PI;
 
-        SuperByteBuffer shaft =
-                CachedBufferer.partialFacingVertical(AllBlockPartials.COGWHEEL_SHAFT, te.getBlockState(), facing);
-        kineticRotationTransform(shaft, te, axis, angle, light);
-        shaft.renderInto(ms, buffer.getBuffer(RenderType.solid()));
-
+        PartialModel shaftModel = ICustomCogwheel.getShaftPartialModelType(te.getBlockState());
+        if (shaftModel != null) {
+            SuperByteBuffer shaft =
+                    CachedBufferer.partialFacingVertical(shaftModel, te.getBlockState(), facing);
+            kineticRotationTransform(shaft, te, axis, angle, light);
+            shaft.renderInto(ms, buffer.getBuffer(RenderType.solid()));
+        }
     }
 }

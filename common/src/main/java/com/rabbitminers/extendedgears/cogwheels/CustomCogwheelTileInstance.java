@@ -44,7 +44,10 @@ public class CustomCogwheelTileInstance extends BracketedKineticTileInstance {
         BlockPos pos = blockEntity.getBlockPos();
         float offset = BracketedKineticTileRenderer.getShaftAngleOffset(axis, pos);
         Direction facing = Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE);
-        Instancer<RotatingData> half = getRotatingMaterial().getModel(AllBlockPartials.COGWHEEL_SHAFT, blockState,
+        PartialModel shaftModel = ICustomCogwheel.getShaftPartialModelType(blockState);
+        if (shaftModel == null)
+            return;
+        Instancer<RotatingData> half = getRotatingMaterial().getModel(shaftModel, blockState,
                 facing, () -> this.rotateToAxis(axis));
         additionalShaft = setup(half.createInstance(), speed);
         additionalShaft.setRotationOffset(offset);

@@ -18,7 +18,7 @@ public interface ICustomCogwheel{
     }
 
     static PartialModel getShaftPartialModelType(BlockState state) {
-        return getShaftPartialModelType(state);
+        return getShaftPartialModelType(state.getBlock());
     }
 
     static PartialModel getShaftPartialModelType(Block block) {
