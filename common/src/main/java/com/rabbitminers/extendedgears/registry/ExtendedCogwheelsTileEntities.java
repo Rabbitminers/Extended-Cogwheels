@@ -25,6 +25,9 @@ public class ExtendedCogwheelsTileEntities {
             REGISTRATE.tileEntity("shaftlesscogwheeltileentity", ShaftlessCogwheelTileEntity::new)
                     .instance(() -> CustomCogwheelTileInstance::new, false)
                     .validBlocks(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS.toArray())
                     .renderer(() -> CustomCogwheelTileRenderer::new)
                     .register();
 
