@@ -4,7 +4,7 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.datatypes.MetalBlockList;
 import com.rabbitminers.extendedgears.base.datatypes.WoodenBlockList;
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
-import com.simibubi.create.AllTags;
+import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticBlockModel;
 import com.simibubi.create.content.contraptions.relays.elementary.CogwheelBlockItem;
 import com.simibubi.create.foundation.block.BlockStressDefaults;
@@ -46,13 +46,14 @@ public class ExtendedCogwheelsBlocks {
 				.transform(commonCogwheelTransformer());
 	}
 
+	// Wooden Cogwheels
+
 	public static final WoodenBlockList<CustomCogwheelBlock> WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
 			REGISTRATE.block(wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
 					ExtendedCogwheelsPartials.WOODEN_COGWHEELS.get(wood)))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
-					.register()
-	);
+					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
 			REGISTRATE.block("large_" + wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
@@ -61,21 +62,35 @@ public class ExtendedCogwheelsBlocks {
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 
+	public static final WoodenBlockList<CustomCogwheelBlock> SHAFTLESS_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
+			REGISTRATE.block("shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
+					ExtendedCogwheelsPartials.WOODEN_COGWHEELS.get(wood)))
+					.transform(woodenCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register());
+
+	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_SHAFTLESS_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
+			REGISTRATE.block("large_shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
+							ExtendedCogwheelsPartials.LARGE_WOODEN_COGWHEELS.get(wood)))
+					.transform(woodenCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register());
+
+
+	// Metal Cogwheels
 	public static final MetalBlockList<CustomCogwheelBlock> METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block(metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
 					ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal)))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
-					.register()
-	);
+					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
 					ExtendedCogwheelsPartials.LARGE_METAL_COGWHEELS.get(metal)))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
-					.register()
-	);
+					.register());
 
 	public static void init() {
 		ExtendedCogwheels.LOGGER.info("Registering blocks for " + ExtendedCogwheels.NAME);
