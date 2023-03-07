@@ -27,7 +27,6 @@ public interface ICustomCogwheel{
         return cogWheel.getShaftPartialModel();
     }
 
-
     @Nullable
     default PartialModel getShaftPartialModel() {
         return AllBlockPartials.COGWHEEL_SHAFT;
