@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "MixinBracketedKineticTileInstance"
   ],
   "injectors": {
     "defaultRequire": 1
