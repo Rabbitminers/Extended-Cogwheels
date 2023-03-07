@@ -79,12 +79,28 @@ processResources {
     }
 }
 
+def generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+
 loom {
     forge {
         mixinConfig(
                 "examplemod-common.mixins.json",
                 "examplemod.mixins.json"
         )
+    }
+
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", mod_id
+            programArgs "--output", generatedResources.absolutePath
+        }
     }
 }
 
