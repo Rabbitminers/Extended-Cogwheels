@@ -145,9 +145,8 @@ public class ExtendedCogwheelsTags {
 
     public static TagKey<Item>
             forgeSteel = AllTags.forgeItemTag("ingots/steel"),
-            fabricSteel = AllTags.optionalTag(Registry.ITEM, new ResourceLocation("c", "steel_ingots"));
+            fabricSteel = optionalTag(Registry.ITEM, new ResourceLocation("c", "steel_ingots"));
     ;
-
     @ExpectPlatform
     public static <T> TagsProvider.TagAppender<T> builder(RegistrateTagsProvider<T> prov, TagKey<T> tag) {
         throw new AssertionError();
