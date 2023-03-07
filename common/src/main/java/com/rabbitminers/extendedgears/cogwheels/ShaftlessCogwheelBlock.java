@@ -16,13 +16,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
-    public VoxelShape shape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
-    public VoxelShape shapeLarge = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+    public VoxelShape voxelShape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
+    public VoxelShape largeVoxelShape = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
     public ShaftlessCogwheelBlock(boolean large, Properties properties, PartialModel model) {
         super(large, properties, model);
     }
 
+    // Don't actually need these but removing them breaks shit
     public static CustomCogwheelBlock small(Properties properties, PartialModel model) {
         return new ShaftlessCogwheelBlock(false, properties, model);
     }
@@ -36,7 +37,7 @@ public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
                                         @NotNull CollisionContext context) {
         if (!state.hasProperty(AXIS))
             return super.getShape(state, worldIn, pos, context);
-        return VoxelShaper.forAxis(isLargeCog() ? shape : shapeLarge, Direction.Axis.Y).get(state.getValue(AXIS));
+        return VoxelShaper.forAxis(isLargeCog() ? largeVoxelShape : voxelShape, Direction.Axis.Y).get(state.getValue(AXIS));
     }
 
     @Override
