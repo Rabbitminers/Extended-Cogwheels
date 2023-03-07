@@ -70,12 +70,11 @@ public class ExtendedCogwheelsBlocks {
 					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_SHAFTLESS_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("large_shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
+			REGISTRATE.block("large_shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
 							ExtendedCogwheelsPartials.LARGE_WOODEN_COGWHEELS.get(wood)))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
-
 
 	// Metal Cogwheels
 	public static final MetalBlockList<CustomCogwheelBlock> METAL_COGWHEELS = new MetalBlockList<>(metal ->
@@ -88,6 +87,20 @@ public class ExtendedCogwheelsBlocks {
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_METAL_COGWHEELS = new MetalBlockList<>(metal ->
 			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
 					ExtendedCogwheelsPartials.LARGE_METAL_COGWHEELS.get(metal)))
+					.transform(metalCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register());
+
+	public static final MetalBlockList<CustomCogwheelBlock> SHAFTLESS_METAL_COGWHEELS = new MetalBlockList<>(metal ->
+			REGISTRATE.block("shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
+							ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal)))
+					.transform(metalCogwheelTransformer())
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register());
+
+	public static final MetalBlockList<CustomCogwheelBlock> LARGE_SHAFTLESS_METAL_COGWHEELS = new MetalBlockList<>(metal ->
+			REGISTRATE.block("large_shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
+							ExtendedCogwheelsPartials.LARGE_METAL_COGWHEELS.get(metal)))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
