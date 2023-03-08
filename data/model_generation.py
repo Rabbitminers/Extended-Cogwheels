@@ -43,7 +43,7 @@ def is_default_material(material: str, default_material: str = DEFAULT_MATERIAL)
     return material == default_material
 
 def cogwheel_texture_dict(material: str, modid: str = MODID) -> Dict[str, str]:
-    return {"1_2": f"{modid}:{material}_cogwheel", "particle": f"{MODID}:{material}_cogwheel"}
+    return {"1_2": f"{modid}:{material}_cogwheel", "particle": f"{MODID}:{material}_cogwheel", "0": "create:block/cogwheel_axis", "3": "create:block/axis_top", }
 
 def generate_cogwheels(type:str ,output_path: str = OUTPUT, materials: set[str] = MATERIALS, ignore_default: bool = True) -> None:
     if not os.path.exists(output_path):
@@ -54,7 +54,9 @@ def generate_cogwheels(type:str ,output_path: str = OUTPUT, materials: set[str] 
         generate_cogwheel(type, material, output_path)
 
 def generate_cogwheel(type: str, material: str, output_path: str = OUTPUT) -> None:
-    with open(f"{output_path}{type}_{material}_cogwheel.json", "w") as f:
+    if type != "default":
+        output_path += type + "_"
+    with open(f"{output_path}{material}_cogwheel.json", "w") as f:
         model: JsonModel = get_model_schema(f"{type}_cogwheel")
         model.textures = cogwheel_texture_dict(material)
         f.write(json.dumps(model, indent=4, cls=JsonModelEncoder))
@@ -72,18 +74,20 @@ def generate_large_cogwheels(type: str, output_path: str = OUTPUT, materials: se
         generate_large_cogwheel(type, material, output_path)
 
 def generate_large_cogwheel(type: str, material: str, output_path: str = OUTPUT) -> None:
-    with open(f"{output_path}{type}_{material}_cogwheel.json", "w") as f:
+    if type != "large_default": output_path += type + "_"
+    else: output_path += "large_"
+    with open(f"{output_path}{material}_cogwheel.json", "w") as f:
         model: JsonModel = get_model_schema(f"{type}_cogwheel")
         model.textures = large_cogwheel_texture_dict(material)
         f.write(json.dumps(model, indent=4, cls=JsonModelEncoder))
 
 def generate_small_and_large_cogwheels(name: str, materials: set[str] = MATERIALS) -> None:
     generate_cogwheels(name, materials=materials)
-    generate_large_cogwheels(name, materials=materials)
+    generate_large_cogwheels("large_" + name, materials=materials)
 
 if __name__ == '__main__':
     materials: Final[set[str]] = get_materials()
-    types: set = {"default", "large", "shaftless", "large_shaftless", "half_shaft", "large_half_shaft"}
+    types: set = {"default", "shaftless", "half_shaft"}
     for type in types:
         generate_small_and_large_cogwheels(type, materials)
 
