@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "axis=x,axis_direction=false": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,axis_direction=false": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel"
+    },
+    "axis=z,axis_direction=false": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,axis_direction=true": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,axis_direction=true": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel"
+    },
+    "axis=z,axis_direction=true": {
+      "model": "extendedgears:block/half_shaft_crimson_cogwheel",
+      "x": 90,
+      "y": 180
+    }
+  }
+}
