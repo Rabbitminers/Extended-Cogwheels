@@ -41,7 +41,7 @@ public class HalfShaftCogwheelBlock extends CustomCogwheelBlock {
 
     @Override
     public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
-        return ExtendedCogwheelsTileEntities.SHAFTLESS_COGWHEEL_TILE_ENTITY.get();
+        return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
     }
 
     public static boolean isDirectionPosotive(Direction.AxisDirection dir) {
