@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -33,7 +34,9 @@ public class MixinBracketedKineticTileInstance extends SingleRotatingInstance {
     public void disableAdditionalShaft(CallbackInfo ci) {
         Block block = super.blockEntity.getBlockState().getBlock();
         if (block instanceof ICustomCogwheel &&
-                ICustomCogwheel.getShaftPartialModelType(super.blockState) != AllBlockPartials.COGWHEEL_SHAFT)
+                ICustomCogwheel.getShaftPartialModelType(super.blockState) == null) {
+            System.out.println("Canceled!");
             ci.cancel();
+        }
     }
 }

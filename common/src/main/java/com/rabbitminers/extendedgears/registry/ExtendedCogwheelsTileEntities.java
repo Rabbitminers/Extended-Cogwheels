@@ -1,10 +1,7 @@
 package com.rabbitminers.extendedgears.registry;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
-import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelTileEntity;
-import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelTileInstance;
-import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelTileRenderer;
-import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelTileEntity;
+import com.rabbitminers.extendedgears.cogwheels.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
@@ -28,6 +25,8 @@ public class ExtendedCogwheelsTileEntities {
                     .validBlocks(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS.toArray())
                     .renderer(() -> CustomCogwheelTileRenderer::new)
                     .register();
 

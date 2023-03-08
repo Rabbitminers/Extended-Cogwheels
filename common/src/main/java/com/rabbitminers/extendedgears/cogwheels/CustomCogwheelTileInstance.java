@@ -10,9 +10,11 @@ import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.base.KineticTileEntityRenderer;
 import com.simibubi.create.content.contraptions.base.flwdata.RotatingData;
+import com.simibubi.create.content.contraptions.components.millstone.MillStoneCogInstance;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticTileInstance;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticTileRenderer;
 import com.simibubi.create.content.contraptions.relays.elementary.ICogWheel;
+import com.simibubi.create.foundation.data.ModelGen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
@@ -32,23 +34,24 @@ public class CustomCogwheelTileInstance extends BracketedKineticTileInstance {
         return poseStack;
     }
 
+
     @Override
     public void init() {
         super.init();
-
         if (ICogWheel.isLargeCog(blockEntity.getBlockState()))
             return;
-
         float speed = blockEntity.getSpeed();
         Direction.Axis axis = KineticTileEntityRenderer.getRotationAxisOf(blockEntity);
         BlockPos pos = blockEntity.getBlockPos();
         float offset = BracketedKineticTileRenderer.getShaftAngleOffset(axis, pos);
+
         Direction facing = Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE);
         PartialModel shaftModel = ICustomCogwheel.getShaftPartialModelType(blockState);
         if (shaftModel == null)
             return;
         Instancer<RotatingData> half = getRotatingMaterial().getModel(shaftModel, blockState,
-                facing, () -> this.rotateToAxis(axis));
+                facing, () -> this.rotateToAxis(axis)
+        );
         additionalShaft = setup(half.createInstance(), speed);
         additionalShaft.setRotationOffset(offset);
     }

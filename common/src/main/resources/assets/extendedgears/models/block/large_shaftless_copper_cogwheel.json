@@ -1,0 +1,14 @@
+{
+    "credit": "Made with Blockbench",
+    "parent": "extendedgears:block/base/large_shaftless_cogwheel",
+    "texture_size": [
+        32,
+        32
+    ],
+    "textures": {
+        "0": "create:block/cogwheel_axis",
+        "3": "create:block/axis_top",
+        "4": "extendedgears:large_copper_cogwheel",
+        "particle": "extendedgears:large_copper_cogwheel"
+    }
+}

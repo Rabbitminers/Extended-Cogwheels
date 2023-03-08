@@ -6,6 +6,12 @@
     "extendedgears:copper_cogwheel",
     "extendedgears:large_iron_cogwheel",
     "extendedgears:large_steel_cogwheel",
-    "extendedgears:large_copper_cogwheel"
+    "extendedgears:large_copper_cogwheel",
+    "extendedgears:shaftless_iron_cogwheel",
+    "extendedgears:shaftless_steel_cogwheel",
+    "extendedgears:shaftless_copper_cogwheel",
+    "extendedgears:large_shaftless_iron_cogwheel",
+    "extendedgears:large_shaftless_steel_cogwheel",
+    "extendedgears:large_shaftless_copper_cogwheel"
   ]
 }
