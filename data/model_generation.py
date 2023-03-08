@@ -43,7 +43,7 @@ def is_default_material(material: str, default_material: str = DEFAULT_MATERIAL)
     return material == default_material
 
 def cogwheel_texture_dict(material: str, modid: str = MODID) -> Dict[str, str]:
-    return {"1_2": f"{modid}:{material}_cogwheel", "particle": f"{MODID}:{material}_cogwheel", "0": "create:block/cogwheel_axis", "3": "create:block/axis_top", }
+    return {"1_2": f"{modid}:{material}_cogwheel", "particle": f"{MODID}:{material}_cogwheel"}
 
 def generate_cogwheels(type:str ,output_path: str = OUTPUT, materials: set[str] = MATERIALS, ignore_default: bool = True) -> None:
     if not os.path.exists(output_path):
@@ -62,8 +62,7 @@ def generate_cogwheel(type: str, material: str, output_path: str = OUTPUT) -> No
         f.write(json.dumps(model, indent=4, cls=JsonModelEncoder))
 
 def large_cogwheel_texture_dict(material: str, modid: str = MODID) -> Dict[str, str]:
-    return {"0": "create:block/cogwheel_axis", "3": "create:block/axis_top", 
-            "4": f"{modid}:large_{material}_cogwheel","particle": f"{modid}:large_{material}_cogwheel"}
+    return {"4": f"{modid}:large_{material}_cogwheel","particle": f"{modid}:large_{material}_cogwheel"}
 
 def generate_large_cogwheels(type: str, output_path: str = OUTPUT, materials: set[str] = MATERIALS, ignore_default: bool = True) -> None:
     if not os.path.exists(output_path):
