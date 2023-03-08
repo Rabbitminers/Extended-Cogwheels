@@ -120,14 +120,14 @@ public class ExtendedCogwheelsBlocks {
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> HALF_SHAFT_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("shaftless_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
+			REGISTRATE.block("half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
 							ExtendedCogwheelsPartials.HALF_SHAFT_METAL_COGWHEELS.get(metal).small()))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_HALF_SHAFT_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("large_shaftless_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
+			REGISTRATE.block("large_half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
 							ExtendedCogwheelsPartials.HALF_SHAFT_METAL_COGWHEELS.get(metal).large()))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
