@@ -7,8 +7,6 @@
     ],
     "textures": {
         "1_2": "extendedgears:jungle_cogwheel",
-        "particle": "extendedgears:jungle_cogwheel",
-        "0": "create:block/cogwheel_axis",
-        "3": "create:block/axis_top"
+        "particle": "extendedgears:jungle_cogwheel"
     }
 }

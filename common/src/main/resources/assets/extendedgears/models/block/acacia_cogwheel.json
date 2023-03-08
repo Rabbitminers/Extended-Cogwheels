@@ -7,8 +7,6 @@
     ],
     "textures": {
         "1_2": "extendedgears:acacia_cogwheel",
-        "particle": "extendedgears:acacia_cogwheel",
-        "0": "create:block/cogwheel_axis",
-        "3": "create:block/axis_top"
+        "particle": "extendedgears:acacia_cogwheel"
     }
 }

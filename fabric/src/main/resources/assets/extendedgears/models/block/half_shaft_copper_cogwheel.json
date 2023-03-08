@@ -1,14 +1,12 @@
 {
     "credit": "Made with Blockbench",
-    "parent": "extendedgears:block/base/large_half_shaft_cogwheel",
+    "parent": "extendedgears:block/base/half_shaft_cogwheel",
     "texture_size": [
         32,
         32
     ],
     "textures": {
         "1_2": "extendedgears:copper_cogwheel",
-        "particle": "extendedgears:copper_cogwheel",
-        "0": "create:block/cogwheel_axis",
-        "3": "create:block/axis_top"
+        "particle": "extendedgears:copper_cogwheel"
     }
 }

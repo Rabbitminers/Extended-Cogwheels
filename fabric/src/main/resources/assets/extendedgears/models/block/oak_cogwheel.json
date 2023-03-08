@@ -7,8 +7,6 @@
     ],
     "textures": {
         "1_2": "extendedgears:oak_cogwheel",
-        "particle": "extendedgears:oak_cogwheel",
-        "0": "create:block/cogwheel_axis",
-        "3": "create:block/axis_top"
+        "particle": "extendedgears:oak_cogwheel"
     }
 }
