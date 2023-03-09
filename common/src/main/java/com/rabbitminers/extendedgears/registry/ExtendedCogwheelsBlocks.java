@@ -166,7 +166,6 @@ public class ExtendedCogwheelsBlocks {
 			REGISTRATE.block("shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
 							AllBlockPartials.SHAFTLESS_COGWHEEL))
 					.transform(woodenCogwheelTransformer())
-					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register();
 
@@ -174,7 +173,6 @@ public class ExtendedCogwheelsBlocks {
 			REGISTRATE.block("large_shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
 							AllBlockPartials.SHAFTLESS_COGWHEEL))
 					.transform(woodenCogwheelTransformer())
-					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register();
 
