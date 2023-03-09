@@ -7,6 +7,7 @@ import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.datagen.HalfShaftGenerator;
+import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticBlockModel;
 import com.simibubi.create.content.contraptions.relays.elementary.CogwheelBlockItem;
@@ -144,6 +145,38 @@ public class ExtendedCogwheelsBlocks {
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
+
+	public static final BlockEntry<CustomCogwheelBlock> SPRUCE_HALF_SHAFT_COGWHEEL =
+			REGISTRATE.block("half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
+					AllBlockPartials.SHAFTLESS_COGWHEEL))
+					.transform(woodenCogwheelTransformer())
+					.blockstate(new HalfShaftGenerator()::generate)
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register();
+
+	public static final BlockEntry<CustomCogwheelBlock> LARGE_SPRUCE_HALF_SHAFT_COGWHEEL =
+			REGISTRATE.block("large_half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
+							AllBlockPartials.SHAFTLESS_COGWHEEL))
+					.transform(woodenCogwheelTransformer())
+					.blockstate(new HalfShaftGenerator()::generate)
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register();
+
+	public static final BlockEntry<CustomCogwheelBlock> SPRUCE_SHAFTLESS_COGWHEEL =
+			REGISTRATE.block("shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
+							AllBlockPartials.SHAFTLESS_COGWHEEL))
+					.transform(woodenCogwheelTransformer())
+					.blockstate(new HalfShaftGenerator()::generate)
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
+					.register();
+
+	public static final BlockEntry<CustomCogwheelBlock> LARGE_SPRUCE_SHAFTLESS_COGWHEEL =
+			REGISTRATE.block("large_shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
+							AllBlockPartials.SHAFTLESS_COGWHEEL))
+					.transform(woodenCogwheelTransformer())
+					.blockstate(new HalfShaftGenerator()::generate)
+					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
+					.register();
 
 	public static void init() {
 		ExtendedCogwheels.LOGGER.info("Registering blocks for " + ExtendedCogwheels.NAME);
