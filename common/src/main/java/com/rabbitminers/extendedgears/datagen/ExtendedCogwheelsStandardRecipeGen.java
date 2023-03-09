@@ -137,7 +137,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
     class GeneratedRecipeBuilder {
 
-        private String path;
+        private final String path;
         private String suffix;
         private java.util.function.Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
@@ -262,7 +262,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
         class GeneratedCookingRecipeBuilder {
 
-            private java.util.function.Supplier<Ingredient> ingredient;
+            private final java.util.function.Supplier<Ingredient> ingredient;
             private float exp;
             private int cookingTime;
 
@@ -333,9 +333,9 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     }
 
     private static class ConditionalRecipeResult implements FinishedRecipe {
-        private FinishedRecipe wrapped;
-        private ResourceLocation outputOverride;
-        private List<ConditionJsonProvider> conditions;
+        private final FinishedRecipe wrapped;
+        private final ResourceLocation outputOverride;
+        private final List<ConditionJsonProvider> conditions;
 
         public ConditionalRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride,
                                          List<ConditionJsonProvider> conditions) {

@@ -14,18 +14,16 @@ public interface ICogwheelMaterial {
         return isLarge ? getLargeCogwheel() : getSmallCogwheel();
     }
 
-    @Nullable
-    public BlockEntry<CustomCogwheelBlock> getLargeCogwheel();
+    @Nullable BlockEntry<CustomCogwheelBlock> getLargeCogwheel();
 
-    @Nullable
-    public BlockEntry<CustomCogwheelBlock> getSmallCogwheel();
+    @Nullable BlockEntry<CustomCogwheelBlock> getSmallCogwheel();
 
     @Nullable
     default TagKey<Item>[] getRecipeTags() {
         return null;
     }
 
-    public @NotNull String asId();
+    @NotNull String asId();
 
-    public IngredientProvider[] getIngredients();
+    IngredientProvider[] getIngredients();
 }
