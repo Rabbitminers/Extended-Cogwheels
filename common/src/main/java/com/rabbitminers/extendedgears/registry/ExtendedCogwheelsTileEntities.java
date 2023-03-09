@@ -13,7 +13,7 @@ public class ExtendedCogwheelsTileEntities {
 
     public static final BlockEntityEntry<ShaftlessCogwheelTileEntity> CUSTOM_COGWHEEL_TILE_ENTITY =
             REGISTRATE.tileEntity("customcogwheeltileentity", ShaftlessCogwheelTileEntity::new)
-                    .instance(() -> SingleRotatingInstance::new)
+                    .instance(() -> SingleRotatingInstance::new, false)
                     .validBlocks(ExtendedCogwheelsBlocks.METAL_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS.toArray())
@@ -28,6 +28,8 @@ public class ExtendedCogwheelsTileEntities {
                     .validBlocks(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS.toArray())
                     .renderer(() -> KineticTileEntityRenderer::new)
                     .register();
+
+
     public static void init() {
 
     }

@@ -27,12 +27,12 @@ public class ExtendedCogwheelsPartials {
     public static final Map<MetalCogwheel, CogwheelModel>
             METAL_COGWHEELS = fillCogwheels(MetalCogwheel.class, null),
             SHAFTLESS_METAL_COGWHEELS = fillCogwheels(MetalCogwheel.class, "shaftless"),
-            HALF_SHAFT_METAL_COGWHEELS = fillCogwheels(MetalCogwheel.class, "halfshaft");
+            HALF_SHAFT_METAL_COGWHEELS = fillCogwheels(MetalCogwheel.class, "half_shaft");
 
     public static final Map<WoodenCogwheel, CogwheelModel>
             WOODEN_COGWHEELS = fillCogwheels(WoodenCogwheel.class, null),
             SHAFTLESS_WOODEN_COGWHEELS = fillCogwheels(WoodenCogwheel.class, "shaftless"),
-            HALF_SHAFT_WOODEN_COGWHEELS = fillCogwheels(WoodenCogwheel.class, "halfshaft");
+            HALF_SHAFT_WOODEN_COGWHEELS = fillCogwheels(WoodenCogwheel.class, "half_shaft");
 
 
     private static PartialModel block(String path) {
