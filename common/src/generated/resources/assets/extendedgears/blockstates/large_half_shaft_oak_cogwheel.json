@@ -1,27 +1,53 @@
 {
   "variants": {
-    "axis=x,axis_direction=false": {
+    "axis=x,axis_direction=false,waterlogged=false": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,axis_direction=false,waterlogged=false": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 180
+    },
+    "axis=z,axis_direction=false,waterlogged=false": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 90
+    },
+    "axis=x,axis_direction=true,waterlogged=false": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
       "x": 90,
       "y": 90
     },
-    "axis=y,axis_direction=false": {
+    "axis=y,axis_direction=true,waterlogged=false": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel"
     },
-    "axis=z,axis_direction=false": {
+    "axis=z,axis_direction=true,waterlogged=false": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
       "x": 90,
       "y": 180
     },
-    "axis=x,axis_direction=true": {
+    "axis=x,axis_direction=false,waterlogged=true": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,axis_direction=false,waterlogged=true": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 180
+    },
+    "axis=z,axis_direction=false,waterlogged=true": {
+      "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
+      "x": 90
+    },
+    "axis=x,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
       "x": 90,
       "y": 90
     },
-    "axis=y,axis_direction=true": {
+    "axis=y,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel"
     },
-    "axis=z,axis_direction=true": {
+    "axis=z,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/large_half_shaft_oak_cogwheel",
       "x": 90,
       "y": 180
