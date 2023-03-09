@@ -5,6 +5,7 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
+import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.rabbitminers.extendedgears.base.datatypes.MetalBlockList;
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -78,8 +80,12 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         FROM_SMALL_METAL = largeFromSmall(WoodenCogwheel.class)
     ;
 
-    private static <T extends Enum<T> & ICogwheelMaterial, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe() {
-        return null;
+    private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> materialList, E input, E output) {
+        return create(materialList.get(output))
+                .withSuffix("_from_" + input.asId())
+                .viaCooking(materialList.get(input))
+                .rewardXP(1f)
+                .inBlastFurnace();
     }
 
     final GeneratedRecipe
