@@ -55,6 +55,7 @@ public class CustomCogwheelTileInstance extends BracketedKineticTileInstance {
         additionalShaft = setup(half.createInstance(), speed);
         additionalShaft.setRotationOffset(offset);
     }
+
     @Override
     protected Instancer<RotatingData> getModel() {
         PartialModel model = ICustomCogwheel.getPartialModelType(blockState.getBlock());
