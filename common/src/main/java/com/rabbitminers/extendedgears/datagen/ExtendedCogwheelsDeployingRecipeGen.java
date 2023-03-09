@@ -31,9 +31,9 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         return Arrays.stream(materialType.getEnumConstants())
                 .flatMap(material -> Arrays.stream(material.getIngredients())
                         .map(provider -> new AbstractMap.SimpleEntry<>(material,
-                                create(boolToSize(isLarge) + "_" + material.asId() + "_" + provider.namespace.asId(),
+                                create(boolToSize(isLarge) + "_" + material.asId() + "_" + provider.namespace().asId(),
                                         b -> b.require(isLarge ? material.getLargeCogwheel().get() : I.shaft())
-                                                .require(provider.ingredient)
+                                                .require(provider.ingredient())
                                                 .output(material.getCogwheel(isLarge).asStack())))))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, () ->
                         new EnumMap<>(materialType)));
