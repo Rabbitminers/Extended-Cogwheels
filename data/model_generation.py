@@ -80,14 +80,20 @@ def generate_large_cogwheel(type: str, material: str, output_path: str = OUTPUT)
         model.textures = large_cogwheel_texture_dict(material)
         f.write(json.dumps(model, indent=4, cls=JsonModelEncoder))
 
-def generate_small_and_large_cogwheels(name: str, materials: set[str] = MATERIALS) -> None:
-    generate_cogwheels(name, materials=materials)
-    generate_large_cogwheels("large_" + name, materials=materials)
+def generate_small_and_large_cogwheels(name: str, materials: set[str] = MATERIALS, skip_default: bool = True) -> None:
+    generate_cogwheels(name, materials=materials, ignore_default=skip_default)
+    generate_large_cogwheels("large_" + name, materials=materials, ignore_default=skip_default)
 
 if __name__ == '__main__':
+    """
     materials: Final[set[str]] = get_materials()
     types: set = {"default", "shaftless", "half_shaft"}
     for type in types:
         generate_small_and_large_cogwheels(type, materials)
+    """
+
+    materials: Final[set[str]] = {"spruce"}
+    generate_small_and_large_cogwheels("half_shaft", materials, False)
+    generate_small_and_large_cogwheels("shaftless", materials, False)
 
 
