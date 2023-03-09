@@ -26,6 +26,7 @@ public class ExtendedCogwheelsTileEntities {
                     .validBlocks(ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS.toArray())
                     .validBlocks(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS.toArray())
+                    .validBlocks(ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL)
                     .renderer(() -> KineticTileEntityRenderer::new)
                     .register();
 
