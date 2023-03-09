@@ -30,6 +30,8 @@
     "extendedgears:large_shaftless_copper_cogwheel",
     "extendedgears:large_half_shaft_iron_cogwheel",
     "extendedgears:large_half_shaft_steel_cogwheel",
-    "extendedgears:large_half_shaft_copper_cogwheel"
+    "extendedgears:large_half_shaft_copper_cogwheel",
+    "extendedgears:large_half_shaft_spruce_cogwheel",
+    "extendedgears:large_shaftless_spruce_cogwheel"
   ]
 }
