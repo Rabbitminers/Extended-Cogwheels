@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "extendedgears:half_shaft_iron_cogwheel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_half_shaft_iron_cogwheel"
+  }
+}

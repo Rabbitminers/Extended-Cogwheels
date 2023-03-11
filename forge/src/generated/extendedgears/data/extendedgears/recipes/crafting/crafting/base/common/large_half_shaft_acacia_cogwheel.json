@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "item": "minecraft:acacia_planks"
+    },
+    {
+      "item": "minecraft:acacia_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_half_shaft_acacia_cogwheel"
+  }
+}

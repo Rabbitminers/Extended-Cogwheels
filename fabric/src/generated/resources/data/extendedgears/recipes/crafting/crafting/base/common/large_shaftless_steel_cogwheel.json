@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:steel_ingots"
+    },
+    {
+      "tag": "c:steel_ingots"
+    },
+    {
+      "tag": "c:nuggets/steel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_shaftless_steel_cogwheel"
+  }
+}

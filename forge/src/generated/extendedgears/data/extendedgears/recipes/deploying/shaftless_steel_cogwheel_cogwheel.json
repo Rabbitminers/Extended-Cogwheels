@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/steel"
+    },
+    {
+      "tag": "forge:nuggets/steel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:shaftless_steel_cogwheel"
+    }
+  ]
+}

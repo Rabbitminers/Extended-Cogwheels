@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:half_shaft_oak_cogwheel"
+    },
+    {
+      "item": "minecraft:oak_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_half_shaft_oak_cogwheel"
+    }
+  ]
+}

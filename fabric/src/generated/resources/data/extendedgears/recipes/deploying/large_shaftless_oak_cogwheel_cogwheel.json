@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_oak_cogwheel"
+    },
+    {
+      "item": "minecraft:oak_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_shaftless_oak_cogwheel"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:iron_cogwheel"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_iron_cogwheel"
+    }
+  ]
+}

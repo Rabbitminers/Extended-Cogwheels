@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public enum MetalCogwheel implements ICogwheelMaterial {
     IRON(Items.IRON_NUGGET, Items.IRON_INGOT),
     STEEL(TagUtils.steelNugget(), TagUtils.steelIngot()),
-    COPPER(AllItems.COPPER_NUGGET.get(), Items.COPPER_INGOT);
+    COPPER(TagUtils.copperNugget(), Items.COPPER_INGOT);
 
     public final IngredientProvider ingredient;
     public final IngredientProvider smallIngredient;
@@ -51,6 +51,14 @@ public enum MetalCogwheel implements ICogwheelMaterial {
                 Ingredient.of(smallIngredient));
         this.tagKey = null;
     }
+
+    MetalCogwheel(TagKey<Item> smallIngredient, Item ingredient) {
+        this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
+        this.smallIngredient = new IngredientProvider(Namespace.COMMON,
+                Ingredient.of(smallIngredient));
+        this.tagKey = null;
+    }
+
 
     MetalCogwheel(IngredientProvider smallIngredient, TagKey<Item>[] tagKey, IngredientProvider ingredient) {
         this.ingredient = ingredient;

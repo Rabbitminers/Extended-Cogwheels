@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "tag": "forge:nuggets/copper"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:shaftless_copper_cogwheel"
+    }
+  ]
+}

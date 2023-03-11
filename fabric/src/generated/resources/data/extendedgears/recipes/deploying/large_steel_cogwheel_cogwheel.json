@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:steel_cogwheel"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_steel_cogwheel"
+    }
+  ]
+}

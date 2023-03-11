@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "tag": "forge:ingots/steel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:half_shaft_steel_cogwheel"
+  }
+}
