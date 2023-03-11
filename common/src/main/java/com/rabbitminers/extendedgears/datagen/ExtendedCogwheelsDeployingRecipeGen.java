@@ -37,13 +37,13 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
 
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe deployedCogwheel(BlockEntry<?> smallCogwheeel, T material,
             Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create(material.asId() + "_cogwheel",
+        return create(smallCogwheeel.get().asItem() + "_cogwheel",
                 b -> transformer.apply(b, material, smallCogwheeel, null, false));
     }
 
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe largeDeployedCogwheel(BlockEntry<?> smallCogwheel, BlockEntry<?> largeCogwheel,
             T material, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create("large_" + material.asId() + "_cogwheel",
+        return create(largeCogwheel.get().asItem() + "_cogwheel",
                 b -> transformer.apply(b, material, smallCogwheel, largeCogwheel, true));
     }
 
