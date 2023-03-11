@@ -2,12 +2,15 @@ package com.rabbitminers.extendedgears.base.data;
 
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider.Namespace;
+import com.rabbitminers.extendedgears.base.util.TagUtils;
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.architectury.injectables.annotations.ExpectPlatform;
+import io.github.fabricators_of_create.porting_lib.util.TagUtil;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -19,24 +22,40 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public enum MetalCogwheel implements ICogwheelMaterial {
-    IRON(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.IRON_INGOT))),
-    STEEL(new TagKey[] {ExtendedCogwheelsTags.forgeSteel, ExtendedCogwheelsTags.fabricSteel},
-            new IngredientProvider(Namespace.FORGE, Ingredient.of(ExtendedCogwheelsTags.forgeSteel)),
-            new IngredientProvider(Namespace.FABRIC, Ingredient.of(ExtendedCogwheelsTags.fabricSteel))),
-    COPPER(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.COPPER_INGOT)));
+    IRON(Items.IRON_NUGGET, Items.IRON_INGOT),
+    STEEL(TagUtils.steelIngot(), TagUtils.steelNugget()),
+    COPPER(AllItems.COPPER_NUGGET.get(), Items.COPPER_INGOT);
 
-    public final IngredientProvider[] ingredients;
+    public final IngredientProvider ingredient;
+    public final IngredientProvider smallIngredient;
+
     @Nullable
     public final TagKey<Item>[] tagKey;
 
-    MetalCogwheel(IngredientProvider... ingredients) {
-        this.ingredients = ingredients;
+    MetalCogwheel(IngredientProvider smallIngredient, IngredientProvider ingredients) {
+        this.ingredient = ingredients;
+        this.smallIngredient = smallIngredient;
         this.tagKey = null;
     }
 
-    MetalCogwheel(TagKey<Item>[] tagKey, IngredientProvider... ingredients) {
-        this.ingredients = ingredients;
+    MetalCogwheel(Item smallIngredient, Item ingredient) {
+        this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
+        this.smallIngredient = new IngredientProvider(Namespace.COMMON,
+                Ingredient.of(smallIngredient));
+        this.tagKey = null;
+    }
+
+    MetalCogwheel(TagKey<Item> smallIngredient, TagKey<Item> ingredient) {
+        this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
+        this.smallIngredient = new IngredientProvider(Namespace.COMMON,
+                Ingredient.of(smallIngredient));
+        this.tagKey = null;
+    }
+
+    MetalCogwheel(IngredientProvider smallIngredient, TagKey<Item>[] tagKey, IngredientProvider ingredient) {
+        this.ingredient = ingredient;
         this.tagKey = tagKey;
+        this.smallIngredient = smallIngredient;
     }
 
     @Override
@@ -60,7 +79,12 @@ public enum MetalCogwheel implements ICogwheelMaterial {
     }
 
     @Override
-    public IngredientProvider[] getIngredients() {
-        return this.ingredients;
+    public IngredientProvider getIngredient() {
+        return this.ingredient;
+    }
+
+    @Override
+    public IngredientProvider getSmallIngredient() {
+        return smallIngredient;
     }
 }
