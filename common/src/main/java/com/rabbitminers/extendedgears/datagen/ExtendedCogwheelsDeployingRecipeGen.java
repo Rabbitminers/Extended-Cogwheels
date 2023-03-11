@@ -9,13 +9,17 @@ import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -37,14 +41,18 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
 
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe deployedCogwheel(BlockEntry<?> smallCogwheeel, T material,
             Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create(smallCogwheeel.get().asItem() + "_cogwheel",
-                b -> transformer.apply(b, material, smallCogwheeel, null, false));
+        return create(smallCogwheeel.get().asItem() + "_cogwheel", b -> {
+            b = whenTagsPopulated(b, material.getRecipeTags());
+            return transformer.apply(b, material, smallCogwheeel, null, false);
+        });
     }
 
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe largeDeployedCogwheel(BlockEntry<?> smallCogwheel, BlockEntry<?> largeCogwheel,
             T material, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create(largeCogwheel.get().asItem() + "_cogwheel",
-                b -> transformer.apply(b, material, smallCogwheel, largeCogwheel, true));
+        return create(largeCogwheel.get().asItem() + "_cogwheel", b -> {
+            b = whenTagsPopulated(b, material.getRecipeTags());
+            return transformer.apply(b, material, smallCogwheel, largeCogwheel, true);
+        });
     }
 
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> deployedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels,
@@ -89,6 +97,12 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
 
     private record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
 
+    }
+
+    public <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> whenTagsPopulated(ProcessingRecipeBuilder<T> builder,
+                                                                                         @Nullable TagKey<Item>... tagKeys) {
+        return tagKeys == null ? builder : builder.withCondition(DefaultResourceConditions
+                .and(DefaultResourceConditions.itemTagsPopulated(tagKeys)));
     }
 
     @ExpectPlatform
