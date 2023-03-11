@@ -25,5 +25,7 @@ public interface ICogwheelMaterial {
 
     @NotNull String asId();
 
-    IngredientProvider[] getIngredients();
+    IngredientProvider getIngredient();
+
+    IngredientProvider getSmallIngredient();
 }
