@@ -104,27 +104,28 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         SHAFTLESS_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS, WoodenCogwheel.class),
         HALF_SHAFT_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS, WoodenCogwheel.class);
 
-    private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> materialList, E input, E output) {
-        return create(materialList.get(output))
+    private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> inputMaterialSet, E input, E output) {
+        return create(inputMaterialSet.get(output))
                 .withSuffix("_from_" + input.asId())
-                .viaCooking(materialList.get(input))
+                .viaCooking(inputMaterialSet.get(input))
                 .rewardXP(1f)
                 .inBlastFurnace();
     }
 
     final GeneratedRecipe
-        SMALL_IRON_TO_STEEL = create(MetalCogwheel.STEEL.getSmallCogwheel())
-            .withSuffix("_from_" + MetalCogwheel.IRON.asId())
-            .viaCooking(MetalCogwheel.IRON.getSmallCogwheel())
-            .rewardXP(1f)
-            .inBlastFurnace(),
-        LARGE_IRON_TO_STEEL = create(MetalCogwheel.STEEL.getLargeCogwheel())
-            .withSuffix("_from_" + MetalCogwheel.STEEL.asId())
-            .viaCooking(MetalCogwheel.IRON.getLargeCogwheel())
-            .rewardXP(1f)
-            .inBlastFurnace()
+        IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL),
+        LARGE_IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL),
+        HALF_SHAFT_IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL),
+        LARGE_HALF_SHAFT_IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL),
+        SHAFTLESS_IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL),
+        LARGE_SHAFTLESS_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS,
+            MetalCogwheel.IRON, MetalCogwheel.STEEL)
     ;
-
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
         return new GeneratedRecipeBuilder("/", result);
