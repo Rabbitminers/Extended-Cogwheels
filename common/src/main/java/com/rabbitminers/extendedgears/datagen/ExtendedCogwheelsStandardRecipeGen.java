@@ -34,11 +34,6 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
-import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.WOODEN_COGWHEELS;
-import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.METAL_COGWHEELS;
-import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS;
-import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS;
-
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
     private static final String CRAFTING = "crafting/";
     private static final String BASE = CRAFTING + "base/";
@@ -67,13 +62,34 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         return new CogwheelRecipePair<>(craftedCogwheelMapper(smallCogwheels, materialType, false, recipeTransformer), craftedCogwheelMapper(largeCogwheels, materialType, true, recipeTransformer));
     }
 
+    private <T extends Enum<T> & ICogwheelMaterial, B extends Block> GeneratedRecipe smallCogwheelToLarge(T material, BlockEntry<?> in, BlockEntry<?> out) {
+        return create(FROM_SMALL + material.getIngredient().namespace().asId(), out)
+                .unlockedBy(I::andesite).viaShapeless(builder -> builder.requires(material.getIngredient()
+                        .ingredient()).requires(in.get()));
+    }
+
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> smallFromLarge(CogwheelMaterialList<? extends Block, T> smallCogwheels,
+           CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType) {
+        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
+            material -> material, material ->
+                    smallCogwheelToLarge(material, smallCogwheels.get(material), largeCogwheels.get(material)),
+            (m1, m2) -> m1,
+            () -> new EnumMap<>(materialType)
+        ));
+    }
+
     final CogwheelRecipePair<MetalCogwheel>
         METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
             MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
         SHAFTLESS_METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS,
             MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
         HALF_SHAFT_METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS,
-            MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer);
+            MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+
+    final Map<MetalCogwheel, GeneratedRecipe>
+        METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS, MetalCogwheel.class),
+        SHAFTLESS_METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS, MetalCogwheel.class),
+        HALF_SHAFT_METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS, MetalCogwheel.class);
 
     final CogwheelRecipePair<WoodenCogwheel>
         WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS,
@@ -81,7 +97,12 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         SHAFTLESS_WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS,
                 WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
         HALF_SHAFT_WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS,
-                WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer);
+                WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+
+    final Map<WoodenCogwheel, GeneratedRecipe>
+        WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class),
+        SHAFTLESS_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS, WoodenCogwheel.class),
+        HALF_SHAFT_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS, WoodenCogwheel.class);
 
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> materialList, E input, E output) {
         return create(materialList.get(output))
