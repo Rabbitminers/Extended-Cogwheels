@@ -7,8 +7,8 @@ import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
-import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsRecipeTransformers;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
@@ -34,32 +34,44 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.WOODEN_COGWHEELS;
+import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.METAL_COGWHEELS;
+import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS;
+import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS;
+
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
     private static final String CRAFTING = "crafting/";
     private static final String BASE = CRAFTING + "base/";
     private static final String FROM_SMALL = CRAFTING + "from_small/";
 
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> craftedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels, Class<T> materialType, boolean isLarge,
-                                                                                                  TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
-        return Arrays.stream(materialType.getEnumConstants())
-                .collect(Collectors.toMap(
-                        material -> material,
-                        material -> create(BASE + material.getIngredient().namespace().asId(), cogwheels.get(material))
-                                .unlockedBy(I::andesite)
-                                .whenTagsPopulated(material.getRecipeTags())
-                                .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge)),
-                        (m1, m2) -> m1,
-                        () -> new EnumMap<>(materialType)
-                ));
+    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe cogwheelRecipe(T material, BlockEntry<? extends Block> cogwheel, boolean isLarge,
+               TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
+        return create(BASE + material.getIngredient().namespace().asId(), cogwheel)
+            .unlockedBy(I::andesite)
+            .whenTagsPopulated(material.getRecipeTags())
+            .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge));
     }
 
-    final Map<MetalCogwheel, GeneratedRecipe>
-        METAL_COGWHEELS = craftedCogwheelMapper(ExtendedCogwheelsBlocks.METAL_COGWHEELS, MetalCogwheel.class, false, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer);
-    ;
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> craftedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels, Class<T> materialType,
+              boolean isLarge, TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
+        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
+            material -> material, material ->
+                    cogwheelRecipe(material, cogwheels.get(material), isLarge, recipeTransformer),
+            (m1, m2) -> m1,
+            () -> new EnumMap<>(materialType)
+        ));
+    }
 
-    final Map<WoodenCogwheel, GeneratedRecipe>
-        WOODEN_COGWHEELS = craftedCogwheelMapper(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, WoodenCogwheel.class, false, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer);
-    ;
+    private <T extends Enum<T> & ICogwheelMaterial> CogwheelRecipePair<T> smallAndLargeRecipe(CogwheelMaterialList<? extends Block, T> smallCogwheels, CogwheelMaterialList<? extends Block, T> largeCogwheels,
+            Class<T> materialType, TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
+        return new CogwheelRecipePair<>(craftedCogwheelMapper(smallCogwheels, materialType, false, recipeTransformer), craftedCogwheelMapper(largeCogwheels, materialType, true, recipeTransformer));
+    }
+
+    final CogwheelRecipePair<MetalCogwheel> METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS,
+            ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS, MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer);
+
+    final CogwheelRecipePair<WoodenCogwheel> WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS,
+            ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer);
 
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> materialList, E input, E output) {
         return create(materialList.get(output))
@@ -314,7 +326,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         }
     }
 
-    private static record CogwheelRecipePair(GeneratedRecipe small, GeneratedRecipe large) {
+    private static record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
 
     }
 
