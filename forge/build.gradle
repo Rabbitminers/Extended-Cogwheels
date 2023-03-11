@@ -85,6 +85,8 @@ sourceSets {
     main {
         resources.srcDir generatedResources
     }
+
+    data {}
 }
 
 loom {
@@ -99,6 +101,8 @@ loom {
         data {
             data()
             programArgs "--all", "--mod", mod_id
+            programArgs('--existing', project(':common').file('src/main/resources').absolutePath)
+            programArgs('--existing', file('src/main/resources').absolutePath)
             programArgs "--output", generatedResources.absolutePath
         }
     }
