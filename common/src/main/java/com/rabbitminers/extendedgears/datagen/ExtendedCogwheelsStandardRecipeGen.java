@@ -42,7 +42,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe cogwheelRecipe(T material, BlockEntry<? extends Block> cogwheel, boolean isLarge,
                TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
         return create(BASE + material.getIngredient().namespace().asId(), cogwheel)
-            .unlockedBy(I::andesite)
+            .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
             .whenTagsPopulated(material.getRecipeTags())
             .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge));
     }
@@ -64,7 +64,8 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
     private <T extends Enum<T> & ICogwheelMaterial, B extends Block> GeneratedRecipe smallCogwheelToLarge(T material, BlockEntry<?> in, BlockEntry<?> out) {
         return create(FROM_SMALL + material.getIngredient().namespace().asId(), out)
-                .unlockedBy(I::andesite).viaShapeless(builder -> builder.requires(material.getIngredient()
+                .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
+                .viaShapeless(builder -> builder.requires(material.getIngredient()
                         .ingredient()).requires(in.get()));
     }
 
@@ -219,13 +220,13 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         @SafeVarargs
         final GeneratedRecipeBuilder whenTagsPopulated(@Nullable TagKey<Item>... tagKey) {
             return tagKey == null ? this : withCondition(DefaultResourceConditions
-                    .or(DefaultResourceConditions.itemTagsPopulated(tagKey)));
+                    .and(DefaultResourceConditions.itemTagsPopulated(tagKey)));
         }
 
         @SafeVarargs
         final GeneratedRecipeBuilder whenTagEmpty(@Nullable TagKey<Item>... tagKey) {
             return tagKey == null ? this : withCondition(DefaultResourceConditions
-                    .or(DefaultResourceConditions
+                    .and(DefaultResourceConditions
                             .not(DefaultResourceConditions.itemTagsPopulated(tagKey))));
         }
 
