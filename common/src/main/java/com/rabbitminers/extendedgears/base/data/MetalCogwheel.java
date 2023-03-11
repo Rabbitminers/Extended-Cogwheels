@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 public enum MetalCogwheel implements ICogwheelMaterial {
     IRON(Items.IRON_NUGGET, Items.IRON_INGOT),
-    STEEL(TagUtils.steelIngot(), TagUtils.steelNugget()),
+    STEEL(TagUtils.steelNugget(), TagUtils.steelIngot()),
     COPPER(AllItems.COPPER_NUGGET.get(), Items.COPPER_INGOT);
 
     public final IngredientProvider ingredient;
