@@ -5,25 +5,35 @@ import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider.Namespac
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 
 public enum WoodenCogwheel implements ICogwheelMaterial {
-    DARK_OAK(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.DARK_OAK_PLANKS))),
-    OAK(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.OAK_PLANKS))),
-    BIRCH(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.BIRCH_PLANKS))),
-    JUNGLE(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.JUNGLE_PLANKS))),
-    ACACIA(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.ACACIA_PLANKS))),
-    WARPED(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.WARPED_PLANKS))),
-    CRIMSON(new IngredientProvider(Namespace.COMMON, Ingredient.of(Items.CRIMSON_PLANKS)))
+    DARK_OAK(Items.DARK_OAK_BUTTON, Items.DARK_OAK_PLANKS),
+    OAK(Items.OAK_BUTTON, Items.OAK_PLANKS),
+    BIRCH(Items.BIRCH_BUTTON, Items.BIRCH_PLANKS),
+    JUNGLE(Items.JUNGLE_BUTTON, Items.JUNGLE_PLANKS),
+    ACACIA(Items.ACACIA_BUTTON, Items.ACACIA_PLANKS),
+    WARPED(Items.WARPED_BUTTON, Items.WARPED_PLANKS),
+    CRIMSON(Items.CRIMSON_BUTTON, Items.CRIMSON_PLANKS)
     ;
 
-    public final IngredientProvider[] ingredients;
+    public final IngredientProvider ingredient;
+    public final IngredientProvider smallIngredient;
 
-    WoodenCogwheel(IngredientProvider... ingredients) {
-        this.ingredients = ingredients;
+
+    WoodenCogwheel(IngredientProvider smallIngredient, IngredientProvider ingredient) {
+        this.ingredient = ingredient;
+        this.smallIngredient = smallIngredient;
+    }
+
+    WoodenCogwheel(Item smallIngredient, Item ingredient) {
+        this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
+        this.smallIngredient = new IngredientProvider(Namespace.COMMON,
+                Ingredient.of(smallIngredient));
     }
 
     @Override
@@ -36,14 +46,18 @@ public enum WoodenCogwheel implements ICogwheelMaterial {
         return ExtendedCogwheelsBlocks.WOODEN_COGWHEELS.get(this);
     }
 
-
     @Override
     public @NotNull String asId() {
         return name().toLowerCase();
     }
 
     @Override
-    public IngredientProvider[] getIngredients() {
-        return this.ingredients;
+    public IngredientProvider getIngredient() {
+        return this.ingredient;
+    }
+
+    @Override
+    public IngredientProvider getSmallIngredient() {
+        return smallIngredient;
     }
 }
