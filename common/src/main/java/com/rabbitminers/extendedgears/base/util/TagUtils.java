@@ -17,4 +17,9 @@ public class TagUtils {
     public static TagKey<Item> steelNugget() {
         throw new AssertionError();
     }
+
+    @ExpectPlatform
+    public static TagKey<Item> copperNugget() {
+        throw new AssertionError();
+    }
 }
