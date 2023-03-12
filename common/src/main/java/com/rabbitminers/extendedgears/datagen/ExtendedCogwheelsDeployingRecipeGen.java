@@ -99,10 +99,10 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
 
     }
 
-    public <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> whenTagsPopulated(ProcessingRecipeBuilder<T> builder,
+    @ExpectPlatform
+    public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> whenTagsPopulated(ProcessingRecipeBuilder<T> builder,
                                                                                          @Nullable TagKey<Item>... tagKeys) {
-        return tagKeys == null ? builder : builder.withCondition(DefaultResourceConditions
-                .and(DefaultResourceConditions.itemTagsPopulated(tagKeys)));
+        throw new AssertionError();
     }
 
     @ExpectPlatform
