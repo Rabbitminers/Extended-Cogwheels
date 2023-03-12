@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.google.gson.JsonObject;
+import com.ibm.icu.impl.Assert;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
@@ -11,8 +12,6 @@ import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
-import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -162,21 +161,25 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         return "Extended Cogwheels Crafting Recipes";
     }
 
-    class GeneratedRecipeBuilder {
+    @ExpectPlatform
+    public static IRecipeConditionContainer createContainer() {
+        throw new AssertionError();
+    }
 
+    public class GeneratedRecipeBuilder {
         private final String path;
         private String suffix;
         private java.util.function.Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
         private java.util.function.Supplier<ItemPredicate> unlockedBy;
-        List<ConditionJsonProvider> recipeConditions;
+        IRecipeConditionContainer recipeConditions;
         private int amount;
 
         private GeneratedRecipeBuilder(String path) {
             this.path = path;
             this.suffix = "";
-            this.recipeConditions = new ArrayList<>();
             this.amount = 1;
+            this.recipeConditions = createContainer();
         }
 
         public GeneratedRecipeBuilder(String path, java.util.function.Supplier<? extends ItemLike> result) {
@@ -208,33 +211,11 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
             return this;
         }
 
-        GeneratedRecipeBuilder whenModLoaded(String modid) {
-            return withCondition(DefaultResourceConditions.allModsLoaded(modid));
-        }
-
-        GeneratedRecipeBuilder whenModMissing(String modid) {
-            return withCondition(DefaultResourceConditions
-                    .not(DefaultResourceConditions.allModsLoaded(modid)));
-        }
-
         @SafeVarargs
         final GeneratedRecipeBuilder whenTagsPopulated(@Nullable TagKey<Item>... tagKey) {
-            return tagKey == null ? this : withCondition(DefaultResourceConditions
-                    .and(DefaultResourceConditions.itemTagsPopulated(tagKey)));
-        }
-
-        @SafeVarargs
-        final GeneratedRecipeBuilder whenTagEmpty(@Nullable TagKey<Item>... tagKey) {
-            return tagKey == null ? this : withCondition(DefaultResourceConditions
-                    .and(DefaultResourceConditions
-                            .not(DefaultResourceConditions.itemTagsPopulated(tagKey))));
-        }
-
-        GeneratedRecipeBuilder withCondition(ConditionJsonProvider condition) {
-            recipeConditions.add(condition);
+            recipeConditions.whenTagsFilled(tagKey);
             return this;
         }
-
 
         GeneratedRecipeBuilder withSuffix(String suffix) {
             this.suffix = suffix;
@@ -366,10 +347,10 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     private static class ConditionalRecipeResult implements FinishedRecipe {
         private final FinishedRecipe wrapped;
         private final ResourceLocation outputOverride;
-        private final List<ConditionJsonProvider> conditions;
+        private final IRecipeConditionContainer conditions;
 
         public ConditionalRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride,
-                                         List<ConditionJsonProvider> conditions) {
+                                         IRecipeConditionContainer conditions) {
             this.wrapped = wrapped;
             this.outputOverride = outputOverride;
             this.conditions = conditions;
@@ -399,8 +380,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         public void serializeRecipeData(@NotNull JsonObject object) {
             wrapped.serializeRecipeData(object);
             object.addProperty("result", outputOverride.toString());
-
-            ConditionJsonProvider.write(object, conditions.toArray(new ConditionJsonProvider[0]));
+            conditions.write(object);
         }
     }
 }
