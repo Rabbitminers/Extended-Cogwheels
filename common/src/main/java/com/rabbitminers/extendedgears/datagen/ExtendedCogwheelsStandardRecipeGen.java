@@ -42,7 +42,6 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
         return create(BASE + material.getIngredient().namespace().asId(), cogwheel)
             .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
-            .whenTagsPopulated(material.getRecipeTags()) // TODO What the fuck
             .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge));
     }
 
