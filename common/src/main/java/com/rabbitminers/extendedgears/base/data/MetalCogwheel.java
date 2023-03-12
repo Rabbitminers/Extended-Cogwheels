@@ -29,8 +29,7 @@ public enum MetalCogwheel implements ICogwheelMaterial {
     public final IngredientProvider ingredient;
     public final IngredientProvider smallIngredient;
 
-    @Nullable
-    public final TagKey<Item>[] tagKey;
+    public final TagKey[] tagKey;
 
     MetalCogwheel(IngredientProvider smallIngredient, IngredientProvider ingredients) {
         this.ingredient = ingredients;
@@ -49,21 +48,14 @@ public enum MetalCogwheel implements ICogwheelMaterial {
         this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
         this.smallIngredient = new IngredientProvider(Namespace.COMMON,
                 Ingredient.of(smallIngredient));
-        this.tagKey = null;
+        this.tagKey = new TagKey[] { smallIngredient, ingredient };
     }
 
     MetalCogwheel(TagKey<Item> smallIngredient, Item ingredient) {
         this.ingredient = new IngredientProvider(Namespace.COMMON, Ingredient.of(ingredient));
         this.smallIngredient = new IngredientProvider(Namespace.COMMON,
                 Ingredient.of(smallIngredient));
-        this.tagKey = null;
-    }
-
-
-    MetalCogwheel(IngredientProvider smallIngredient, TagKey<Item>[] tagKey, IngredientProvider ingredient) {
-        this.ingredient = ingredient;
-        this.tagKey = tagKey;
-        this.smallIngredient = smallIngredient;
+        this.tagKey = new TagKey[] { smallIngredient };
     }
 
     @Override
