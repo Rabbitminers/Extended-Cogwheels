@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.simibubi.create.AllBlockPartials;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
@@ -8,25 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public interface ICustomCogwheel{
-    static PartialModel getPartialModelType(BlockState state) {
-        return getPartialModelType(state.getBlock());
-    }
-
-    static PartialModel getPartialModelType(Block block) {
-        if (!(block instanceof ICustomCogwheel cogWheel))
-            return null;
-        return cogWheel.getPartialModelType();
-    }
-
-    static PartialModel getShaftPartialModelType(BlockState state) {
-        return getShaftPartialModelType(state.getBlock());
-    }
-
-    static PartialModel getShaftPartialModelType(Block block) {
-        if (!(block instanceof ICustomCogwheel cogWheel))
-            return null;
-        return cogWheel.getShaftPartialModel();
-    }
+    public ICogwheelMaterial getMaterial();
 
     default Direction.AxisDirection getAxisDirection(BlockState state) {
         return Direction.AxisDirection.POSITIVE;
