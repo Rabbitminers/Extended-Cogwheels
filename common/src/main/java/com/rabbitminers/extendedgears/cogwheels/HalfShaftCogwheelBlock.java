@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
 import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.AllShapes;
@@ -29,18 +30,18 @@ public class HalfShaftCogwheelBlock extends CustomCogwheelBlock {
 
     public static final BooleanProperty AXIS_DIRECTION = BooleanProperty.create("axis_direction");
 
-    public HalfShaftCogwheelBlock(boolean large, Properties properties, PartialModel model) {
+    public HalfShaftCogwheelBlock(boolean large, Properties properties, ICogwheelMaterial model) {
         super(large, properties, model);
         registerDefaultState(this.defaultBlockState().setValue(AXIS_DIRECTION,
                 isDirectionPosotive(Direction.AxisDirection.POSITIVE)));
     }
 
     // Again - Don't actually need these but removing them breaks shit
-    public static CustomCogwheelBlock small(Properties properties, PartialModel model) {
+    public static CustomCogwheelBlock small(Properties properties, ICogwheelMaterial model) {
         return new HalfShaftCogwheelBlock(false, properties, model);
     }
 
-    public static CustomCogwheelBlock large(Properties properties, PartialModel model) {
+    public static CustomCogwheelBlock large(Properties properties, ICogwheelMaterial model) {
         return new HalfShaftCogwheelBlock(true, properties, model);
     }
 

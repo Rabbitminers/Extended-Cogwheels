@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
 import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.foundation.utility.VoxelShaper;
@@ -19,17 +20,17 @@ public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
     public VoxelShape voxelShape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
     public VoxelShape largeVoxelShape = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
-    public ShaftlessCogwheelBlock(boolean large, Properties properties, PartialModel model) {
-        super(large, properties, model);
+    public ShaftlessCogwheelBlock(boolean large, Properties properties, ICogwheelMaterial material) {
+        super(large, properties, material);
     }
 
     // Don't actually need these but removing them breaks shit
-    public static CustomCogwheelBlock small(Properties properties, PartialModel model) {
-        return new ShaftlessCogwheelBlock(false, properties, model);
+    public static CustomCogwheelBlock small(Properties properties, ICogwheelMaterial material) {
+        return new ShaftlessCogwheelBlock(false, properties, material);
     }
 
-    public static CustomCogwheelBlock large(Properties properties, PartialModel model) {
-        return new ShaftlessCogwheelBlock(true, properties, model);
+    public static CustomCogwheelBlock large(Properties properties, ICogwheelMaterial material) {
+        return new ShaftlessCogwheelBlock(true, properties, material);
     }
 
     @Override
