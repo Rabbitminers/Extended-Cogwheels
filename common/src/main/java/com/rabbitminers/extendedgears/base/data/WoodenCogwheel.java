@@ -37,16 +37,6 @@ public enum WoodenCogwheel implements ICogwheelMaterial {
     }
 
     @Override
-    public BlockEntry<CustomCogwheelBlock> getLargeCogwheel() {
-        return ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS.get(this);
-    }
-
-    @Override
-    public BlockEntry<CustomCogwheelBlock> getSmallCogwheel() {
-        return ExtendedCogwheelsBlocks.WOODEN_COGWHEELS.get(this);
-    }
-
-    @Override
     public @NotNull String asId() {
         return name().toLowerCase();
     }
