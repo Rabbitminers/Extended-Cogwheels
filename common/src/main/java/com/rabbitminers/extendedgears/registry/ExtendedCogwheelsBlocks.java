@@ -1,6 +1,8 @@
 package com.rabbitminers.extendedgears.registry;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
+import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.base.datatypes.MetalBlockList;
 import com.rabbitminers.extendedgears.base.datatypes.WoodenBlockList;
 import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
@@ -21,9 +23,14 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MaterialColor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ExtendedCogwheelsBlocks {
 	public static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
@@ -57,43 +64,37 @@ public class ExtendedCogwheelsBlocks {
 	// Wooden Cogwheels
 
 	public static final WoodenBlockList<CustomCogwheelBlock> WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block(wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
-					ExtendedCogwheelsPartials.WOODEN_COGWHEELS.get(wood).small()))
+			REGISTRATE.block(wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("large_" + wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
-					ExtendedCogwheelsPartials.WOODEN_COGWHEELS.get(wood).large()))
+			REGISTRATE.block("large_" + wood.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> SHAFTLESS_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
-					ExtendedCogwheelsPartials.SHAFTLESS_WOODEN_COGWHEELS.get(wood).small()))
+			REGISTRATE.block("shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_SHAFTLESS_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("large_shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
-							ExtendedCogwheelsPartials.SHAFTLESS_WOODEN_COGWHEELS.get(wood).large()))
+			REGISTRATE.block("large_shaftless_" + wood.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 	public static final WoodenBlockList<CustomCogwheelBlock> HALF_SHAFT_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("half_shaft_" + wood.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
-							ExtendedCogwheelsPartials.HALF_SHAFT_WOODEN_COGWHEELS.get(wood).small()))
+			REGISTRATE.block("half_shaft_" + wood.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final WoodenBlockList<CustomCogwheelBlock> LARGE_HALF_SHAFT_WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
-			REGISTRATE.block("large_half_shaft_" + wood.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
-							ExtendedCogwheelsPartials.HALF_SHAFT_WOODEN_COGWHEELS.get(wood).large()))
+			REGISTRATE.block("large_half_shaft_" + wood.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p, wood))
 					.transform(woodenCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
@@ -103,78 +104,96 @@ public class ExtendedCogwheelsBlocks {
 
 	// Metal Cogwheels
 	public static final MetalBlockList<CustomCogwheelBlock> METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block(metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p,
-					ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal).small()))
+			REGISTRATE.block(metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.small(p, metal))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p,
-					ExtendedCogwheelsPartials.METAL_COGWHEELS.get(metal).large()))
+			REGISTRATE.block("large_" + metal.asId() + "_cogwheel", p -> CustomCogwheelBlock.large(p, metal))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> SHAFTLESS_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
-							ExtendedCogwheelsPartials.SHAFTLESS_METAL_COGWHEELS.get(metal).small()))
+			REGISTRATE.block("shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.small(p, metal))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_SHAFTLESS_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("large_shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
-							ExtendedCogwheelsPartials.SHAFTLESS_METAL_COGWHEELS.get(metal).large()))
+			REGISTRATE.block("large_shaftless_" + metal.asId() + "_cogwheel", p -> ShaftlessCogwheelBlock.large(p, metal))
 					.transform(metalCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> HALF_SHAFT_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
-							ExtendedCogwheelsPartials.HALF_SHAFT_METAL_COGWHEELS.get(metal).small()))
+			REGISTRATE.block("half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.small(p, metal))
 					.transform(metalCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register());
 
 	public static final MetalBlockList<CustomCogwheelBlock> LARGE_HALF_SHAFT_METAL_COGWHEELS = new MetalBlockList<>(metal ->
-			REGISTRATE.block("large_half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
-							ExtendedCogwheelsPartials.HALF_SHAFT_METAL_COGWHEELS.get(metal).large()))
+			REGISTRATE.block("large_half_shaft_" + metal.asId() + "_cogwheel", p -> HalfShaftCogwheelBlock.large(p, metal))
 					.transform(metalCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register());
 
 	public static final BlockEntry<CustomCogwheelBlock> SPRUCE_HALF_SHAFT_COGWHEEL =
-			REGISTRATE.block("half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.small(p,
-					AllBlockPartials.SHAFTLESS_COGWHEEL))
+			REGISTRATE.block("half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.small(p, DefaultMaterial.SPRUCE))
 					.transform(woodenCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register();
 
 	public static final BlockEntry<CustomCogwheelBlock> LARGE_SPRUCE_HALF_SHAFT_COGWHEEL =
-			REGISTRATE.block("large_half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.large(p,
-							AllBlockPartials.SHAFTLESS_COGWHEEL))
+			REGISTRATE.block("large_half_shaft_spruce_cogwheel", p -> HalfShaftCogwheelBlock.large(p, DefaultMaterial.SPRUCE))
 					.transform(woodenCogwheelTransformer())
 					.blockstate(new HalfShaftGenerator()::generate)
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register();
 
 	public static final BlockEntry<CustomCogwheelBlock> SPRUCE_SHAFTLESS_COGWHEEL =
-			REGISTRATE.block("shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.small(p,
-							AllBlockPartials.SHAFTLESS_COGWHEEL))
+			REGISTRATE.block("shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.small(p, DefaultMaterial.SPRUCE))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.tag)
 					.register();
 
 	public static final BlockEntry<CustomCogwheelBlock> LARGE_SPRUCE_SHAFTLESS_COGWHEEL =
-			REGISTRATE.block("large_shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.large(p,
-							AllBlockPartials.SHAFTLESS_COGWHEEL))
+			REGISTRATE.block("large_shaftless_spruce_cogwheel", p -> ShaftlessCogwheelBlock.large(p, DefaultMaterial.SPRUCE))
 					.transform(woodenCogwheelTransformer())
 					.tag(ExtendedCogwheelsTags.ExtendedCogwheelsBlockTags.LARGE_COGWHEEL.tag)
 					.register();
+
+	public enum DefaultMaterial implements ICogwheelMaterial {
+		SPRUCE(Items.SPRUCE_BUTTON, Items.SPRUCE_PLANKS);
+
+		public final IngredientProvider ingredient;
+		public final IngredientProvider smallIngredient;
+
+		DefaultMaterial(Item smallIngredient, Item ingredient) {
+			this.ingredient = new IngredientProvider(IngredientProvider.Namespace.COMMON, Ingredient.of(ingredient));
+			this.smallIngredient = new IngredientProvider(IngredientProvider.Namespace.COMMON,
+					Ingredient.of(smallIngredient));
+		}
+
+		@Override
+		public @NotNull String asId() {
+			return name().toLowerCase();
+		}
+
+		@Override
+		public IngredientProvider getIngredient() {
+			return this.ingredient;
+		}
+
+		@Override
+		public IngredientProvider getSmallIngredient() {
+			return this.smallIngredient;
+		}
+	}
 
 	public static void init() {
 		ExtendedCogwheels.LOGGER.info("Registering blocks for " + ExtendedCogwheels.NAME);
