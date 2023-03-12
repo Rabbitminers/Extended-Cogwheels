@@ -9,15 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public interface ICogwheelMaterial {
-
-    default <T extends Enum<T> & ICogwheelMaterial> BlockEntry<CustomCogwheelBlock> getCogwheel(boolean isLarge) {
-        return isLarge ? getLargeCogwheel() : getSmallCogwheel();
-    }
-
-    @Nullable BlockEntry<CustomCogwheelBlock> getLargeCogwheel();
-
-    @Nullable BlockEntry<CustomCogwheelBlock> getSmallCogwheel();
-
     @Nullable
     default TagKey<Item>[] getRecipeTags() {
         return null;
