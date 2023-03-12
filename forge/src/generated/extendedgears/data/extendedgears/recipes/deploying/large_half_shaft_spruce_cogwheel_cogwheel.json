@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_spruce_cogwheel"
+    },
+    {
+      "item": "minecraft:spruce_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_half_shaft_spruce_cogwheel"
+    }
+  ]
+}

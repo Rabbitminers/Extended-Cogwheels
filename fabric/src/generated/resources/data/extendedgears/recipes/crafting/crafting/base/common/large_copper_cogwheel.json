@@ -25,17 +25,6 @@
           ]
         }
       ]
-    },
-    {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "fabric:item_tags_populated",
-          "values": [
-            "c:nuggets/copper"
-          ]
-        }
-      ]
     }
   ]
 }

@@ -26,18 +26,6 @@
           ]
         }
       ]
-    },
-    {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "fabric:item_tags_populated",
-          "values": [
-            "c:nuggets/steel",
-            "c:steel_ingots"
-          ]
-        }
-      ]
     }
   ]
 }

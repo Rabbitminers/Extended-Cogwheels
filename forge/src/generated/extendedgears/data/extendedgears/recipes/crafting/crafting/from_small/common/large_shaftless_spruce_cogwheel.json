@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_planks"
+    },
+    {
+      "item": "extendedgears:shaftless_spruce_cogwheel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_shaftless_spruce_cogwheel"
+  }
+}
