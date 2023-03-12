@@ -5,7 +5,9 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import net.minecraftforge.common.ForgeConfigSpec;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.EnumMap;
@@ -21,6 +23,9 @@ public class ExtendedCogwheelsConfig {
 
     public static ForgeConfigSpec.BooleanValue APPLY_ROTATION_LIMITS;
     public static ForgeConfigSpec.BooleanValue APPLY_STRESS_LIMITS;
+
+    public static ForgeConfigSpec.IntValue SPRUCE_COGWHEEL_STRESS_LIMITS;
+    public static ForgeConfigSpec.IntValue SPRUCE_COGWHEEL_ROTATION_LIMITS;
 
     public static EnumMap<WoodenCogwheel, ForgeConfigSpec.IntValue> WOODEN_COGWHEEL_STRESS_LIMITS = new EnumMap<>(WoodenCogwheel.class);
     public static EnumMap<MetalCogwheel, ForgeConfigSpec.IntValue> METAL_COGWHEEL_STRESS_LIMITS= new EnumMap<>(MetalCogwheel.class);;
@@ -47,12 +52,20 @@ public class ExtendedCogwheelsConfig {
 
         SERVER_BUILDER.push(CATEGORY_STRESS_LIMITS);
 
+        SPRUCE_COGWHEEL_STRESS_LIMITS = SERVER_BUILDER
+                .comment("Maximum stress for spruce cogwheels (will break anything above this value not including)")
+                .defineInRange("spruce_stress_limit", Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
+
         cogwheelStressLimitGenerator(WoodenCogwheel.class,
                 WOODEN_COGWHEEL_STRESS_LIMITS, SERVER_BUILDER);
         cogwheelStressLimitGenerator(MetalCogwheel.class,
                 METAL_COGWHEEL_STRESS_LIMITS, SERVER_BUILDER);
 
         SERVER_BUILDER.pop().push(CATEGORY_ROTATION_LIMITS);
+
+        SPRUCE_COGWHEEL_ROTATION_LIMITS = SERVER_BUILDER
+                .comment("Maximum rpm for spruce cogwheels (will break anything above this value not including)")
+                .defineInRange("spruce_rotation_limit", 256, 0, Integer.MAX_VALUE);
 
         cogwheelRotationLimitGenerator(WoodenCogwheel.class,
                 WOODEN_COGWHEEL_ROTATION_LIMITS, SERVER_BUILDER);
@@ -82,6 +95,28 @@ public class ExtendedCogwheelsConfig {
                 .comment("Maximum rpm for " + material.asId() + " cogwheels (will break anything above this value not including)")
                 .defineInRange(material.asId() + "_rotation_limit", 256, 0, Integer.MAX_VALUE));
         }
+    }
+
+    @Nullable
+    public static <T extends ICogwheelMaterial> Integer getRotationLimitByMaterial(T material) {
+        if (material instanceof MetalCogwheel)
+            return METAL_COGWHEEL_ROTATION_LIMITS.get(material).get();
+        else if (material instanceof WoodenCogwheel)
+            return WOODEN_COGWHEEL_ROTATION_LIMITS.get(material).get();
+        else if (material instanceof ExtendedCogwheelsBlocks.DefaultMaterial)
+            return SPRUCE_COGWHEEL_ROTATION_LIMITS.get();
+        else return null;
+    }
+
+    @Nullable
+    public static <T extends ICogwheelMaterial> Integer getStressLimitByMaterial(T material) {
+        if (material instanceof MetalCogwheel)
+            return METAL_COGWHEEL_STRESS_LIMITS.get(material).get();
+        else if (material instanceof WoodenCogwheel)
+            return WOODEN_COGWHEEL_STRESS_LIMITS.get(material).get();
+        else if (material instanceof ExtendedCogwheelsBlocks.DefaultMaterial)
+            return SPRUCE_COGWHEEL_STRESS_LIMITS.get();
+        else return null;
     }
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {
