@@ -8,7 +8,9 @@
       "item": "minecraft:copper_ingot"
     }
   ],
-  "result": "extendedgears:half_shaft_copper_cogwheel",
+  "result": {
+    "item": "extendedgears:half_shaft_copper_cogwheel"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "item": "minecraft:jungle_planks"
+    },
+    {
+      "item": "minecraft:jungle_planks"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_half_shaft_jungle_cogwheel"
+  }
+}

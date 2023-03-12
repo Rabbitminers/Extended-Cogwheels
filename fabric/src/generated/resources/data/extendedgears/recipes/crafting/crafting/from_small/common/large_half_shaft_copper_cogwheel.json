@@ -8,7 +8,9 @@
       "item": "extendedgears:half_shaft_copper_cogwheel"
     }
   ],
-  "result": "extendedgears:large_half_shaft_copper_cogwheel",
+  "result": {
+    "item": "extendedgears:large_half_shaft_copper_cogwheel"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

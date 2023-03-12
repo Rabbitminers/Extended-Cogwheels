@@ -8,7 +8,9 @@
       "tag": "c:steel_ingots"
     }
   ],
-  "result": "extendedgears:half_shaft_steel_cogwheel",
+  "result": {
+    "item": "extendedgears:half_shaft_steel_cogwheel"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

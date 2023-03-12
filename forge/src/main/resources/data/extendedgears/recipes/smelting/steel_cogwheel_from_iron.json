@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "extendedgears:iron_cogwheel"
+  },
+  "result": "extendedgears:steel_cogwheel",
+  "experience": 1.0,
+  "cookingtime": 200
+}

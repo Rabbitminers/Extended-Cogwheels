@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "item": "minecraft:acacia_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:acacia_cogwheel"
+    }
+  ]
+}

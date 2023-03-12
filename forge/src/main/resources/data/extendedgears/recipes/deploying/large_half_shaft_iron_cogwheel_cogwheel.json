@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:half_shaft_iron_cogwheel"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_half_shaft_iron_cogwheel"
+    }
+  ]
+}

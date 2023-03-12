@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_planks"
+    },
+    {
+      "item": "extendedgears:shaftless_warped_cogwheel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_shaftless_warped_cogwheel"
+  }
+}

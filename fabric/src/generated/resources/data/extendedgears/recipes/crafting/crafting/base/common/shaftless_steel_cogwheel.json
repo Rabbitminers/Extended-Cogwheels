@@ -8,7 +8,9 @@
       "tag": "c:nuggets/steel"
     }
   ],
-  "result": "extendedgears:shaftless_steel_cogwheel",
+  "result": {
+    "item": "extendedgears:shaftless_steel_cogwheel"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

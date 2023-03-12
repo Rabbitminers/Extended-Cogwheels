@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_planks"
+    },
+    {
+      "item": "minecraft:oak_planks"
+    },
+    {
+      "item": "minecraft:oak_button"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_shaftless_oak_cogwheel"
+  }
+}

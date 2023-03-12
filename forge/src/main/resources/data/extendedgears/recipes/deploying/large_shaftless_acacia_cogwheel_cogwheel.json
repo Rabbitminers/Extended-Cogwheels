@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_acacia_cogwheel"
+    },
+    {
+      "item": "minecraft:acacia_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_shaftless_acacia_cogwheel"
+    }
+  ]
+}
