@@ -103,10 +103,14 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
             false, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
         LARGE_SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
                 true, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
+        SHAFTLESS_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
+                ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL),
         HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
                 false, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
         LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-                true, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+                true, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
+        HALF_SHAFT_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+                ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL);
 
     final Map<WoodenCogwheel, GeneratedRecipe>
         WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class),
