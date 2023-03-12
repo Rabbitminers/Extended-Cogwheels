@@ -8,7 +8,29 @@
       "item": "minecraft:copper_ingot"
     }
   ],
-  "result": {
-    "item": "extendedgears:copper_cogwheel"
-  }
+  "result": "extendedgears:copper_cogwheel",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:nuggets/copper"
+          ]
+        }
+      ]
+    },
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:nuggets/copper"
+          ]
+        }
+      ]
+    }
+  ]
 }

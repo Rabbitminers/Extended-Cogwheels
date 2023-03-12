@@ -8,7 +8,29 @@
       "tag": "c:nuggets/copper"
     }
   ],
-  "result": {
-    "item": "extendedgears:shaftless_copper_cogwheel"
-  }
+  "result": "extendedgears:shaftless_copper_cogwheel",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:nuggets/copper"
+          ]
+        }
+      ]
+    },
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:nuggets/copper"
+          ]
+        }
+      ]
+    }
+  ]
 }

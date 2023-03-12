@@ -12,5 +12,19 @@
     {
       "item": "extendedgears:half_shaft_copper_cogwheel"
     }
+  ],
+  "conditions": [
+    {
+      "values": [
+        {
+          "value": {
+            "tag": "forge:nuggets/copper",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "type": "forge:and"
+    }
   ]
 }

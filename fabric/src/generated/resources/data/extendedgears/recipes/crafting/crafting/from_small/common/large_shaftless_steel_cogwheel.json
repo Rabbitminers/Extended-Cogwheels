@@ -8,7 +8,19 @@
       "item": "extendedgears:shaftless_steel_cogwheel"
     }
   ],
-  "result": {
-    "item": "extendedgears:large_shaftless_steel_cogwheel"
-  }
+  "result": "extendedgears:large_shaftless_steel_cogwheel",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:nuggets/steel",
+            "c:steel_ingots"
+          ]
+        }
+      ]
+    }
+  ]
 }

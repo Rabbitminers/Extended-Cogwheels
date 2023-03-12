@@ -8,7 +8,45 @@
       "tag": "forge:ingots/steel"
     }
   ],
-  "result": {
-    "item": "extendedgears:steel_cogwheel"
-  }
+  "result": "extendedgears:steel_cogwheel",
+  "conditions": [
+    {
+      "values": [
+        {
+          "value": {
+            "tag": "forge:nuggets/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        },
+        {
+          "value": {
+            "tag": "forge:ingots/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "type": "forge:and"
+    },
+    {
+      "values": [
+        {
+          "value": {
+            "tag": "forge:nuggets/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        },
+        {
+          "value": {
+            "tag": "forge:ingots/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "type": "forge:and"
+    }
+  ]
 }
