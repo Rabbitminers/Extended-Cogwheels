@@ -379,7 +379,9 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         @Override
         public void serializeRecipeData(@NotNull JsonObject object) {
             wrapped.serializeRecipeData(object);
-            object.addProperty("result", outputOverride.toString());
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("item", outputOverride.toString());
+            object.add("result", jsonObject);
             conditions.write(object);
         }
     }
