@@ -59,16 +59,6 @@ public enum MetalCogwheel implements ICogwheelMaterial {
     }
 
     @Override
-    public @Nullable BlockEntry<CustomCogwheelBlock> getLargeCogwheel() {
-        return ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS.get(this);
-    }
-
-    @Override
-    public @Nullable BlockEntry<CustomCogwheelBlock> getSmallCogwheel() {
-        return ExtendedCogwheelsBlocks.METAL_COGWHEELS.get(this);
-    }
-
-    @Override
     public @Nullable TagKey<Item>[] getRecipeTags() {
         return this.tagKey;
     }
