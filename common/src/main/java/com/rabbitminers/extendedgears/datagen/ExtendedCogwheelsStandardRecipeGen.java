@@ -42,7 +42,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
         return create(BASE + material.getIngredient().namespace().asId(), cogwheel)
             .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
-            .whenTagsPopulated(material.getRecipeTags())
+            .whenTagsPopulated(material.getRecipeTags()) // TODO What the fuck
             .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge));
     }
 
@@ -98,6 +98,16 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
         HALF_SHAFT_WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS,
                 WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+
+    final GeneratedRecipe
+        SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
+            false, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
+        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
+                true, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
+        HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+                false, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
+        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
+                true, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
 
     final Map<WoodenCogwheel, GeneratedRecipe>
         WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class),
