@@ -26,7 +26,9 @@ public class ExtendedCogwheelsTags {
 
     public enum NameSpace {
 
-        MOD(ExtendedCogwheels.MOD_ID, false, true), FORGE("forge")
+        MOD(ExtendedCogwheels.MOD_ID, false, true),
+        FORGE("forge"),
+        FABRIC("c")
 
         ;
 
@@ -47,9 +49,86 @@ public class ExtendedCogwheelsTags {
     }
 
 
+    public enum ExtendedCogwheelsItemTags {
+        COGWHEEL, SMALL_COGWHEEL, LARGE_COGWHEEL, METAL_COGWHEEL, WOODEN_COGWHEEL
+        ;
+
+        public final TagKey<Item> tag;
+        public final boolean alwaysDatagen;
+
+        ExtendedCogwheelsItemTags() {
+            this(NameSpace.MOD);
+        }
+
+        ExtendedCogwheelsItemTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        ExtendedCogwheelsItemTags(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        ExtendedCogwheelsItemTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        ExtendedCogwheelsItemTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
+            tag = optionalTag(Registry.ITEM, id);
+            this.alwaysDatagen = alwaysDatagen;
+        }
+
+        @SuppressWarnings("deprecation")
+        public boolean matches(Item item) {
+            return item.builtInRegistryHolder()
+                    .is(tag);
+        }
+
+        public boolean matches(ItemStack stack) {
+            return stack.is(tag);
+        }
+
+        public void add(Item... values) {
+            REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, prov -> builder(prov, tag)
+                    .add(values));
+        }
+
+        public void addOptional(Mods mod, String... ids) {
+            REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, prov -> {
+                TagsProvider.TagAppender<Item> builder = builder(prov, tag);
+                for (String id : ids)
+                    builder.addOptional(mod.asResource(id));
+            });
+        }
+
+        public void addOptional(String namespace, String... ids) {
+            REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, prov -> {
+                TagsProvider.TagAppender<Item> builder = builder(prov, tag);
+                for (String id : ids)
+                    builder.addOptional(new ResourceLocation(namespace, id));
+            });
+        }
+
+        public void addOptional(ResourceLocation location) {
+            addOptional(location.getNamespace(), location.getPath());
+        }
+
+        public void includeIn(TagKey<Item> parent) {
+            REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, prov -> prov.tag(parent)
+                    .addTag(tag));
+        }
+
+        public void includeIn(AllTags.AllItemTags parent) {
+            includeIn(parent.tag);
+        }
+
+        public void includeAll(TagKey<Item> child) {
+            REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, prov -> builder(prov, tag)
+                    .addTag(child));
+        }
+    }
 
     public enum ExtendedCogwheelsBlockTags {
-        COGWHEEL, METAL_COGWHEEL, WOODEN_COGWHEEL, LARGE_COGWHEEL, SMALL_COGWHEEL
         ;
 
         public final TagKey<Block> tag;
@@ -138,9 +217,11 @@ public class ExtendedCogwheelsTags {
     }
 
     public static void init() {
-        ExtendedCogwheelsBlockTags.COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
-        ExtendedCogwheelsBlockTags.SMALL_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
-        ExtendedCogwheelsBlockTags.WOODEN_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+        ExtendedCogwheelsItemTags.COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+        ExtendedCogwheelsItemTags.LARGE_COGWHEEL.addOptional(AllBlocks.LARGE_COGWHEEL.getId());
+        ExtendedCogwheelsItemTags.SMALL_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
+        ExtendedCogwheelsItemTags.LARGE_COGWHEEL.addOptional(AllBlocks.LARGE_COGWHEEL.getId());
+        ExtendedCogwheelsItemTags.WOODEN_COGWHEEL.addOptional(AllBlocks.COGWHEEL.getId());
     }
 
     public static TagKey<Item>
