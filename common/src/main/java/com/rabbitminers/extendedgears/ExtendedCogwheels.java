@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears;
 
+import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
@@ -7,7 +8,9 @@ import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsItems;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
+import com.simibubi.create.Create;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.data.LangMerger;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +48,8 @@ public class ExtendedCogwheels {
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
         if (isServer) {
+            gen.addProvider(new LangMerger(gen, MOD_ID, "Extended Cogwheels",
+                    ExtendedCogwheelsLanguageProvider.values()));
             gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
             gen.addProvider(ExtendedCogwheelsDeployingRecipeGen.create(gen));
         }
