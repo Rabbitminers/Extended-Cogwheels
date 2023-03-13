@@ -32,6 +32,14 @@
     "extendedgears:large_half_shaft_steel_cogwheel",
     "extendedgears:large_half_shaft_copper_cogwheel",
     "extendedgears:large_half_shaft_spruce_cogwheel",
-    "extendedgears:large_shaftless_spruce_cogwheel"
+    "extendedgears:large_shaftless_spruce_cogwheel",
+    {
+      "id": "create:large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "create:large_cogwheel",
+      "required": false
+    }
   ]
 }

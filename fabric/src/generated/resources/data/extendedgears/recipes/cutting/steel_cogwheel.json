@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:steel_cogwheel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:half_shaft_steel_cogwheel"
+    },
+    {
+      "item": "create:shaft",
+      "chance": 0.2
+    }
+  ],
+  "processingTime": 50
+}

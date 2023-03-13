@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:half_shaft_birch_cogwheel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:shaftless_birch_cogwheel"
+    },
+    {
+      "item": "create:shaft",
+      "chance": 0.2
+    }
+  ],
+  "processingTime": 50
+}

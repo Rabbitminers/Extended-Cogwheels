@@ -23,18 +23,6 @@
         }
       ],
       "type": "forge:and"
-    },
-    {
-      "values": [
-        {
-          "value": {
-            "tag": "forge:nuggets/copper",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
-      "type": "forge:and"
     }
   ]
 }
