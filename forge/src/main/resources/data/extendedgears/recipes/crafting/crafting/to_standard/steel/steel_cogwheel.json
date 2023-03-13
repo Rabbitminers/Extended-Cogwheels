@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_steel_cogwheel"
+    },
+    {
+      "item": "create:shaft"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:steel_cogwheel"
+  },
+  "conditions": [
+    {
+      "values": [
+        {
+          "value": {
+            "tag": "forge:nuggets/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        },
+        {
+          "value": {
+            "tag": "forge:ingots/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "type": "forge:and"
+    }
+  ]
+}

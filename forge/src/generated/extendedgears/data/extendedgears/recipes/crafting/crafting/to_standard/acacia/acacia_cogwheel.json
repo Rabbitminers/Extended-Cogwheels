@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_acacia_cogwheel"
+    },
+    {
+      "item": "create:shaft"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:acacia_cogwheel"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:large_jungle_cogwheel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_half_shaft_jungle_cogwheel"
+    },
+    {
+      "item": "create:shaft",
+      "chance": 0.2
+    }
+  ],
+  "processingTime": 50
+}

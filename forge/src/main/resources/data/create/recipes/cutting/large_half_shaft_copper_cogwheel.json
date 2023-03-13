@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:large_half_shaft_copper_cogwheel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_shaftless_copper_cogwheel"
+    },
+    {
+      "item": "create:shaft",
+      "chance": 0.2
+    }
+  ],
+  "processingTime": 50
+}

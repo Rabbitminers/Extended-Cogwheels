@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:dark_oak_cogwheel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:half_shaft_dark_oak_cogwheel"
+    },
+    {
+      "item": "create:shaft",
+      "chance": 0.2
+    }
+  ],
+  "processingTime": 50
+}

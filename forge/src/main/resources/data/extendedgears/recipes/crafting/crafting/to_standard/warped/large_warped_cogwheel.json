@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:large_shaftless_warped_cogwheel"
+    },
+    {
+      "item": "create:shaft"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_warped_cogwheel"
+  }
+}

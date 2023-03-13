@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_copper_cogwheel"
+    },
+    {
+      "item": "create:shaft"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:copper_cogwheel"
+  },
+  "conditions": [
+    {
+      "values": [
+        {
+          "value": {
+            "tag": "forge:nuggets/copper",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "type": "forge:and"
+    }
+  ]
+}
