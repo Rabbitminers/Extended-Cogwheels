@@ -8,6 +8,7 @@ import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -36,6 +37,7 @@ import java.util.stream.Collectors;
 public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeProvider {
     private static final String CRAFTING = "crafting/";
     private static final String BASE = CRAFTING + "base/";
+    private static final String TO_STANDARD = CRAFTING + "to_standard/";
     private static final String FROM_SMALL = CRAFTING + "from_small/";
 
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe cogwheelRecipe(T material, BlockEntry<? extends Block> cogwheel, boolean isLarge,
@@ -77,6 +79,23 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         ));
     }
 
+    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe shaftlessToStandard(T material, BlockEntry<?> in, BlockEntry<?> out) {
+        return create(TO_STANDARD + material.asId(), out)
+                .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
+                .viaShapeless(builder -> builder.requires(in.get())
+                        .requires(I.shaft()));
+    }
+
+    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> shaftlessToStandard(CogwheelMaterialList<? extends Block, T> shaftless,
+           CogwheelMaterialList<? extends Block, T> standard, Class<T> materialType) {
+        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
+                material -> material, material ->
+                        shaftlessToStandard(material, shaftless.get(material), standard.get(material)),
+                (m1, m2) -> m1,
+                () -> new EnumMap<>(materialType)
+        ));
+    }
+
     final CogwheelRecipePair<MetalCogwheel>
         METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
             MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
@@ -89,6 +108,18 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS, MetalCogwheel.class),
         SHAFTLESS_METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS, MetalCogwheel.class),
         HALF_SHAFT_METAL_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS, MetalCogwheel.class);
+
+    final Map<MetalCogwheel, GeneratedRecipe>
+        METAL_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.METAL_COGWHEELS, MetalCogwheel.class),
+        LARGE_METAL_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS, MetalCogwheel.class);
+
+    final Map<WoodenCogwheel, GeneratedRecipe>
+            WOODEN_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, WoodenCogwheel.class),
+            LARGE_WOODEN_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class);
+
+    final GeneratedRecipe
+            SPRUCE_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL, AllBlocks.COGWHEEL),
+            LARGE_SPRUCE_FROM_SHAFTLESS = shaftlessToStandard(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL, AllBlocks.LARGE_COGWHEEL);
 
     final CogwheelRecipePair<WoodenCogwheel>
         WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS,
