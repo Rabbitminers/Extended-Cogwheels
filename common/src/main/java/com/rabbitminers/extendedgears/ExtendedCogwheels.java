@@ -2,6 +2,7 @@ package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
+import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
@@ -52,6 +53,7 @@ public class ExtendedCogwheels {
                     ExtendedCogwheelsLanguageProvider.values()));
             gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
             gen.addProvider(ExtendedCogwheelsDeployingRecipeGen.create(gen));
+            gen.addProvider(ExtendedCogwheelsCuttingRecipeGen.create(gen));
         }
     }
 
