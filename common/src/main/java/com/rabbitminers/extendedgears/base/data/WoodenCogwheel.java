@@ -18,7 +18,8 @@ public enum WoodenCogwheel implements ICogwheelMaterial {
     JUNGLE(Items.JUNGLE_BUTTON, Items.JUNGLE_PLANKS),
     ACACIA(Items.ACACIA_BUTTON, Items.ACACIA_PLANKS),
     WARPED(Items.WARPED_BUTTON, Items.WARPED_PLANKS),
-    CRIMSON(Items.CRIMSON_BUTTON, Items.CRIMSON_PLANKS)
+    CRIMSON(Items.CRIMSON_BUTTON, Items.CRIMSON_PLANKS),
+    MANGROVE(Items.MANGROVE_BUTTON, Items.MANGROVE_PLANKS)
     ;
 
     public final IngredientProvider ingredient;
