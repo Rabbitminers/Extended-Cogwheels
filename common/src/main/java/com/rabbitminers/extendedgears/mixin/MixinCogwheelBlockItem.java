@@ -6,8 +6,6 @@ import com.simibubi.create.content.contraptions.relays.elementary.CogwheelBlockI
 import com.simibubi.create.content.contraptions.relays.elementary.ICogWheel;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -50,13 +48,13 @@ public class MixinCogwheelBlockItem extends BlockItem {
 
         if (ExtendedCogwheelsConfig.APPLY_ROTATION_LIMITS.get()) {
             int maxSpeed = getRotationalSpeedLimit(type);
-            components.add(new TextComponent("Maximum Speed: ").withStyle(ChatFormatting.DARK_GRAY)
-                    .append(new TextComponent(maxSpeed + " RPM").withStyle(ChatFormatting.GRAY)));
+            components.add(Component.literal("Maximum Speed: ").withStyle(ChatFormatting.DARK_GRAY)
+                    .append(Component.literal(maxSpeed + " RPM").withStyle(ChatFormatting.GRAY)));
         }
         if (ExtendedCogwheelsConfig.APPLY_STRESS_LIMITS.get()) {
             int maxLoad = getStressLimit(type);
-            components.add(new TextComponent("Maximum Load: ").withStyle(ChatFormatting.DARK_GRAY)
-                    .append(new TextComponent(maxLoad == Integer.MAX_VALUE ? "unlimited" : maxLoad + "su").withStyle(ChatFormatting.GRAY)));
+            components.add(Component.literal("Maximum Load: ").withStyle(ChatFormatting.DARK_GRAY)
+                    .append(Component.literal(maxLoad == Integer.MAX_VALUE ? "unlimited" : maxLoad + "su").withStyle(ChatFormatting.GRAY)));
         }
 
         super.appendHoverText(stack, level, components, isAdvanced);
