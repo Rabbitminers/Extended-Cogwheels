@@ -5,47 +5,47 @@
       "x": 90,
       "y": 270
     },
-    "axis=y,axis_direction=false,waterlogged=false": {
+    "axis=x,axis_direction=false,waterlogged=true": {
       "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 180
-    },
-    "axis=z,axis_direction=false,waterlogged=false": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 90
+      "x": 90,
+      "y": 270
     },
     "axis=x,axis_direction=true,waterlogged=false": {
       "model": "extendedgears:block/half_shaft_warped_cogwheel",
       "x": 90,
       "y": 90
     },
-    "axis=y,axis_direction=true,waterlogged=false": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel"
-    },
-    "axis=z,axis_direction=true,waterlogged=false": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 90,
-      "y": 180
-    },
-    "axis=x,axis_direction=false,waterlogged=true": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 90,
-      "y": 270
-    },
-    "axis=y,axis_direction=false,waterlogged=true": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 180
-    },
-    "axis=z,axis_direction=false,waterlogged=true": {
-      "model": "extendedgears:block/half_shaft_warped_cogwheel",
-      "x": 90
-    },
     "axis=x,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/half_shaft_warped_cogwheel",
       "x": 90,
       "y": 90
     },
+    "axis=y,axis_direction=false,waterlogged=false": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel",
+      "x": 180
+    },
+    "axis=y,axis_direction=false,waterlogged=true": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel",
+      "x": 180
+    },
+    "axis=y,axis_direction=true,waterlogged=false": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel"
+    },
     "axis=y,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/half_shaft_warped_cogwheel"
+    },
+    "axis=z,axis_direction=false,waterlogged=false": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel",
+      "x": 90
+    },
+    "axis=z,axis_direction=false,waterlogged=true": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel",
+      "x": 90
+    },
+    "axis=z,axis_direction=true,waterlogged=false": {
+      "model": "extendedgears:block/half_shaft_warped_cogwheel",
+      "x": 90,
+      "y": 180
     },
     "axis=z,axis_direction=true,waterlogged=true": {
       "model": "extendedgears:block/half_shaft_warped_cogwheel",

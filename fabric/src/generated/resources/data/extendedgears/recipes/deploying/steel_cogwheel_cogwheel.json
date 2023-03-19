@@ -1,18 +1,5 @@
 {
   "type": "create:deploying",
-  "ingredients": [
-    {
-      "item": "create:shaft"
-    },
-    {
-      "tag": "c:steel_ingots"
-    }
-  ],
-  "results": [
-    {
-      "item": "extendedgears:steel_cogwheel"
-    }
-  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -25,6 +12,19 @@
           ]
         }
       ]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:steel_cogwheel"
     }
   ]
 }

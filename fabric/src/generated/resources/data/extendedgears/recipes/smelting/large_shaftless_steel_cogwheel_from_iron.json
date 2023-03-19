@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
   "ingredient": {
     "item": "extendedgears:large_shaftless_iron_cogwheel"
   },
-  "result": "extendedgears:large_shaftless_steel_cogwheel",
-  "experience": 1.0,
-  "cookingtime": 200
+  "result": "extendedgears:large_shaftless_steel_cogwheel"
 }

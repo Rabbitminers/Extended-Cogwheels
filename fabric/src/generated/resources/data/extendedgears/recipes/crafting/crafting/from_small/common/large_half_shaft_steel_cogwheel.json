@@ -1,16 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "tag": "c:steel_ingots"
-    },
-    {
-      "item": "extendedgears:half_shaft_steel_cogwheel"
-    }
-  ],
-  "result": {
-    "item": "extendedgears:large_half_shaft_steel_cogwheel"
-  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -24,5 +13,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ingredients": [
+    {
+      "tag": "c:steel_ingots"
+    },
+    {
+      "item": "extendedgears:half_shaft_steel_cogwheel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_half_shaft_steel_cogwheel"
+  }
 }

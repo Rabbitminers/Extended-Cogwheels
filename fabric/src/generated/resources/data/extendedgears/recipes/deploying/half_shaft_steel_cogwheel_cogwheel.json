@@ -1,18 +1,5 @@
 {
   "type": "create:deploying",
-  "ingredients": [
-    {
-      "item": "create:andesite_alloy"
-    },
-    {
-      "tag": "c:steel_ingots"
-    }
-  ],
-  "results": [
-    {
-      "item": "extendedgears:half_shaft_steel_cogwheel"
-    }
-  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -25,6 +12,19 @@
           ]
         }
       ]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:half_shaft_steel_cogwheel"
     }
   ]
 }

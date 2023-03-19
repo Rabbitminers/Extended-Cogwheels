@@ -1,18 +1,5 @@
 {
   "type": "create:deploying",
-  "ingredients": [
-    {
-      "item": "extendedgears:shaftless_copper_cogwheel"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    }
-  ],
-  "results": [
-    {
-      "item": "extendedgears:large_shaftless_copper_cogwheel"
-    }
-  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -24,6 +11,19 @@
           ]
         }
       ]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_copper_cogwheel"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_shaftless_copper_cogwheel"
     }
   ]
 }

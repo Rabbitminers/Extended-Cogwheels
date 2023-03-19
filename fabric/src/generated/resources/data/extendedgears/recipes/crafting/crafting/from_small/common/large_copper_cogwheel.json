@@ -1,16 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:copper_ingot"
-    },
-    {
-      "item": "extendedgears:copper_cogwheel"
-    }
-  ],
-  "result": {
-    "item": "extendedgears:large_copper_cogwheel"
-  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -23,5 +12,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "extendedgears:copper_cogwheel"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:large_copper_cogwheel"
+  }
 }
