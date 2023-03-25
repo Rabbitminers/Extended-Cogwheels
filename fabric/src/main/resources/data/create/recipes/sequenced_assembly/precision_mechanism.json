@@ -70,6 +70,10 @@
             "chance": 8.0
         },
         {
+            "item": "create:cogwheel",
+            "chance": 5.0
+        },
+        {
             "item": "minecraft:gold_nugget",
             "chance": 3.0
         },
