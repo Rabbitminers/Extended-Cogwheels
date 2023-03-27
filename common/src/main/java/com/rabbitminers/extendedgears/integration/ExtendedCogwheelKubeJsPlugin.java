@@ -19,7 +19,10 @@ public class ExtendedCogwheelKubeJsPlugin extends KubeJSPlugin {
 
     @Override
     public void init() {
-        RegistryObjectBuilderTypes.BLOCK.addType("cogwheel", KubeJsCogwheelBuilder.class, KubeJsCogwheelBuilder::new);
+        RegistryObjectBuilderTypes.BLOCK.addType("cogwheel", KubeJsCogwheelBuilder.class,
+                (location) -> new KubeJsCogwheelBuilder(location, false));
+        RegistryObjectBuilderTypes.BLOCK.addType("large_cogwheel", KubeJsCogwheelBuilder.class,
+                (location) -> new KubeJsCogwheelBuilder(location, true));
     }
 
     @Override
