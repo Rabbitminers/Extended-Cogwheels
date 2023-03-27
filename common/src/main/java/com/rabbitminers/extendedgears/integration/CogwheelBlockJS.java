@@ -5,16 +5,20 @@ import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
 import dev.latvian.mods.kubejs.block.BlockBuilder;
 import dev.latvian.mods.kubejs.block.EntityBlockKJS;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.scores.criteria.ObjectiveCriteria;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -108,5 +112,9 @@ public class CogwheelBlockJS extends CogWheelBlock implements EntityBlockKJS {
     @Override
     public BlockState getRotatedBlockState(BlockState originalState, Direction targetedFace) {
         return super.getRotatedBlockState(originalState, targetedFace);
+    }
+
+    public @NotNull RenderShape getRenderShape(BlockState state) {
+        return RenderShape.INVISIBLE;
     }
 }
