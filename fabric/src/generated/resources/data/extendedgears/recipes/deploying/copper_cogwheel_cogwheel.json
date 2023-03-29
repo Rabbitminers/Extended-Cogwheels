@@ -2,12 +2,18 @@
   "type": "create:deploying",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
+      "condition": "fabric:or",
       "values": [
         {
           "condition": "fabric:item_tags_populated",
           "values": [
             "c:nuggets/copper"
+          ]
+        },
+        {
+          "condition": "fabric:item_tags_populated",
+          "values": [
+            "c:copper_nuggets"
           ]
         }
       ]
