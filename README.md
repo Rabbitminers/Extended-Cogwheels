@@ -26,3 +26,7 @@ onEvent('block.registry', event => {
         .displayName('Example Cogwheel');
 })
 ```
+
+All Valid Variations Are `cogwheel`, `large_cogwheel`, `half_shaft_cogwheel`, `large_half_shaft_cogwheel`, `shaftless_cogwheel`, `large_shaftless_cogwheel` 
+
+Existing builder methods for blocks are all supported for cogwheels. You can find some documentation for that here - https://wiki.latvian.dev/books/kubejs-legacy/page/custom-blocks
