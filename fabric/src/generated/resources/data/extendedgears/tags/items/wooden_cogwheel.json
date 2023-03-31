@@ -1,10 +1,6 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "create:cogwheel",
-      "required": false
-    },
     "#extendedgears:small_cogwheel/cogwheel/wooden",
     "#extendedgears:small_cogwheel/half_shaft_cogwheel/wooden",
     "#extendedgears:small_cogwheel/shaftless_cogwheel/wooden",

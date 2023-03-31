@@ -1,10 +1,6 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "create:cogwheel",
-      "required": false
-    },
     "#extendedgears:small_cogwheel",
     "#extendedgears:large_cogwheel"
   ]
