@@ -1,23 +1,11 @@
 {
   "replace": false,
   "values": [
-    "extendedgears:iron_cogwheel",
-    "extendedgears:steel_cogwheel",
-    "extendedgears:copper_cogwheel",
-    "extendedgears:large_iron_cogwheel",
-    "extendedgears:large_steel_cogwheel",
-    "extendedgears:large_copper_cogwheel",
-    "extendedgears:shaftless_iron_cogwheel",
-    "extendedgears:shaftless_steel_cogwheel",
-    "extendedgears:shaftless_copper_cogwheel",
-    "extendedgears:large_shaftless_iron_cogwheel",
-    "extendedgears:large_shaftless_steel_cogwheel",
-    "extendedgears:large_shaftless_copper_cogwheel",
-    "extendedgears:half_shaft_iron_cogwheel",
-    "extendedgears:half_shaft_steel_cogwheel",
-    "extendedgears:half_shaft_copper_cogwheel",
-    "extendedgears:large_half_shaft_iron_cogwheel",
-    "extendedgears:large_half_shaft_steel_cogwheel",
-    "extendedgears:large_half_shaft_copper_cogwheel"
+    "#extendedgears:small_cogwheel/cogwheel/metal",
+    "#extendedgears:small_cogwheel/half_shaft_cogwheel/metal",
+    "#extendedgears:small_cogwheel/shaftless_cogwheel/metal",
+    "#extendedgears:large_cogwheel/cogwheel/metal",
+    "#extendedgears:large_cogwheel/half_shaft_cogwheel/metal",
+    "#extendedgears:large_cogwheel/shaftless_cogwheel/metal"
   ]
 }
