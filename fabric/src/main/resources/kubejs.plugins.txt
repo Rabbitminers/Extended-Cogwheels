@@ -1,0 +1,1 @@
+com.rabbitminers.extendedgears.integration.fabric.ExtendedCogwheelKubeJsPluginImpl

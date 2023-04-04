@@ -1,6 +1,5 @@
 package com.rabbitminers.extendedgears.integration;
 
-import com.rabbitminers.extendedgears.integration.registry.KubeJsTileEntities;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
 import dev.latvian.mods.kubejs.block.BlockBuilder;
@@ -20,10 +19,10 @@ public class CogwheelBlockJS extends CogWheelBlock {
 
     @Override
     public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
-        return KubeJsTileEntities.KUBEJS_COGWHEEL_TILE_ENTITY.get();
+        return KubeJsCogwheels.tileEntities.get(blockBuilder.id).get();
     }
 
-    public @NotNull RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.INVISIBLE;
     }
 }
