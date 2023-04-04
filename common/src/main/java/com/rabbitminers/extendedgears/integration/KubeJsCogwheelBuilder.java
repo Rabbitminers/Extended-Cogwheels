@@ -37,8 +37,9 @@ public class KubeJsCogwheelBuilder extends BlockBuilder {
         this.type = type;
         this.parent = type.getParentModel(isLarge);
         this.opaque = false;
+        this.itemBuilder = new CogwheelBlockItemBuilder(i);
+        this.itemBuilder.blockBuilder = this;
     }
-
 
     @Override
     public Map<ResourceLocation, JsonObject> generateBlockModels(BlockBuilder builder) {
