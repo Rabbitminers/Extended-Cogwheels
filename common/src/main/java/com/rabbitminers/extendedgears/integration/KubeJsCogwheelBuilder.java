@@ -80,7 +80,8 @@ public class KubeJsCogwheelBuilder extends BlockBuilder {
                 String particle = this.textures.get("particle").getAsString();
                 m.parent(parent);
                 m.texture("particle", particle);
-                m.texture("1_2", particle); // Overwrite
+                m.texture("1_2", particle); // Overwrite (small)
+                m.texture("4", particle); // Overwrite (large)
             });
         }
 
