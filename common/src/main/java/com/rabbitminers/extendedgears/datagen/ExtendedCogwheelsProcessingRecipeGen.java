@@ -16,6 +16,7 @@ import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
@@ -44,8 +45,7 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
         GENERATORS.add(new EmptyingRecipeGen(gen));
         GENERATORS.add(new HauntingRecipeGen(gen));
         GENERATORS.add(new ItemApplicationRecipeGen(gen));
-
-        gen.addProvider(new DataProvider() {
+        gen.addProvider(true, new DataProvider() {
 
             @Override
             public String getName() {
@@ -53,7 +53,7 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
             }
 
             @Override
-            public void run(HashCache dc) throws IOException {
+            public void run(CachedOutput dc) throws IOException {
                 GENERATORS.forEach(g -> {
                     try {
                         g.run(dc);

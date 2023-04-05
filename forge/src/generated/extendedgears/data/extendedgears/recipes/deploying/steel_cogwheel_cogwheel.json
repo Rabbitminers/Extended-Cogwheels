@@ -1,5 +1,26 @@
 {
   "type": "create:deploying",
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:nuggets/steel"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/steel"
+          }
+        }
+      ]
+    }
+  ],
   "ingredients": [
     {
       "item": "create:shaft"
@@ -11,27 +32,6 @@
   "results": [
     {
       "item": "extendedgears:steel_cogwheel"
-    }
-  ],
-  "conditions": [
-    {
-      "values": [
-        {
-          "value": {
-            "tag": "forge:nuggets/steel",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        },
-        {
-          "value": {
-            "tag": "forge:ingots/steel",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
-      "type": "forge:and"
     }
   ]
 }

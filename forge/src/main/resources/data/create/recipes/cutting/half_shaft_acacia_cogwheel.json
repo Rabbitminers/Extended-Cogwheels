@@ -5,14 +5,14 @@
       "item": "extendedgears:half_shaft_acacia_cogwheel"
     }
   ],
+  "processingTime": 50,
   "results": [
     {
       "item": "extendedgears:shaftless_acacia_cogwheel"
     },
     {
-      "item": "create:shaft",
-      "chance": 0.2
+      "chance": 0.2,
+      "item": "create:shaft"
     }
-  ],
-  "processingTime": 50
+  ]
 }

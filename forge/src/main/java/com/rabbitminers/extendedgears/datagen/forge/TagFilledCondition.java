@@ -35,12 +35,7 @@ public class TagFilledCondition implements ICondition {
     }
 
     public boolean test(IContext context) {
-        return !context.getTag(this.tag).getValues().isEmpty();
-    }
-
-    @Override
-    public boolean test() { // Who the fuck makes a required field deprecated
-        return this.test(IContext.EMPTY);
+        return true;
     }
 
     public String toString() {

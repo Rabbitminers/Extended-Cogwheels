@@ -56,7 +56,7 @@ dependencies {
     modImplementation("dev.latvian.mods:kubejs-forge:${kubejs_version}")
 
     // Development QOL
-    modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
+//    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
 
     // if you would like to add integration with JEI, uncomment this line.
 //    modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")

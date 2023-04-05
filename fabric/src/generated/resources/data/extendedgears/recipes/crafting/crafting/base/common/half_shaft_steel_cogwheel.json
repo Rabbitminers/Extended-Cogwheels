@@ -1,16 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "create:andesite_alloy"
-    },
-    {
-      "tag": "c:steel_ingots"
-    }
-  ],
-  "result": {
-    "item": "extendedgears:half_shaft_steel_cogwheel"
-  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -24,5 +13,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:half_shaft_steel_cogwheel"
+  }
 }

@@ -1,5 +1,19 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:nuggets/copper"
+          }
+        }
+      ]
+    }
+  ],
   "ingredients": [
     {
       "item": "create:andesite_alloy"
@@ -10,19 +24,5 @@
   ],
   "result": {
     "item": "extendedgears:half_shaft_copper_cogwheel"
-  },
-  "conditions": [
-    {
-      "values": [
-        {
-          "value": {
-            "tag": "forge:nuggets/copper",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
-      "type": "forge:and"
-    }
-  ]
+  }
 }

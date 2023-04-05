@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_planks"
+    },
+    {
+      "item": "minecraft:mangrove_button"
+    }
+  ],
+  "result": {
+    "item": "extendedgears:shaftless_mangrove_cogwheel"
+  }
+}

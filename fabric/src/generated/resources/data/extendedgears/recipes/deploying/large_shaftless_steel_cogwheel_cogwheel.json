@@ -1,18 +1,5 @@
 {
   "type": "create:deploying",
-  "ingredients": [
-    {
-      "item": "extendedgears:shaftless_steel_cogwheel"
-    },
-    {
-      "tag": "c:steel_ingots"
-    }
-  ],
-  "results": [
-    {
-      "item": "extendedgears:large_shaftless_steel_cogwheel"
-    }
-  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -25,6 +12,19 @@
           ]
         }
       ]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "extendedgears:shaftless_steel_cogwheel"
+    },
+    {
+      "tag": "c:steel_ingots"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_shaftless_steel_cogwheel"
     }
   ]
 }

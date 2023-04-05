@@ -6,50 +6,61 @@
     "transitionalItem": {
         "item": "create:incomplete_precision_mechanism"
     },
-    "sequence": [{
-        "type": "create:deploying",
-        "ingredients": [{
-            "item": "create:incomplete_precision_mechanism"
-        },
-            {
-                "tag": "extendedgears:small_cogwheel"
-            }
-        ],
-        "results": [{
-            "item": "create:incomplete_precision_mechanism"
-        }]
-    },
+    "sequence": [
         {
             "type": "create:deploying",
-            "ingredients": [{
-                "item": "create:incomplete_precision_mechanism"
-            },
+            "ingredients": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                },
+                {
+                    "tag": "extendedgears:small_cogwheel"
+                }
+            ],
+            "results": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                }
+            ]
+        },
+        {
+            "type": "create:deploying",
+            "ingredients": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                },
                 {
                     "tag": "extendedgears:large_cogwheel"
                 }
             ],
-            "results": [{
-                "item": "create:incomplete_precision_mechanism"
-            }]
+            "results": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                }
+            ]
         },
         {
             "type": "create:deploying",
-            "ingredients": [{
-                "item": "create:incomplete_precision_mechanism"
-            },
+            "ingredients": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                },
                 {
                     "tag": "forge:nuggets/iron"
                 }
             ],
-            "results": [{
-                "item": "create:incomplete_precision_mechanism"
-            }]
+            "results": [
+                {
+                    "item": "create:incomplete_precision_mechanism"
+                }
+            ]
         }
     ],
-    "results": [{
-        "item": "create:precision_mechanism",
-        "chance": 120.0
-    },
+    "results": [
+        {
+            "item": "create:precision_mechanism",
+            "chance": 120.0
+        },
         {
             "item": "create:golden_sheet",
             "chance": 8.0
@@ -57,6 +68,10 @@
         {
             "item": "create:andesite_alloy",
             "chance": 8.0
+        },
+        {
+            "item": "create:cogwheel",
+            "chance": 5.0
         },
         {
             "item": "minecraft:gold_nugget",

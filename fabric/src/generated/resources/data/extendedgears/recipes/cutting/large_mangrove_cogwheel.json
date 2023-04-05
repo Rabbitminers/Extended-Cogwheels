@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "extendedgears:large_mangrove_cogwheel"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "item": "extendedgears:large_half_shaft_mangrove_cogwheel"
+    },
+    {
+      "chance": 0.2,
+      "item": "create:shaft"
+    }
+  ]
+}

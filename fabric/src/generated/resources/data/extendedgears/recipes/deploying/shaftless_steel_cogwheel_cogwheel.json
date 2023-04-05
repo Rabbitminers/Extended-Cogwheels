@@ -1,18 +1,5 @@
 {
   "type": "create:deploying",
-  "ingredients": [
-    {
-      "tag": "c:steel_ingots"
-    },
-    {
-      "tag": "c:nuggets/steel"
-    }
-  ],
-  "results": [
-    {
-      "item": "extendedgears:shaftless_steel_cogwheel"
-    }
-  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",
@@ -25,6 +12,19 @@
           ]
         }
       ]
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "c:steel_ingots"
+    },
+    {
+      "tag": "c:nuggets/steel"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:shaftless_steel_cogwheel"
     }
   ]
 }

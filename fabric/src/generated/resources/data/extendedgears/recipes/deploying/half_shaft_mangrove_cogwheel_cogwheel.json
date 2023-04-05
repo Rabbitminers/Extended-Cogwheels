@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    },
+    {
+      "item": "minecraft:mangrove_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:half_shaft_mangrove_cogwheel"
+    }
+  ]
+}

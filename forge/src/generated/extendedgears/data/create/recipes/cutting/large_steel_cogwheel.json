@@ -5,14 +5,14 @@
       "item": "extendedgears:large_steel_cogwheel"
     }
   ],
+  "processingTime": 50,
   "results": [
     {
       "item": "extendedgears:large_half_shaft_steel_cogwheel"
     },
     {
-      "item": "create:shaft",
-      "chance": 0.2
+      "chance": 0.2,
+      "item": "create:shaft"
     }
-  ],
-  "processingTime": 50
+  ]
 }

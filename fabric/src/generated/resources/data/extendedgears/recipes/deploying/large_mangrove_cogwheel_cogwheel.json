@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "extendedgears:mangrove_cogwheel"
+    },
+    {
+      "item": "minecraft:mangrove_planks"
+    }
+  ],
+  "results": [
+    {
+      "item": "extendedgears:large_mangrove_cogwheel"
+    }
+  ]
+}

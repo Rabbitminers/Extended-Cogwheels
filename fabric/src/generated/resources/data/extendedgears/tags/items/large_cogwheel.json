@@ -1,45 +1,8 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "create:large_cogwheel",
-      "required": false
-    },
-    {
-      "id": "create:large_cogwheel",
-      "required": false
-    },
-    "extendedgears:large_dark_oak_cogwheel",
-    "extendedgears:large_oak_cogwheel",
-    "extendedgears:large_birch_cogwheel",
-    "extendedgears:large_jungle_cogwheel",
-    "extendedgears:large_acacia_cogwheel",
-    "extendedgears:large_warped_cogwheel",
-    "extendedgears:large_crimson_cogwheel",
-    "extendedgears:large_shaftless_dark_oak_cogwheel",
-    "extendedgears:large_shaftless_oak_cogwheel",
-    "extendedgears:large_shaftless_birch_cogwheel",
-    "extendedgears:large_shaftless_jungle_cogwheel",
-    "extendedgears:large_shaftless_acacia_cogwheel",
-    "extendedgears:large_shaftless_warped_cogwheel",
-    "extendedgears:large_shaftless_crimson_cogwheel",
-    "extendedgears:large_half_shaft_dark_oak_cogwheel",
-    "extendedgears:large_half_shaft_oak_cogwheel",
-    "extendedgears:large_half_shaft_birch_cogwheel",
-    "extendedgears:large_half_shaft_jungle_cogwheel",
-    "extendedgears:large_half_shaft_acacia_cogwheel",
-    "extendedgears:large_half_shaft_warped_cogwheel",
-    "extendedgears:large_half_shaft_crimson_cogwheel",
-    "extendedgears:large_iron_cogwheel",
-    "extendedgears:large_steel_cogwheel",
-    "extendedgears:large_copper_cogwheel",
-    "extendedgears:large_shaftless_iron_cogwheel",
-    "extendedgears:large_shaftless_steel_cogwheel",
-    "extendedgears:large_shaftless_copper_cogwheel",
-    "extendedgears:large_half_shaft_iron_cogwheel",
-    "extendedgears:large_half_shaft_steel_cogwheel",
-    "extendedgears:large_half_shaft_copper_cogwheel",
-    "extendedgears:large_half_shaft_spruce_cogwheel",
-    "extendedgears:large_shaftless_spruce_cogwheel"
-  ]
+    "#extendedgears:large_cogwheel/cogwheel",
+    "#extendedgears:large_cogwheel/half_shaft_cogwheel",
+    "#extendedgears:large_cogwheel/shaftless_cogwheel"
+ ]
 }

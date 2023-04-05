@@ -1,41 +1,8 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "create:cogwheel",
-      "required": false
-    },
-    "extendedgears:dark_oak_cogwheel",
-    "extendedgears:oak_cogwheel",
-    "extendedgears:birch_cogwheel",
-    "extendedgears:jungle_cogwheel",
-    "extendedgears:acacia_cogwheel",
-    "extendedgears:warped_cogwheel",
-    "extendedgears:crimson_cogwheel",
-    "extendedgears:shaftless_dark_oak_cogwheel",
-    "extendedgears:shaftless_oak_cogwheel",
-    "extendedgears:shaftless_birch_cogwheel",
-    "extendedgears:shaftless_jungle_cogwheel",
-    "extendedgears:shaftless_acacia_cogwheel",
-    "extendedgears:shaftless_warped_cogwheel",
-    "extendedgears:shaftless_crimson_cogwheel",
-    "extendedgears:half_shaft_dark_oak_cogwheel",
-    "extendedgears:half_shaft_oak_cogwheel",
-    "extendedgears:half_shaft_birch_cogwheel",
-    "extendedgears:half_shaft_jungle_cogwheel",
-    "extendedgears:half_shaft_acacia_cogwheel",
-    "extendedgears:half_shaft_warped_cogwheel",
-    "extendedgears:half_shaft_crimson_cogwheel",
-    "extendedgears:iron_cogwheel",
-    "extendedgears:steel_cogwheel",
-    "extendedgears:copper_cogwheel",
-    "extendedgears:shaftless_iron_cogwheel",
-    "extendedgears:shaftless_steel_cogwheel",
-    "extendedgears:shaftless_copper_cogwheel",
-    "extendedgears:half_shaft_iron_cogwheel",
-    "extendedgears:half_shaft_steel_cogwheel",
-    "extendedgears:half_shaft_copper_cogwheel",
-    "extendedgears:half_shaft_spruce_cogwheel",
-    "extendedgears:shaftless_spruce_cogwheel"
+    "#extendedgears:small_cogwheel/cogwheel",
+    "#extendedgears:small_cogwheel/half_shaft_cogwheel",
+    "#extendedgears:small_cogwheel/shaftless_cogwheel"
   ]
 }

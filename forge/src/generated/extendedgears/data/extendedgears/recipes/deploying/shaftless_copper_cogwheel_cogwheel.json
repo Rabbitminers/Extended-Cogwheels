@@ -1,5 +1,19 @@
 {
   "type": "create:deploying",
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:nuggets/copper"
+          }
+        }
+      ]
+    }
+  ],
   "ingredients": [
     {
       "item": "minecraft:copper_ingot"
@@ -11,20 +25,6 @@
   "results": [
     {
       "item": "extendedgears:shaftless_copper_cogwheel"
-    }
-  ],
-  "conditions": [
-    {
-      "values": [
-        {
-          "value": {
-            "tag": "forge:nuggets/copper",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
-      "type": "forge:and"
     }
   ]
 }
