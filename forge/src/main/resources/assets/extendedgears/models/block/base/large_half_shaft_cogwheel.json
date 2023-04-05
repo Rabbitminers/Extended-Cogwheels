@@ -5,8 +5,8 @@
   "textures": {
     "0": "create:block/axis",
     "1": "create:block/axis_top",
-    "4": "create:block/large_cogwheel",
-    "particle": "create:block/axis"
+    "4": "empty",
+    "particle": "empty"
   },
   "elements": [
     {

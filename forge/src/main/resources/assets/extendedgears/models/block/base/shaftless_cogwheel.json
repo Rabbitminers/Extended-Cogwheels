@@ -5,8 +5,8 @@
   "parent": "create:block/large_wheels",
   "texture_size": [32, 32],
   "textures": {
-    "1_2": "extendedgears:acacia_cogwheel",
-    "particle": "extendedgears:acacia_cogwheel"
+    "1_2": "empty",
+    "particle": "empty"
   },
   "elements": [
     {

@@ -33,3 +33,10 @@ mandatory=true
 versionRange="${create_version}"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.extendedgears]]
+modId="kubejs"
+mandatory=false
+versionRange="*"
+ordering="AFTER"
+side="BOTH"
