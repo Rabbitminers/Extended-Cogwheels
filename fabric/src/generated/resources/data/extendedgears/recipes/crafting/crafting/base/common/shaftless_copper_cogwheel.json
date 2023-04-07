@@ -2,18 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:or",
+      "condition": "fabric:all",
       "values": [
         {
           "condition": "fabric:item_tags_populated",
           "values": [
             "c:nuggets/copper"
-          ]
-        },
-        {
-          "condition": "fabric:item_tags_populated",
-          "values": [
-            "c:copper_nuggets"
           ]
         }
       ]
