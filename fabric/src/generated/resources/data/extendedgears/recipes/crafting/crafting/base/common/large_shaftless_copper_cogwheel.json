@@ -7,7 +7,7 @@
         {
           "condition": "fabric:item_tags_populated",
           "values": [
-            "c:nuggets/copper"
+            "c:copper_nuggets"
           ]
         }
       ]
@@ -21,7 +21,7 @@
       "item": "minecraft:copper_ingot"
     },
     {
-      "tag": "c:nuggets/copper"
+      "tag": "c:copper_nuggets"
     }
   ],
   "result": {

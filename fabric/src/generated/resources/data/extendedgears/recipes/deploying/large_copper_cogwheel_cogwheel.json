@@ -7,7 +7,7 @@
         {
           "condition": "fabric:item_tags_populated",
           "values": [
-            "c:nuggets/copper"
+            "c:copper_nuggets"
           ]
         }
       ]
