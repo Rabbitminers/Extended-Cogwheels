@@ -1,8 +1,8 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.level.block.Block;

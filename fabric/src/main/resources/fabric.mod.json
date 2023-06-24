@@ -12,7 +12,6 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "GNU GPLv3",
-  "icon": "assets/examplemod/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -26,8 +25,7 @@
     ]
   },
   "mixins": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
+    "examplemod.mixins.json"
   ],
   "depends": {
     "minecraft": "${minecraft_version}",

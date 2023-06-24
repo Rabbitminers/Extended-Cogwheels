@@ -1,10 +1,9 @@
 package com.rabbitminers.extendedgears.datagen.forge;
 
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
-import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsProcessingRecipeGen;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;

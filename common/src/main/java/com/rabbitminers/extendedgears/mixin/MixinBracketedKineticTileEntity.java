@@ -2,16 +2,16 @@ package com.rabbitminers.extendedgears.mixin;
 
 import com.rabbitminers.extendedgears.cogwheels.ICustomCogwheel;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
-import com.simibubi.create.content.contraptions.relays.elementary.BracketedKineticTileEntity;
-import com.simibubi.create.content.contraptions.relays.elementary.ICogWheel;
-import com.simibubi.create.content.contraptions.relays.elementary.SimpleKineticTileEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
+import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(BracketedKineticTileEntity.class)
-public class MixinBracketedKineticTileEntity extends SimpleKineticTileEntity {
+@Mixin(BracketedKineticBlockEntity.class)
+public class MixinBracketedKineticTileEntity extends SimpleKineticBlockEntity {
     public MixinBracketedKineticTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }

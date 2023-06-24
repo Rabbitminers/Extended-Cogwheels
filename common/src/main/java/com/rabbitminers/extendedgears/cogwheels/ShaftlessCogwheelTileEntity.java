@@ -1,6 +1,6 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
-import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,7 +13,7 @@ public class ShaftlessCogwheelTileEntity extends CustomCogwheelTileEntity {
     }
 
     @Override
-    public void addBehaviours(List<TileEntityBehaviour> behaviours) {
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         // Disable Shaft Shite
     }
 }

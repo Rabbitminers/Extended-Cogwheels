@@ -34,10 +34,15 @@ public class TagFilledCondition implements ICondition {
         return NAME;
     }
 
-    public boolean test(IContext context) {
-        return true;
+    @Override
+    public boolean test(ICondition.IContext context) {
+        return false;
     }
-
+    @Deprecated
+    @Override
+    public boolean test() {
+        return false;
+    }
     public String toString() {
         return "tag_filled(\"" + this.tag.location() + "\")";
     }
@@ -51,7 +56,7 @@ public class TagFilledCondition implements ICondition {
         public void write(JsonObject json, TagFilledCondition value) {
             json.addProperty("tag", value.tag.location().toString());
         }
-
+        @Override
         public TagFilledCondition read(JsonObject json) {
             return new TagFilledCondition(new ResourceLocation(GsonHelper.getAsString(json, "tag")));
         }

@@ -3,7 +3,7 @@ package com.rabbitminers.extendedgears.cogwheels;
 import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
-import com.simibubi.create.content.contraptions.base.KineticTileEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,7 +42,7 @@ public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
     }
 
     @Override
-    public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
+    public BlockEntityType<? extends SimpleKineticBlockEntity> getTileEntityType() {
         return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
     }
 

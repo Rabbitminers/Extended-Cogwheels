@@ -7,14 +7,11 @@ import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
-import com.simibubi.create.foundation.data.recipe.CuttingRecipeGen;
-import com.simibubi.create.foundation.data.recipe.Mods;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
 import java.util.EnumMap;
@@ -78,7 +75,7 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
     }
 
     @Override
-    protected AllRecipeTypes getRecipeType() {
+    protected IRecipeTypeInfo getRecipeType() {
         return AllRecipeTypes.CUTTING;
     }
 

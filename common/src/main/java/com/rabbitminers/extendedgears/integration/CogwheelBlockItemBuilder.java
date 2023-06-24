@@ -1,7 +1,6 @@
 package com.rabbitminers.extendedgears.integration;
-
-import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
-import com.simibubi.create.content.contraptions.relays.elementary.CogwheelBlockItem;
+import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
+import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import dev.latvian.mods.kubejs.block.BlockItemBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
