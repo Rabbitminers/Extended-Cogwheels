@@ -1,11 +1,10 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +30,7 @@ public class ExtendedCogwheelsRecipeTransformers {
     }
 
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> standardCogwheelTransformer(ProcessingRecipeBuilder<T> builder, ICogwheelMaterial material,
-                                                                                                      BlockEntry<?> smallCogwheel, @Nullable BlockEntry<?> largeCogwheel, boolean isLarge) {
+                                                                                                         BlockEntry<?> smallCogwheel, @Nullable BlockEntry<?> largeCogwheel, boolean isLarge) {
         return builder.require(isLarge && largeCogwheel != null ? smallCogwheel.get() : ExtendedCogwheelsRecipeProvider.I.shaft())
                 .require(material.getIngredient().ingredient())
                 .output(isLarge && largeCogwheel != null ? largeCogwheel.asStack() : smallCogwheel.asStack());

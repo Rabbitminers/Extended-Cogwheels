@@ -3,9 +3,9 @@ package com.rabbitminers.extendedgears.cogwheels;
 import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
-import com.simibubi.create.AllBlockPartials;
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllShapes;
-import com.simibubi.create.content.contraptions.base.KineticTileEntity;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,7 +63,7 @@ public class HalfShaftCogwheelBlock extends CustomCogwheelBlock {
 
 
     @Override
-    public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
+    public BlockEntityType<? extends KineticBlockEntity> getBlockEntityType() {
         return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
     }
 
@@ -104,6 +104,6 @@ public class HalfShaftCogwheelBlock extends CustomCogwheelBlock {
 
     @Override
     public @Nullable PartialModel getShaftPartialModel() {
-        return AllBlockPartials.SHAFT_HALF;
+        return AllPartialModels.SHAFT_HALF;
     }
 }

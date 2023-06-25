@@ -49,11 +49,11 @@ public class ExtendedCogwheels {
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
         if (isServer) {
-            gen.addProvider(true, new LangMerger(gen, MOD_ID, "Extended Cogwheels",
+            gen.addProvider(new LangMerger(gen, MOD_ID, "Extended Cogwheels",
                     ExtendedCogwheelsLanguageProvider.values()));
-            gen.addProvider(true, ExtendedCogwheelsStandardRecipeGen.create(gen));
-            gen.addProvider(true, ExtendedCogwheelsDeployingRecipeGen.create(gen));
-            gen.addProvider(true, ExtendedCogwheelsCuttingRecipeGen.create(gen));
+            gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
+            gen.addProvider(ExtendedCogwheelsDeployingRecipeGen.create(gen));
+            gen.addProvider(ExtendedCogwheelsCuttingRecipeGen.create(gen));
         }
     }
 

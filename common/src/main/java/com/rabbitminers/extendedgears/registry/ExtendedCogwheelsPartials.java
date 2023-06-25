@@ -6,8 +6,6 @@ import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelModel;
-import com.simibubi.create.AllBlockPartials;
-import com.simibubi.create.Create;
 
 import java.util.EnumMap;
 import java.util.Map;

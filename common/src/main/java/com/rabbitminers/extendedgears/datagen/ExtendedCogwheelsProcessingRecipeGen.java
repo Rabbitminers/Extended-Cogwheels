@@ -7,27 +7,28 @@ import java.util.function.UnaryOperator;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.simibubi.create.Create;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.data.recipe.*;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
-import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
-import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import org.jetbrains.annotations.NotNull;
 
 import javax.xml.crypto.Data;
 
 public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwheelsRecipeProvider {
-    protected static final List<com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen> GENERATORS = new ArrayList<>();
+
+    protected static final List<ProcessingRecipeGen> GENERATORS = new ArrayList<>();
     protected static final long BUCKET = FluidConstants.BUCKET;
     protected static final long BOTTLE = FluidConstants.BOTTLE;
 
@@ -45,7 +46,8 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
         GENERATORS.add(new EmptyingRecipeGen(gen));
         GENERATORS.add(new HauntingRecipeGen(gen));
         GENERATORS.add(new ItemApplicationRecipeGen(gen));
-        gen.addProvider(true, new DataProvider() {
+
+        gen.addProvider(new DataProvider() {
 
             @Override
             public String getName() {
@@ -53,7 +55,7 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
             }
 
             @Override
-            public void run(CachedOutput dc) throws IOException {
+            public void run(HashCache dc) throws IOException {
                 GENERATORS.forEach(g -> {
                     try {
                         g.run(dc);
@@ -140,7 +142,7 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "ExtendedCogwheels' Processing Recipes: " + getRecipeType().getId()
                 .getPath();
     }
