@@ -73,6 +73,9 @@ dependencies {
     // Loom (Fabric / Quilt / Architectury)
     modImplementation("dev.latvian.mods:kubejs-fabric:${kubejs_version}")
 
+    modLocalRuntime("curse.maven:byg-391378:4039377");
+    modLocalRuntime("curse.maven:terrablender-565956:3957975");
+
     // these two are unfortunately needed since fg.deobf doesn't respect transitive dependencies yet
     // implementation "dev.latvian.mods:rhino:${rhino_version}"
 
