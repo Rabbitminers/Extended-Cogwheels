@@ -5,11 +5,7 @@ import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsItems;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
-import com.simibubi.create.Create;
+import com.rabbitminers.extendedgears.registry.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.LangMerger;
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -27,6 +23,7 @@ public class ExtendedCogwheels {
     public static final String MOD_ID = "extendedgears";
     public static final String NAME = "Extended Gears";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
+    public static final int DATA_FIXER_VERSION = 1;
 
     private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID)
             .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
@@ -36,6 +33,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
+        // ExtendedCogwheelsDataFixers.init();
 
         registerConfig(ModConfig.Type.CLIENT, ExtendedCogwheelsConfig.CLIENT_CONFIG);
         registerConfig(ModConfig.Type.SERVER, ExtendedCogwheelsConfig.SERVER_CONFIG);
