@@ -9,6 +9,7 @@ import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.datagen.HalfShaftGenerator;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
@@ -31,7 +32,10 @@ public class ExtendedCogwheelsBlocks {
 	public static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> cogwheelItemTransformer(boolean isLarge, TagKey<Item> materialType) {
-		return b -> b.item(CogwheelBlockItem::new)
+		return b -> b
+				.loot((p, l) -> p.dropOther(l, isLarge ? AllBlocks.LARGE_COGWHEEL.get()
+						: AllBlocks.COGWHEEL.get()))
+				.item(CogwheelBlockItem::new)
 				.tag(materialType)
 				.tag(isLarge ? ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.LARGE_COGWHEEL.tag
 						: ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.SMALL_COGWHEEL.tag)
