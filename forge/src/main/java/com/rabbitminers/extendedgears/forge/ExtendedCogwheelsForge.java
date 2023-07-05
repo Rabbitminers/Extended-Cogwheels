@@ -5,7 +5,7 @@ import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
