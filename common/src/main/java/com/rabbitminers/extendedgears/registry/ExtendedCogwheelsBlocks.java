@@ -55,7 +55,6 @@ public class ExtendedCogwheelsBlocks {
                     .transform(cogwheelTransformer(false))
                     .blockstate(new HalfShaftGenerator()::generate)
                     .register();
-
     public static BlockEntry<ShaftlessCogwheelBlock> LARGE_SHAFTLESS_COGWHEEL =
             REGISTRATE.block("large_shaftless_cogwheel", ShaftlessCogwheelBlock::large)
                     .transform(cogwheelTransformer(true))
