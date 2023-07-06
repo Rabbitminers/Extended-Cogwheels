@@ -1,36 +1,42 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
-import com.jozufozu.flywheel.core.PartialModel;
-import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
+public class ShaftlessCogwheelBlock extends CogWheelBlock {
     public VoxelShape voxelShape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
     public VoxelShape largeVoxelShape = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
-    public ShaftlessCogwheelBlock(boolean large, Properties properties, ICogwheelMaterial material) {
-        super(large, properties, material);
+    protected ShaftlessCogwheelBlock(boolean large, Properties properties) {
+        super(large, properties);
     }
 
-    // Don't actually need these but removing them breaks shit
-    public static CustomCogwheelBlock small(Properties properties, ICogwheelMaterial material) {
-        return new ShaftlessCogwheelBlock(false, properties, material);
+    public static ShaftlessCogwheelBlock small(Properties properties) {
+        return new ShaftlessCogwheelBlock(false, properties);
     }
 
-    public static CustomCogwheelBlock large(Properties properties, ICogwheelMaterial material) {
-        return new ShaftlessCogwheelBlock(true, properties, material);
+    public static ShaftlessCogwheelBlock large(Properties properties) {
+        return new ShaftlessCogwheelBlock(true, properties);
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
+                                 BlockHitResult ray) {
+        return super.use(state, world, pos, player, hand, ray);
     }
 
     @Override
@@ -41,18 +47,9 @@ public class ShaftlessCogwheelBlock extends CustomCogwheelBlock {
         return VoxelShaper.forAxis(isLargeCog() ? largeVoxelShape : voxelShape, Direction.Axis.Y).get(state.getValue(AXIS));
     }
 
-    @Override
-    public BlockEntityType<? extends KineticBlockEntity> getBlockEntityType() {
-        return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
-    }
-
+    // Well that was simple
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         return false;
-    }
-
-    @Override
-    public PartialModel getShaftPartialModel() {
-        return null;
     }
 }

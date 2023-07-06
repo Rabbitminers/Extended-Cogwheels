@@ -1,6 +1,11 @@
-package com.rabbitminers.extendedgears.cogwheels;
+package com.rabbitminers.extendedgears.cogwheels.legacy;
 
-import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
+import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;
+import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.AllShapes;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,18 +13,16 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.directionFromValue;
-import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPosotive;
-import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.shapeBuilder;
-
-public class HalfShaftCogwheelBlock extends CogWheelBlock {
+public class LegacyHalfShaftCogwheelBlock extends CustomCogwheelBlock {
     public VoxelShaper voxelShape = shapeBuilder(box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D))
             .add(6.0D, 8, 6.0D, 10.0D, 16, 10.0D).forDirectional();
     public VoxelShaper largeVoxelShape = shapeBuilder(box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D))
@@ -27,19 +30,19 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
 
     public static final BooleanProperty AXIS_DIRECTION = BooleanProperty.create("axis_direction");
 
-    protected HalfShaftCogwheelBlock(boolean large, Properties properties) {
-        super(large, properties);
-
+    public LegacyHalfShaftCogwheelBlock(boolean large, Properties properties, ICogwheelMaterial model) {
+        super(large, properties, model);
         registerDefaultState(this.defaultBlockState().setValue(AXIS_DIRECTION,
                 isDirectionPosotive(Direction.AxisDirection.POSITIVE)));
     }
 
-    public static HalfShaftCogwheelBlock small(Properties properties) {
-        return new HalfShaftCogwheelBlock(false, properties);
+    // Again - Don't actually need these but removing them breaks shit
+    public static CustomCogwheelBlock small(Properties properties, ICogwheelMaterial model) {
+        return new LegacyHalfShaftCogwheelBlock(false, properties, model);
     }
 
-    public static HalfShaftCogwheelBlock large(Properties properties) {
-        return new HalfShaftCogwheelBlock(true, properties);
+    public static CustomCogwheelBlock large(Properties properties, ICogwheelMaterial model) {
+        return new LegacyHalfShaftCogwheelBlock(true, properties, model);
     }
 
     @Override
@@ -60,6 +63,23 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
 
 
     @Override
+    public BlockEntityType<? extends KineticBlockEntity> getBlockEntityType() {
+        return ExtendedCogwheelsTileEntities.CUSTOM_COGWHEEL_TILE_ENTITY.get();
+    }
+
+    public static boolean isDirectionPosotive(Direction.AxisDirection dir) {
+        return dir == Direction.AxisDirection.POSITIVE;
+    }
+
+    public static Direction.AxisDirection directionFromValue(boolean bool) {
+        return bool ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE;
+    }
+
+    public static AllShapes.Builder shapeBuilder(VoxelShape shape) {
+        return new AllShapes.Builder(shape);
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace().getOpposite();
         boolean isDirectionPosotive = isDirectionPosotive(direction.getAxisDirection());
@@ -67,13 +87,23 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
         if (context.getPlayer() == null)
             return super.getStateForPlacement(context);
         return super.getStateForPlacement(context)
-                .setValue(AXIS_DIRECTION, context.getPlayer()
-                        .isShiftKeyDown() != isDirectionPosotive)
-                .setValue(AXIS, axisFromDirection);
+            .setValue(AXIS_DIRECTION, context.getPlayer()
+            .isShiftKeyDown() != isDirectionPosotive)
+            .setValue(AXIS, axisFromDirection);
+    }
+
+    @Override
+    public Direction.AxisDirection getAxisDirection(BlockState state) {
+        return directionFromValue(state.getValue(AXIS_DIRECTION));
     }
 
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         return face.getAxis() == state.getValue(AXIS) && face.getAxisDirection() == directionFromValue(state.getValue(AXIS_DIRECTION));
+    }
+
+    @Override
+    public @Nullable PartialModel getShaftPartialModel() {
+        return AllPartialModels.SHAFT_HALF;
     }
 }

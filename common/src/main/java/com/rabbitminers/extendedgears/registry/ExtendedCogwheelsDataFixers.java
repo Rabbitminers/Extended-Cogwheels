@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 public class ExtendedCogwheelsDataFixers {
     private static final BiFunction<Integer, Schema, Schema> SAME = Schema::new;
     private static final BiFunction<Integer, Schema, Schema> SAME_NAMESPACED = NamespacedSchema::new;
+
     public static void init() {
         ExtendedCogwheels.LOGGER.info("Registering data fixers");
         DataFixesInternals api = DataFixesInternals.get();

@@ -1,8 +1,6 @@
 package com.rabbitminers.extendedgears.base.data;
 
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
-import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;

@@ -1,6 +1,6 @@
 package com.rabbitminers.extendedgears.datagen;
 
-import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
+import com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SpecialBlockStateGen;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -15,8 +15,8 @@ public class HalfShaftGenerator extends SpecialBlockStateGen {
     @Override
     protected int getXRotation(BlockState state) {
         Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-        Direction.AxisDirection dir = HalfShaftCogwheelBlock
-                .directionFromValue(state.getValue(HalfShaftCogwheelBlock.AXIS_DIRECTION));
+        Direction.AxisDirection dir = LegacyHalfShaftCogwheelBlock
+                .directionFromValue(state.getValue(LegacyHalfShaftCogwheelBlock.AXIS_DIRECTION));
         return (axis == Direction.Axis.Y ? 0 : 90) +
                 (axis.isVertical() && dir == Direction.AxisDirection.NEGATIVE ? 180 : 0);
     }
@@ -24,8 +24,8 @@ public class HalfShaftGenerator extends SpecialBlockStateGen {
     @Override
     protected int getYRotation(BlockState state) {
         Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-        Direction.AxisDirection dir = HalfShaftCogwheelBlock
-                .directionFromValue(state.getValue(HalfShaftCogwheelBlock.AXIS_DIRECTION));
+        Direction.AxisDirection dir = LegacyHalfShaftCogwheelBlock
+                .directionFromValue(state.getValue(LegacyHalfShaftCogwheelBlock.AXIS_DIRECTION));
         return (axis == Direction.Axis.X ? 90 : (axis == Direction.Axis.Z ? 180 : 0)) +
                 (axis.isHorizontal() && dir == Direction.AxisDirection.NEGATIVE ? 180 : 0);
     }

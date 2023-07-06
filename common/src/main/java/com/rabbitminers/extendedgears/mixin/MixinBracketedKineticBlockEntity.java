@@ -1,9 +1,8 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.rabbitminers.extendedgears.cogwheels.ICustomCogwheel;
+import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;

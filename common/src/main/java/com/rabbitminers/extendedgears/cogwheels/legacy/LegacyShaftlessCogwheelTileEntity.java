@@ -1,4 +1,4 @@
-package com.rabbitminers.extendedgears.cogwheels;
+package com.rabbitminers.extendedgears.cogwheels.legacy;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
@@ -7,8 +7,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
-public class ShaftlessCogwheelTileEntity extends CustomCogwheelBlockEntity {
-    public ShaftlessCogwheelTileEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+public class LegacyShaftlessCogwheelTileEntity extends CustomCogwheelBlockEntity {
+    public LegacyShaftlessCogwheelTileEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
     @Override

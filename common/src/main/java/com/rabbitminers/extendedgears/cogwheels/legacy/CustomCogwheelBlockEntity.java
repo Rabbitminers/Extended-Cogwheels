@@ -1,4 +1,4 @@
-package com.rabbitminers.extendedgears.cogwheels;
+package com.rabbitminers.extendedgears.cogwheels.legacy;
 
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import net.minecraft.core.BlockPos;

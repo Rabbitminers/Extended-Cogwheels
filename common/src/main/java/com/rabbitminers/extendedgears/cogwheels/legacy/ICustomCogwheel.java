@@ -1,4 +1,4 @@
-package com.rabbitminers.extendedgears.cogwheels;
+package com.rabbitminers.extendedgears.cogwheels.legacy;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;

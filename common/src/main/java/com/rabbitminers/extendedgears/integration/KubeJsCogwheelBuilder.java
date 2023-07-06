@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock.isDirectionPosotive;
+import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.isDirectionPosotive;
 import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.COGWHEEL;
 
 public class KubeJsCogwheelBuilder extends BlockBuilder {

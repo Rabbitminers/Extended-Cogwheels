@@ -1,20 +1,14 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
-import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
-import com.simibubi.create.foundation.data.recipe.CuttingRecipeGen;
-import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
 import java.util.EnumMap;
@@ -38,6 +32,7 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
         return map;
     }
 
+    /*
     final Map<WoodenCogwheel, GeneratedRecipe>
         WOODEN_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(WoodenCogwheel.class,
             ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS),
@@ -57,16 +52,18 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
             ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS),
         LARGE_METAL_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(MetalCogwheel.class,
             ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS);
+     */
 
+    // Keep spruce recipes
     GeneratedRecipe
         SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.COGWHEEL,
-            ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL),
+            ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL),
         LARGE_SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.LARGE_COGWHEEL,
-            ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL),
-        SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL),
-        LARGE_SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL);
+            ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL),
+        SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL),
+        LARGE_SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL);
 
     public ExtendedCogwheelsCuttingRecipeGen(DataGenerator p_i48262_1_) {
         super(p_i48262_1_);

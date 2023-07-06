@@ -1,14 +1,10 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.google.gson.JsonObject;
-import com.ibm.icu.impl.Assert;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
-import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
-import com.simibubi.create.AllBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -95,7 +91,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 () -> new EnumMap<>(materialType)
         ));
     }
-
+    /*
     final CogwheelRecipePair<MetalCogwheel>
         METAL_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
             MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
@@ -128,25 +124,28 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
         HALF_SHAFT_WOODEN_COGWHEELS = smallAndLargeRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS,
                 WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+     */
 
     final GeneratedRecipe
-        SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
+        SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
             false, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
+        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
                 true, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        SHAFTLESS_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
-                ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL),
-        HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+        SHAFTLESS_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
+                ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL),
+        HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
                 false, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
+        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = cogwheelRecipe(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
                 true, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        HALF_SHAFT_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-                ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL);
+        HALF_SHAFT_SPRUCE_FROM_SMALL = smallCogwheelToLarge(ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+                ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL);
 
+    /*
     final Map<WoodenCogwheel, GeneratedRecipe>
         WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, WoodenCogwheel.class),
         SHAFTLESS_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS, WoodenCogwheel.class),
         HALF_SHAFT_WOODEN_FROM_SMALL = smallFromLarge(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS, WoodenCogwheel.class);
+     */
 
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> inputMaterialSet, E input, E output) {
         return create(inputMaterialSet.get(output))
@@ -156,6 +155,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 .inBlastFurnace();
     }
 
+    /*
     final GeneratedRecipe
         IRON_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS,
             MetalCogwheel.IRON, MetalCogwheel.STEEL),
@@ -170,6 +170,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         LARGE_SHAFTLESS_TO_STEEL = cogwheelSmeltingRecipe(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS,
             MetalCogwheel.IRON, MetalCogwheel.STEEL)
     ;
+     */
 
     GeneratedRecipeBuilder create(Supplier<ItemLike> result) {
         return new GeneratedRecipeBuilder("/", result);

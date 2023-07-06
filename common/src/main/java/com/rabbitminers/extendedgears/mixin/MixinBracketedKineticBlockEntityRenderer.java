@@ -1,17 +1,11 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.jozufozu.flywheel.api.MaterialManager;
-import com.jozufozu.flywheel.core.StitchedSprite;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
-import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
 import com.rabbitminers.extendedgears.mixin_interface.DynamicCogwheelRenderer;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllPartialModels;
-import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;

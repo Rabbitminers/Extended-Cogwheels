@@ -1,4 +1,4 @@
-package com.rabbitminers.extendedgears.cogwheels;
+package com.rabbitminers.extendedgears.cogwheels.legacy;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTileEntities;

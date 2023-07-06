@@ -5,7 +5,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
 import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.jetbrains.annotations.Nullable;
 
@@ -103,7 +103,7 @@ public class ExtendedCogwheelsConfig {
             return METAL_COGWHEEL_ROTATION_LIMITS.get(material).get();
         else if (material instanceof WoodenCogwheel)
             return WOODEN_COGWHEEL_ROTATION_LIMITS.get(material).get();
-        else if (material instanceof ExtendedCogwheelsBlocks.DefaultMaterial)
+        else if (material instanceof ExtendedCogwheelsTablessBlocks.DefaultMaterial)
             return SPRUCE_COGWHEEL_ROTATION_LIMITS.get();
         else return null;
     }
@@ -114,7 +114,7 @@ public class ExtendedCogwheelsConfig {
             return METAL_COGWHEEL_STRESS_LIMITS.get(material).get();
         else if (material instanceof WoodenCogwheel)
             return WOODEN_COGWHEEL_STRESS_LIMITS.get(material).get();
-        else if (material instanceof ExtendedCogwheelsBlocks.DefaultMaterial)
+        else if (material instanceof ExtendedCogwheelsTablessBlocks.DefaultMaterial)
             return SPRUCE_COGWHEEL_STRESS_LIMITS.get();
         else return null;
     }

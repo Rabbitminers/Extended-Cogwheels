@@ -2,9 +2,6 @@ package com.rabbitminers.extendedgears.base.data;
 
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider.Namespace;
-import com.rabbitminers.extendedgears.cogwheels.CustomCogwheelBlock;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;

@@ -1,6 +1,6 @@
 package com.rabbitminers.extendedgears.integration;
 
-import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelTileEntity;
+import com.rabbitminers.extendedgears.cogwheels.legacy.LegacyShaftlessCogwheelTileEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -16,14 +16,14 @@ import java.util.Set;
 
 public class KubeJsCogwheels {
     public static final Set<NonNullSupplier<? extends Block>> cogwheels = new HashSet<>();
-    public static final Map<ResourceLocation, BlockEntityEntry<ShaftlessCogwheelTileEntity>> tileEntities = new HashMap();
+    public static final Map<ResourceLocation, BlockEntityEntry<LegacyShaftlessCogwheelTileEntity>> tileEntities = new HashMap();
     public static CreateRegistrate REGISTRATE = ExtendedCogwheelKubeJsPlugin.registrate();
 
     public static void addCogwheel(KubeJsCogwheelBuilder material) {
         NonNullSupplier<? extends Block> supplier = material::get;
         cogwheels.add(supplier);
 
-        tileEntities.put(material.id, REGISTRATE.blockEntity(material.id.getPath() + "_tile_entity", ShaftlessCogwheelTileEntity::new)
+        tileEntities.put(material.id, REGISTRATE.blockEntity(material.id.getPath() + "_tile_entity", LegacyShaftlessCogwheelTileEntity::new)
                 .instance(() -> SingleRotatingInstance::new, false)
                 .validBlocks(supplier)
                 .renderer(() -> KineticBlockEntityRenderer::new)

@@ -2,10 +2,8 @@ package com.rabbitminers.extendedgears.datagen;
 
 import com.mojang.datafixers.util.Function5;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.rabbitminers.extendedgears.base.data.MetalCogwheel;
-import com.rabbitminers.extendedgears.base.data.WoodenCogwheel;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
@@ -19,11 +17,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProcessingRecipeGen {
     public ExtendedCogwheelsDeployingRecipeGen(DataGenerator generator) {
@@ -74,6 +69,7 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
                 largeDeployedCogwheelMapper(smallCogwheels, largeCogwheels, materialType, transformer));
     }
 
+    /*
     final CogwheelRecipePair<MetalCogwheel>
         METAL_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
             MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
@@ -90,15 +86,18 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         SHAFTLESS_WOODEN_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS,
             WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer);
 
+     */
+
+    // Keep legacy spruce textures
     final GeneratedRecipe
-        SHAFTLESS_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
-            ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
-            ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        HALF_SHAFT_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
+        SHAFTLESS_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
+        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
+        HALF_SHAFT_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
+        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsTablessBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
 
     private record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
 

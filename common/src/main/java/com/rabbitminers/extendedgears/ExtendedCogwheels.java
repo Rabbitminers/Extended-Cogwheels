@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelLimits;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
@@ -25,18 +26,21 @@ public class ExtendedCogwheels {
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     public static final int DATA_FIXER_VERSION = 1;
 
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID)
-            .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID);
+            // .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
 
     public static void init() {
         ExtendedCogwheelsTags.init();
         ExtendedCogwheelsItems.init();
+        ExtendedCogwheelsTablessBlocks.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         // ExtendedCogwheelsDataFixers.init();
 
         registerConfig(ModConfig.Type.CLIENT, ExtendedCogwheelsConfig.CLIENT_CONFIG);
         registerConfig(ModConfig.Type.SERVER, ExtendedCogwheelsConfig.SERVER_CONFIG);
+
+        CogwheelLimits.init();
 
         Path configDir = configDir();
 
