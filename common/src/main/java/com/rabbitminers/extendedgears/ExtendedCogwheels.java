@@ -40,8 +40,6 @@ public class ExtendedCogwheels {
         registerConfig(ModConfig.Type.CLIENT, ExtendedCogwheelsConfig.CLIENT_CONFIG);
         registerConfig(ModConfig.Type.SERVER, ExtendedCogwheelsConfig.SERVER_CONFIG);
 
-        CogwheelLimits.init();
-
         Path configDir = configDir();
 
         ExtendedCogwheelsConfig.loadConfig(ExtendedCogwheelsConfig.CLIENT_CONFIG, configDir.resolve(MOD_ID + "-client.toml"));
