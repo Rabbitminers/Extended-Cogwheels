@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
+import com.simibubi.create.foundation.config.ConfigBase;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import net.minecraft.resources.ResourceLocation;
 
@@ -11,7 +12,7 @@ public class CogwheelLimits {
     private final static Map<ResourceLocation, Integer> STRESS_LIMITS = new HashMap<>();
     private final static Map<ResourceLocation, Integer> SPEED_LIMITS = new HashMap<>();
 
-    public static int MAX_SPEED = AllConfigs.server().kinetics.maxRotationSpeed.get();
+    public static ConfigBase.ConfigInt MAX_SPEED = AllConfigs.server().kinetics.maxRotationSpeed;
 
     public static int boundValues(int current, int max, int min) {
         return Math.max(min, Math.min(current, max));
@@ -22,7 +23,7 @@ public class CogwheelLimits {
     }
 
     public static void setSpeedLimit(ResourceLocation material, int speedLimit) {
-        SPEED_LIMITS.put(material, boundValues(speedLimit, MAX_SPEED, -MAX_SPEED));
+        SPEED_LIMITS.put(material, boundValues(speedLimit, MAX_SPEED.get(), -MAX_SPEED.get()));
     }
 
     public static void setLimits(ResourceLocation material, int stressLimit, int speedLimit) {
@@ -35,7 +36,7 @@ public class CogwheelLimits {
     }
 
     public static int getSpeedLimit(ResourceLocation material) {
-        return Optional.ofNullable(SPEED_LIMITS.get(material)).orElse(MAX_SPEED);
+        return Optional.ofNullable(SPEED_LIMITS.get(material)).orElse(MAX_SPEED.get());
     }
 
     public static void init() {
