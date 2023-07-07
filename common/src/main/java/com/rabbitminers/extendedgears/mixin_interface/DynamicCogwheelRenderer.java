@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -33,9 +34,10 @@ public class DynamicCogwheelRenderer {
 
     public static final String[] LOG_SUFFIXES = new String[] { "_log", "_stem" };
 
+    @Nullable
     public static BakedModel generateModel(CogwheelModelKey key) {
-        BakedModel template = key.large() ? ExtendedCogwheelsPartials.LARGE_COGWHEEL.get() : ExtendedCogwheelsPartials.COGWHEEL.get();
-        return generateModel(template, key.material());
+        return key.state().getBlock() instanceof ICogwheelModelProvider cogwheelModelProvider
+            ? generateModel(cogwheelModelProvider.getTemplate(key.large()).get(), key.material()) : null;
     }
 
     public static BakedModel generateModel(BakedModel template, BlockState planksBlockState) {
