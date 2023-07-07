@@ -1,5 +1,8 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
+import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
@@ -17,7 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class ShaftlessCogwheelBlock extends CogWheelBlock {
+public class ShaftlessCogwheelBlock extends CogWheelBlock implements ICogwheelModelProvider {
     public VoxelShape voxelShape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
     public VoxelShape largeVoxelShape = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
@@ -37,6 +40,11 @@ public class ShaftlessCogwheelBlock extends CogWheelBlock {
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
                                  BlockHitResult ray) {
         return super.use(state, world, pos, player, hand, ray);
+    }
+
+    @Override
+    public PartialModel getTemplate(boolean large) {
+        return large ? ExtendedCogwheelsPartials.LARGE_SHAFTLESS_COGWHEEL : ExtendedCogwheelsPartials.SHAFTLESS_COGWHEEL;
     }
 
     @Override

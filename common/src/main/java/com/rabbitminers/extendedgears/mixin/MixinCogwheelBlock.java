@@ -1,6 +1,9 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.simpleRelays.AbstractSimpleShaftBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
@@ -20,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CogWheelBlock.class)
-public class MixinCogwheelBlock extends AbstractSimpleShaftBlock {
+public class MixinCogwheelBlock extends AbstractSimpleShaftBlock implements ICogwheelModelProvider {
     public MixinCogwheelBlock(Properties properties) {
         super(properties);
     }
@@ -32,6 +35,11 @@ public class MixinCogwheelBlock extends AbstractSimpleShaftBlock {
         if (!(be instanceof IDynamicMaterialBlockEntity dyn) || level.isClientSide)
             return;
         cir.setReturnValue(dyn.applyMaterialIfValid(player.getItemInHand(hand)));
+    }
+
+    @Override
+    public PartialModel getTemplate(boolean large) {
+        return large ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
     }
 
     @Override

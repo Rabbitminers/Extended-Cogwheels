@@ -1,5 +1,9 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
+import com.jozufozu.flywheel.core.PartialModel;
+import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
@@ -19,7 +23,7 @@ import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.directio
 import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPosotive;
 import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.shapeBuilder;
 
-public class HalfShaftCogwheelBlock extends CogWheelBlock {
+public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelModelProvider {
     public VoxelShaper voxelShape = shapeBuilder(box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D))
             .add(6.0D, 8, 6.0D, 10.0D, 16, 10.0D).forDirectional();
     public VoxelShaper largeVoxelShape = shapeBuilder(box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D))
@@ -48,6 +52,10 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
         super.createBlockStateDefinition(builder);
     }
 
+    public Direction.AxisDirection getAxisDirection(BlockState state) {
+        return state.getValue(AXIS_DIRECTION) ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE;
+    }
+
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos,
                                         @NotNull CollisionContext context) {
@@ -70,6 +78,11 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
                 .setValue(AXIS_DIRECTION, context.getPlayer()
                         .isShiftKeyDown() != isDirectionPosotive)
                 .setValue(AXIS, axisFromDirection);
+    }
+
+    @Override
+    public PartialModel getTemplate(boolean large) {
+        return large ? ExtendedCogwheelsPartials.LARGE_HALF_SHAFT_COGWHEEL : ExtendedCogwheelsPartials.HALF_SHAFT_COGWHEEL;
     }
 
     @Override
