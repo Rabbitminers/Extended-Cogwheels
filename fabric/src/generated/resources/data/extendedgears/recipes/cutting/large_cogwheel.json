@@ -5,14 +5,14 @@
       "item": "create:large_cogwheel"
     }
   ],
-  "processingTime": 50,
   "results": [
     {
       "item": "extendedgears:large_half_shaft_spruce_cogwheel"
     },
     {
-      "chance": 0.2,
-      "item": "create:shaft"
+      "item": "create:shaft",
+      "chance": 0.2
     }
-  ]
+  ],
+  "processingTime": 50
 }
