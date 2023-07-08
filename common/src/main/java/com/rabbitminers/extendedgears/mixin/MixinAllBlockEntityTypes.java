@@ -23,7 +23,8 @@ public class MixinAllBlockEntityTypes {
             slice = @Slice(
                     from = @At(value = "CONSTANT", args = "stringValue=schematic_table"),
                     to = @At(value = "CONSTANT", args = "stringValue=motor")
-            )
+            ),
+            remap = false
     )
     private static <T extends Block, E extends BlockEntity> BlockEntityBuilder<E, ?> addCustomBogeysToTileEntity(
             CreateBlockEntityBuilder<E, ?> instance,

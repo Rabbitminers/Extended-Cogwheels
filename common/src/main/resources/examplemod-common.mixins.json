@@ -4,14 +4,20 @@
   "package": "com.rabbitminers.extendedgears.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "client.MixinHotbarStorage"
   ],
   "mixins": [
+    "MixinChunkSerializer",
     "MixinAllBlockEntityTypes",
     "MixinBracketedKineticBlockEntity",
     "MixinBracketedKineticBlockEntityInstance",
     "MixinBracketedKineticBlockEntityRenderer",
     "MixinCogwheelBlock",
-    "MixinCogwheelBlockItem"
+    "MixinCogwheelBlockItem",
+    "MixinIOWorker",
+    "MixinNbtUtils",
+    "MixinPlayerEntity",
+    "MixinStructure"
   ],
   "injectors": {
     "defaultRequire": 1
