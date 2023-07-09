@@ -44,7 +44,7 @@ public abstract class DataFixesInternals {
     @Contract(pure = true)
     @Range(from = 0, to = Integer.MAX_VALUE)
     public static int getModDataVersion(@NotNull CompoundTag compound) {
-        return compound.getInt("Railways_DataVersion");
+        return compound.getInt("ExtendedCogwheels_DataVersion");
     }
 
     private static DataFixesInternals instance;
@@ -60,9 +60,9 @@ public abstract class DataFixesInternals {
             }
 
             if (latestVanillaSchema == null) {
-                ExtendedCogwheels.LOGGER.warn("[Railways DFU] Failed to initialize! Either someone stopped DFU from initializing,");
-                ExtendedCogwheels.LOGGER.warn("[Railways DFU]  or this Minecraft build is hosed.");
-                ExtendedCogwheels.LOGGER.warn("[Railways DFU] Using no-op implementation.");
+                ExtendedCogwheels.LOGGER.warn("[Extended Cogwheels DFU] Failed to initialize! Either someone stopped DFU from initializing,");
+                ExtendedCogwheels.LOGGER.warn("[Extended Cogwheels DFU]  or this Minecraft build is hosed.");
+                ExtendedCogwheels.LOGGER.warn("[Extended Cogwheels DFU] Using no-op implementation.");
                 instance = new NoOpDataFixesInternals();
             } else {
                 instance = new DataFixesInternalsImpl(latestVanillaSchema);
