@@ -36,29 +36,24 @@ public class ExtendedCogwheelsBlocks {
     }
 
     private static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
-
-    static {
-        REGISTRATE.creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
-    }
-
     public static BlockEntry<HalfShaftCogwheelBlock> HALF_SHAFT_COGWHEEL =
             REGISTRATE.block("half_shaft_cogwheel", HalfShaftCogwheelBlock::small)
+                    .blockstate(new HalfShaftGenerator()::generate)
                     .transform(cogwheelTransformer(false))
                     .register();
 
     public static BlockEntry<HalfShaftCogwheelBlock> LARGE_HALF_SHAFT_COGWHEEL =
             REGISTRATE.block("large_half_shaft_cogwheel", HalfShaftCogwheelBlock::large)
                     .transform(cogwheelTransformer(true))
+                    .blockstate(new HalfShaftGenerator()::generate)
                     .register();
     public static BlockEntry<ShaftlessCogwheelBlock> SHAFTLESS_COGWHEEL =
             REGISTRATE.block("shaftless_cogwheel", ShaftlessCogwheelBlock::small)
                     .transform(cogwheelTransformer(false))
-                    .blockstate(new HalfShaftGenerator()::generate)
                     .register();
     public static BlockEntry<ShaftlessCogwheelBlock> LARGE_SHAFTLESS_COGWHEEL =
             REGISTRATE.block("large_shaftless_cogwheel", ShaftlessCogwheelBlock::large)
                     .transform(cogwheelTransformer(true))
-                    .blockstate(new HalfShaftGenerator()::generate)
                     .register();
 
     public static void init() {
