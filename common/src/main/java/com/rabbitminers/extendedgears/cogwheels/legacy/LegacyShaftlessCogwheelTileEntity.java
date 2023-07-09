@@ -11,6 +11,7 @@ public class LegacyShaftlessCogwheelTileEntity extends CustomCogwheelBlockEntity
     public LegacyShaftlessCogwheelTileEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
+
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         // Disable Shaft Shite
