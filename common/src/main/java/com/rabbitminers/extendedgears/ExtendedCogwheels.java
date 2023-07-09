@@ -26,8 +26,8 @@ public class ExtendedCogwheels {
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     public static final int DATA_FIXER_VERSION = 1;
 
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID);
-            // .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID)
+            .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
 
     public static void init() {
         ExtendedCogwheelsTags.init();
@@ -35,7 +35,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsTablessBlocks.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
-        // ExtendedCogwheelsDataFixers.init();
+        ExtendedCogwheelsDataFixers.init();
 
         registerConfig(ModConfig.Type.CLIENT, ExtendedCogwheelsConfig.CLIENT_CONFIG);
         registerConfig(ModConfig.Type.SERVER, ExtendedCogwheelsConfig.SERVER_CONFIG);
