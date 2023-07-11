@@ -20,6 +20,7 @@ import com.mojang.datafixers.DataFixer;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.data_fixer_api.DataFixesInternals;
 import com.rabbitminers.extendedgears.base.data.data_fixers.CogwheelBlockDataFixer;
+import com.rabbitminers.extendedgears.base.util.StringHelpers;
 import com.simibubi.create.Create;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -59,9 +60,9 @@ public abstract class MixinNbtUtils {
 
     private static String updateBlockIfNeeded(String original) {
         String size = original.contains("large_") ? ":large_" : ":";
-        if (original.contains("shaftless_cogwheel"))
+        if (StringHelpers.containsAll(original, "shaftless_cogwheel"))
             return ExtendedCogwheels.MOD_ID + size + "shaftless_cogwheel";
-        if (original.contains("half_shaft_cogwheel"))
+        if (StringHelpers.containsAll(original, "half_shaft","cogwheel"))
             return ExtendedCogwheels.MOD_ID + size + "half_shaft_cogwheel";
         if (original.contains("_cogwheel"))
             return Create.ID + size + "cogwheel";
