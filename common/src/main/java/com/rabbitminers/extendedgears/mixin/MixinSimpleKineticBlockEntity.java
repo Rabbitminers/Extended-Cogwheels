@@ -1,11 +1,10 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
-import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -19,21 +18,26 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(BracketedKineticBlockEntity.class)
-public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity implements IDynamicMaterialBlockEntity {
+@Mixin(SimpleKineticBlockEntity.class)
+public class MixinSimpleKineticBlockEntity extends KineticBlockEntity implements IDynamicMaterialBlockEntity {
     public BlockState material = Blocks.SPRUCE_PLANKS.defaultBlockState();
 
-    public MixinBracketedKineticBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
+    public MixinSimpleKineticBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }
 
     @Override
     public BlockState getMaterial() {
-        return material;
+        return this.material;
+    }
+
+    private boolean isEncasedCogwheel() {
+        return this.getBlockState().getBlock() instanceof EncasedCogwheelBlock;
     }
 
     @Override
     public InteractionResult applyMaterialIfValid(ItemStack stack) {
+        if (this.isEncasedCogwheel()) return InteractionResult.SUCCESS;
         if (!(stack.getItem()instanceof BlockItem blockItem))
             return InteractionResult.PASS;
         BlockState material = blockItem.getBlock()
@@ -55,35 +59,6 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         this.material = material;
     }
 
-    private int getStressLimit() {
-        Integer stressLimit = null;
-        if (getBlockState().getBlock() instanceof ICustomCogwheel cogwheel)
-            stressLimit = ExtendedCogwheelsConfig.getStressLimitByMaterial(cogwheel.getMaterial());
-        return stressLimit == null ? ExtendedCogwheelsConfig.SPRUCE_COGWHEEL_STRESS_LIMITS.get()
-                : stressLimit;
-    }
-
-    private int getRotationalSpeedLimit() {
-        Integer stressLimit = null;
-        if (getBlockState().getBlock() instanceof ICustomCogwheel cogwheel)
-            stressLimit = ExtendedCogwheelsConfig.getRotationLimitByMaterial(cogwheel.getMaterial());
-        return stressLimit == null ? ExtendedCogwheelsConfig.SPRUCE_COGWHEEL_ROTATION_LIMITS.get()
-                : stressLimit;
-    }
-
-    public void tick() {
-        super.tick();
-        if (!(this.getBlockState().getBlock() instanceof ICogWheel)
-                || level == null || level.isClientSide)
-            return;
-        boolean shouldBreak = (ExtendedCogwheelsConfig.APPLY_ROTATION_LIMITS.get()
-                && Math.abs(speed) > getRotationalSpeedLimit())
-                || (ExtendedCogwheelsConfig.APPLY_STRESS_LIMITS.get()
-                && Math.abs(capacity) > getStressLimit());
-        if (shouldBreak)
-            level.destroyBlock(worldPosition, true);
-    }
-
     protected void redraw() {
         if (!isVirtual())
             requestModelDataUpdate();
@@ -94,10 +69,12 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
                     .checkBlock(worldPosition);
         }
     }
-
     @Override
     protected void read(CompoundTag compound, boolean clientPacket) {
         super.read(compound, clientPacket);
+
+        if (!this.isEncasedCogwheel())
+            return;
 
         BlockState prevMaterial = material;
         if (!compound.contains("Material"))
@@ -114,6 +91,7 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
     @Override
     protected void write(CompoundTag compound, boolean clientPacket) {
         super.write(compound, clientPacket);
-        compound.put("Material", NbtUtils.writeBlockState(material));
+        if (this.isEncasedCogwheel())
+            compound.put("Material", NbtUtils.writeBlockState(material));
     }
 }
