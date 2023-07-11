@@ -7,16 +7,20 @@
     "client.MixinHotbarStorage"
   ],
   "mixins": [
-    "MixinChunkSerializer",
     "MixinAllBlockEntityTypes",
     "MixinBracketedKineticBlockEntity",
     "MixinBracketedKineticBlockEntityInstance",
     "MixinBracketedKineticBlockEntityRenderer",
+    "MixinChunkSerializer",
     "MixinCogwheelBlock",
     "MixinCogwheelBlockItem",
+    "MixinEncasedCogBlock",
+    "MixinEncasedCogInstance",
+    "MixinEncasedCogRenderer",
     "MixinIOWorker",
     "MixinNbtUtils",
     "MixinPlayerEntity",
+    "MixinSimpleKineticBlockEntity",
     "MixinStructure"
   ],
   "injectors": {

@@ -2,7 +2,6 @@ package com.rabbitminers.extendedgears.mixin_interface;
 
 import com.jozufozu.flywheel.core.StitchedSprite;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
 import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
@@ -21,10 +20,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class DynamicCogwheelRenderer {
     public static final Compartment<CogwheelModelKey> COGWHEEL = new Compartment<>();
