@@ -1,6 +1,6 @@
 /*
  * Copyright 2022 QuiltMC
- * Modified by the Steam 'n Rails (Railways) team
+ * Modified by Rabbitminers & Railways team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public final class DataFixesInternalsImpl extends DataFixesInternals {
     public void registerFixer(@Range(from = 0, to = Integer.MAX_VALUE) int currentVersion,
                               @NotNull DataFixer dataFixer) {
         if (this.dataFixer != null) {
-            throw new IllegalArgumentException("Railways already has a registered data fixer");
+            throw new IllegalArgumentException("Extended Cogwheels already has a registered data fixer");
         }
 
         this.dataFixer = new DataFixerEntry(dataFixer, currentVersion);
@@ -77,7 +77,7 @@ public final class DataFixesInternalsImpl extends DataFixesInternals {
     @Override
     public @NotNull CompoundTag addModDataVersions(@NotNull CompoundTag compound) {
         if (dataFixer != null)
-            compound.putInt("Railways_DataVersion", dataFixer.currentVersion());
+            compound.putInt("ExtendedCogwheels_DataVersion", dataFixer.currentVersion());
 
         return compound;
     }
