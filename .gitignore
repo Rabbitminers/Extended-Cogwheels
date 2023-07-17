@@ -10,7 +10,6 @@ bin/
 libs/
 
 scripts/
-data/
 
 .classpath
 .project
