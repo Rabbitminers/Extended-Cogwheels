@@ -18,6 +18,7 @@ package com.rabbitminers.extendedgears.base.data.data_fixer_api;
 
 import com.mojang.datafixers.DataFixer;
 import com.mojang.datafixers.schemas.Schema;
+import com.mojang.datafixers.types.templates.TypeTemplate;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -26,6 +27,9 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
+
+import java.util.Map;
+import java.util.function.Supplier;
 
 @ApiStatus.Internal
 public final class DataFixesInternalsImpl extends DataFixesInternals {
@@ -56,7 +60,14 @@ public final class DataFixesInternalsImpl extends DataFixesInternals {
 
     @Override
     public @NotNull Schema createBaseSchema() {
-        return new Schema(0, this.latestVanillaSchema);
+        return new Schema(0, this.latestVanillaSchema) {
+            @Override
+            public Map<String, Supplier<TypeTemplate>> registerBlockEntities(Schema schema) {
+                Map<String, Supplier<TypeTemplate>> map = super.registerBlockEntities(schema);
+                super.registerSimple(map, "extendedgears:customcogwheeltileentity");
+                return map;
+            }
+        };
     }
 
     @Override
@@ -77,8 +88,7 @@ public final class DataFixesInternalsImpl extends DataFixesInternals {
     @Override
     public @NotNull CompoundTag addModDataVersions(@NotNull CompoundTag compound) {
         if (dataFixer != null)
-            compound.putInt("ExtendedCogwheels_DataVersion", dataFixer.currentVersion());
-
+            compound.putInt("ExtendedCogwheels_DataVersion1", dataFixer.currentVersion());
         return compound;
     }
 }

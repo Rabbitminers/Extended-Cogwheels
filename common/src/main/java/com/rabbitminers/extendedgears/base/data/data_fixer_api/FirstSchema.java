@@ -34,7 +34,9 @@ public class FirstSchema extends Schema {
     // all of these methods refer to this.parent without checking if its null
     @Override
     public void registerTypes(Schema schema, Map<String, Supplier<TypeTemplate>> entityTypes,
-                              Map<String, Supplier<TypeTemplate>> blockEntityTypes) {}
+                              Map<String, Supplier<TypeTemplate>> blockEntityTypes) {
+        schema.registerSimple(blockEntityTypes, "extendedgears:customcogwheeltileentity");
+    }
 
     @Override
     public Map<String, Supplier<TypeTemplate>> registerEntities(Schema schema) {

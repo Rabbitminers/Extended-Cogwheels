@@ -5,8 +5,11 @@ import com.mojang.datafixers.schemas.Schema;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.data_fixer_api.DataFixesInternals;
 import com.rabbitminers.extendedgears.base.data.data_fixers.CogwheelBlockDataFixer;
+import com.rabbitminers.extendedgears.base.data.data_fixers.CogwheelBlockEntityFix;
+import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.util.datafix.schemas.NamespacedSchema;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -29,6 +32,7 @@ public class ExtendedCogwheelsDataFixers {
 
         Schema schemaV1 = builder.addSchema(1, SAME_NAMESPACED);
         builder.addFixer(new CogwheelBlockDataFixer(schemaV1, "Legacy cogwheel merger"));
+        builder.addFixer(new CogwheelBlockEntityFix(schemaV1, true));
     }
 
     private static UnaryOperator<String> createRenamer(List<String> names) {

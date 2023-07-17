@@ -14,8 +14,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.util.StringUtil;
-import net.minecraft.util.datafix.fixes.BlockEntityIdFix;
-import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.util.datafix.fixes.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -32,10 +31,16 @@ public class CogwheelBlockDataFixer extends DataFix {
     @Override
     public TypeRewriteRule makeRule() {
         return TypeRewriteRule.seq(
-            this.fixTypeEverywhereTyped(this.name + "for block_entity", this.getInputSchema().getType(References.ITEM_STACK), typed -> typed.update(DSL.remainderFinder(), dynamic -> {
-                System.out.println(dynamic); // Only shows vanilla block entities?
+            /*
+            this.fixTypeEverywhereTyped(this.name + "for block_entity", this.getInputSchema().getType(References.BLOCK_ENTITY), typed -> typed.update(DSL.remainderFinder(), dynamic -> {
+                Optional<String> optional = dynamic.get("id").asString().result();
+                if (optional.isPresent() && optional.get().equals("extendedgears:customcogwheeltileentity")) {
+                    dynamic = dynamic.set("id", dynamic.createString("create:simple_kinetic"));
+                    return dynamic;
+                }
                 return dynamic;
             })),
+             */
             this.fixTypeEverywhereTyped(this.name + " for block_state", this.getInputSchema().getType(References.BLOCK_STATE), typed -> typed.update(DSL.remainderFinder(), dynamic -> {
                 Optional<String> optional = dynamic.get("Name").asString().result();
                 String fixBlock = fixBlock(optional);
@@ -53,8 +58,8 @@ public class CogwheelBlockDataFixer extends DataFix {
         if (optional.isEmpty()) return null;
         String original = optional.get();
         String size = original.contains("large_") ? ":large_" : ":";
-        if (isValidCogwheel(original)) return null;
-
+        if (isValidCogwheel(original))
+            return null;
         if (StringHelpers.containsAll(original, "shaftless_cogwheel"))
             return ExtendedCogwheels.MOD_ID + size + "shaftless_cogwheel";
         if (StringHelpers.containsAll(original, "half_shaft","cogwheel"))
