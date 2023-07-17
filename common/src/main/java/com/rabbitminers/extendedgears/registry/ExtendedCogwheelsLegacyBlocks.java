@@ -28,7 +28,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MaterialColor;
 import org.jetbrains.annotations.NotNull;
 
-public class ExtendedCogwheelsTablessBlocks {
+@Deprecated
+public class ExtendedCogwheelsLegacyBlocks {
 	public static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> cogwheelItemTransformer(boolean isLarge, TagKey<Item> materialType) {

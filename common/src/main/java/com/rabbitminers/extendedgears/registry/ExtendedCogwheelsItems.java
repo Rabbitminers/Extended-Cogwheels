@@ -14,7 +14,7 @@ public class ExtendedCogwheelsItems {
     public static final CreativeModeTab itemGroup = new CreativeModeTab(getNextAvailableTabId(), ExtendedCogwheels.MOD_ID) {
         @Override
         public @NotNull ItemStack makeIcon() {
-            return ExtendedCogwheelsTablessBlocks.WOODEN_COGWHEELS.get(WoodenCogwheel.CRIMSON).asStack();
+            return ExtendedCogwheelsLegacyBlocks.WOODEN_COGWHEELS.get(WoodenCogwheel.CRIMSON).asStack();
         }
     };
 

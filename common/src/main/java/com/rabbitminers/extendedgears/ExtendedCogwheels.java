@@ -1,7 +1,6 @@
 package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
-import com.rabbitminers.extendedgears.cogwheels.CogwheelLimits;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
@@ -32,7 +31,7 @@ public class ExtendedCogwheels {
     public static void init() {
         ExtendedCogwheelsTags.init();
         ExtendedCogwheelsItems.init();
-        ExtendedCogwheelsTablessBlocks.init();
+        ExtendedCogwheelsLegacyBlocks.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();

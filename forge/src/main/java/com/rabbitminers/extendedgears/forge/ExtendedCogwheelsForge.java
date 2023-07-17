@@ -2,7 +2,7 @@ package com.rabbitminers.extendedgears.forge;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsLegacyBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -17,7 +17,7 @@ public class ExtendedCogwheelsForge {
     public ExtendedCogwheelsForge() {
         // registrate must be given the mod event bus on forge before registration
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ExtendedCogwheelsTablessBlocks.REGISTRATE.registerEventListeners(eventBus);
+        ExtendedCogwheelsLegacyBlocks.REGISTRATE.registerEventListeners(eventBus);
         ExtendedCogwheels.init();
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT,

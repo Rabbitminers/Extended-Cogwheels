@@ -2,7 +2,7 @@ package com.rabbitminers.extendedgears.datagen;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTablessBlocks;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsLegacyBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -57,13 +57,13 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
     // Keep spruce recipes
     GeneratedRecipe
         SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.COGWHEEL,
-            ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL),
+            ExtendedCogwheelsLegacyBlocks.SPRUCE_HALF_SHAFT_COGWHEEL),
         LARGE_SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.LARGE_COGWHEEL,
-            ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL),
-        SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsTablessBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsTablessBlocks.SPRUCE_SHAFTLESS_COGWHEEL),
-        LARGE_SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsTablessBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL);
+            ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL),
+        SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsLegacyBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsLegacyBlocks.SPRUCE_SHAFTLESS_COGWHEEL),
+        LARGE_SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
+            ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL);
 
     public ExtendedCogwheelsCuttingRecipeGen(DataGenerator p_i48262_1_) {
         super(p_i48262_1_);
