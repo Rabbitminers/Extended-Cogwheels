@@ -2,9 +2,10 @@ package com.rabbitminers.extendedgears.datagen;
 
 import com.google.gson.JsonObject;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.rabbitminers.extendedgears.base.data.CogwheelConstants;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsLegacyBlocks;
+import com.simibubi.create.foundation.utility.Couple;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -99,6 +100,30 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         ));
     }
 
+    private Couple<GeneratedRecipe> cogwheelRecipes(Couple<BlockEntry<?>> blocks) {
+        GeneratedRecipe small = create(blocks.getFirst()).unlockedBy(I::andesite)
+                .viaShapeless(b -> b.requires(I.shaft())
+                        .requires(I.planks()));
+        GeneratedRecipe large = create(blocks.getSecond()).unlockedBy(I::andesite)
+                .viaShapeless(b -> b.requires(I.shaft())
+                        .requires(I.planks())
+                        .requires(I.planks()));
+        return Couple.create(small, large);
+    }
+
+    private GeneratedRecipe smallToLargeRecipe(Couple<BlockEntry<?>> blocks) {
+        return create(blocks.getSecond()).unlockedBy(I::andesite)
+                .viaShapeless(b -> b.requires(I.shaft())
+                        .requires(I.planks()));
+    }
+
+    Couple<GeneratedRecipe>
+        HALF_SHAFT = cogwheelRecipes(CogwheelConstants.HALF_SHAFT_COGWHEELS),
+        SHAFTLESS = cogwheelRecipes(CogwheelConstants.SHAFTLESS_COGWHEELS);
+
+    GeneratedRecipe
+        SMALL_TO_LARGE_HALF_SHAFT = smallToLargeRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
+        SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS);
 
     @Deprecated
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> inputMaterialSet, E input, E output) {

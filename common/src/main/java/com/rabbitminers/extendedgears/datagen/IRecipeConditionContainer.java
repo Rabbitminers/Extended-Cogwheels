@@ -7,9 +7,9 @@ import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.Nullable;
 
 public interface IRecipeConditionContainer {
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public void whenTagsFilled(@Nullable TagKey<Item>... key);
+    void whenTagsFilled(@Nullable TagKey<Item>... key);
 
-    public void write(JsonObject object);
+    void write(JsonObject object);
 }
