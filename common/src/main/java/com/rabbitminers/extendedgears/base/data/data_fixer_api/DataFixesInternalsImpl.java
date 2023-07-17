@@ -88,7 +88,7 @@ public final class DataFixesInternalsImpl extends DataFixesInternals {
     @Override
     public @NotNull CompoundTag addModDataVersions(@NotNull CompoundTag compound) {
         if (dataFixer != null)
-            compound.putInt("ExtendedCogwheels_DataVersion1", dataFixer.currentVersion());
+            compound.putInt("ExtendedCogwheels_DataVersion", dataFixer.currentVersion());
         return compound;
     }
 }
