@@ -7,6 +7,7 @@ import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
+@Deprecated
 public class ExtendedCogwheelsTileEntities {
     private static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
 

@@ -31,7 +31,7 @@ public class ExtendedCogwheels {
     public static void init() {
         ExtendedCogwheelsTags.init();
         ExtendedCogwheelsItems.init();
-        ExtendedCogwheelsLegacyBlocks.init();
+        // ExtendedCogwheelsLegacyBlocks.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();
