@@ -24,6 +24,7 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
                 .output(out).output(0.2f, I.shaft()));
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> cogwheelCuttingRecipe(Class<T> materialType,
            CogwheelMaterialList<? extends Block, T> input, CogwheelMaterialList<? extends Block, T> output) {
         Map<T, GeneratedRecipe> map = new EnumMap<T, GeneratedRecipe>(materialType);
@@ -32,41 +33,8 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
         return map;
     }
 
-    /*
-    final Map<WoodenCogwheel, GeneratedRecipe>
-        WOODEN_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(WoodenCogwheel.class,
-            ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS),
-        LARGE_WOODEN_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(WoodenCogwheel.class,
-            ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS),
-        WOODEN_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(WoodenCogwheel.class,
-            ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS),
-        LARGE_WOODEN_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(WoodenCogwheel.class,
-            ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS);
-
-    final Map<MetalCogwheel, GeneratedRecipe>
-        METAL_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(MetalCogwheel.class,
-            ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS),
-        LARGE_METAL_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(MetalCogwheel.class,
-            ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS),
-        METAL_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(MetalCogwheel.class,
-            ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS),
-        LARGE_METAL_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(MetalCogwheel.class,
-            ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS);
-     */
-
-    // Keep spruce recipes
-    GeneratedRecipe
-        SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.SPRUCE_HALF_SHAFT_COGWHEEL),
-        LARGE_SPRUCE_COGWHEELS_TO_HALF_SHAFT = cogwheelCuttingRecipe(AllBlocks.LARGE_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL),
-        SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsLegacyBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.SPRUCE_SHAFTLESS_COGWHEEL),
-        LARGE_SPRUCE_HALF_SHAFT_TO_SHAFTLESS = cogwheelCuttingRecipe(ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL);
-
-    public ExtendedCogwheelsCuttingRecipeGen(DataGenerator p_i48262_1_) {
-        super(p_i48262_1_);
+    public ExtendedCogwheelsCuttingRecipeGen(DataGenerator dataGenerator) {
+        super(dataGenerator);
     }
 
     @ExpectPlatform

@@ -9,26 +9,31 @@ import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.Nullable;
 
 public class ExtendedCogwheelsRecipeTransformers {
+    @Deprecated
     public interface RecipeTransformer extends TriFunction<ShapelessRecipeBuilder, ICogwheelMaterial, Boolean, ShapelessRecipeBuilder> {
 
     }
 
+    @Deprecated
     public static ShapelessRecipeBuilder standardCogwheelTransformer(ShapelessRecipeBuilder builder, ICogwheelMaterial material,
                                                                boolean isLarge) {
         return builder.requires(ExtendedCogwheelsRecipeProvider.I.shaft()).requires(material.getIngredient().ingredient(), isLarge ? 2 : 1);
     }
 
+    @Deprecated
     public static ShapelessRecipeBuilder halfShaftCogwheelTransformer(ShapelessRecipeBuilder builder, ICogwheelMaterial material,
                                                                 boolean isLarge) {
         return builder.requires(ExtendedCogwheelsRecipeProvider.I.andesite()).requires(material.getIngredient().ingredient(), isLarge ? 2 : 1);
     }
 
+    @Deprecated
     public static ShapelessRecipeBuilder shaftlessCogwheelTransformer(ShapelessRecipeBuilder builder, ICogwheelMaterial material,
                                                                 boolean isLarge) {
         return builder.requires(material.getIngredient().ingredient(), isLarge ? 2 : 1)
                 .requires(material.getSmallIngredient().ingredient());
     }
 
+    @Deprecated
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> standardCogwheelTransformer(ProcessingRecipeBuilder<T> builder, ICogwheelMaterial material,
                                                                                                          BlockEntry<?> smallCogwheel, @Nullable BlockEntry<?> largeCogwheel, boolean isLarge) {
         return builder.require(isLarge && largeCogwheel != null ? smallCogwheel.get() : ExtendedCogwheelsRecipeProvider.I.shaft())
@@ -36,6 +41,7 @@ public class ExtendedCogwheelsRecipeTransformers {
                 .output(isLarge && largeCogwheel != null ? largeCogwheel.asStack() : smallCogwheel.asStack());
     }
 
+    @Deprecated
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> halfShaftCogwheelTransformer(ProcessingRecipeBuilder<T> builder, ICogwheelMaterial material,
                                                                                                          BlockEntry<?> smallCogwheel, @Nullable BlockEntry<?> largeCogwheel, boolean isLarge) {
         return builder.require(isLarge && largeCogwheel != null ? smallCogwheel.get() : ExtendedCogwheelsRecipeProvider.I.andesite())
@@ -43,6 +49,7 @@ public class ExtendedCogwheelsRecipeTransformers {
                 .output(isLarge && largeCogwheel != null ? largeCogwheel.asStack() : smallCogwheel.asStack());
     }
 
+    @Deprecated
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder<T> shaftlessCogwheelTransformer(ProcessingRecipeBuilder<T> builder, ICogwheelMaterial material,
                                                                                                          BlockEntry<?> smallCogwheel, @Nullable BlockEntry<?> largeCogwheel, boolean isLarge) {
         if (isLarge && largeCogwheel != null) {

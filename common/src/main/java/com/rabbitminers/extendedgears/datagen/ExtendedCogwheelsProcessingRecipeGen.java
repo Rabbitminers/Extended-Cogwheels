@@ -26,9 +26,11 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.xml.crypto.Data;
 
+@SuppressWarnings("UnstableApiUsage")
 public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwheelsRecipeProvider {
 
     protected static final List<ProcessingRecipeGen> GENERATORS = new ArrayList<>();
+
     protected static final long BUCKET = FluidConstants.BUCKET;
     protected static final long BOTTLE = FluidConstants.BOTTLE;
 

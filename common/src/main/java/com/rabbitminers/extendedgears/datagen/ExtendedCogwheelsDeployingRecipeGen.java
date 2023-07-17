@@ -29,6 +29,7 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         return isLarge ? "large" : "small";
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe deployedCogwheel(BlockEntry<?> smallCogwheeel, T material,
             Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         return create(smallCogwheeel.get().asItem() + "_cogwheel", b -> {
@@ -37,6 +38,7 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         });
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe largeDeployedCogwheel(BlockEntry<?> smallCogwheel, BlockEntry<?> largeCogwheel,
             T material, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         return create(largeCogwheel.get().asItem() + "_cogwheel", b -> {
@@ -45,6 +47,7 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         });
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> deployedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels,
            Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         Map<T, GeneratedRecipe> map = new EnumMap<T, GeneratedRecipe>(materialType);
@@ -54,6 +57,7 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         return map;
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> largeDeployedCogwheelMapper(CogwheelMaterialList<? extends Block, T> smallCogwheels,
         CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         Map<T, GeneratedRecipe> map = new EnumMap<T, GeneratedRecipe>(materialType);
@@ -63,41 +67,13 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         return map;
     }
 
+    @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> CogwheelRecipePair<T> smallAndLargeDeployedRecipe(CogwheelMaterialList<? extends Block, T> smallCogwheels,
            CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType,  Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         return new CogwheelRecipePair<>(deployedCogwheelMapper(smallCogwheels, materialType, transformer),
                 largeDeployedCogwheelMapper(smallCogwheels, largeCogwheels, materialType, transformer));
     }
 
-    /*
-    final CogwheelRecipePair<MetalCogwheel>
-        METAL_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_METAL_COGWHEELS,
-            MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
-        HALF_SHAFT_METAL_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_METAL_COGWHEELS,
-            MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        SHAFTLESS_METAL_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_METAL_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_METAL_COGWHEELS,
-            MetalCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer);
-
-    final CogwheelRecipePair<WoodenCogwheel>
-        WOODEN_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_WOODEN_COGWHEELS,
-            WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::standardCogwheelTransformer),
-        HALF_SHAFT_WOODEN_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.HALF_SHAFT_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_WOODEN_COGWHEELS,
-            WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        SHAFTLESS_WOODEN_COGWHEELS = smallAndLargeDeployedRecipe(ExtendedCogwheelsBlocks.SHAFTLESS_WOODEN_COGWHEELS, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_WOODEN_COGWHEELS,
-            WoodenCogwheel.class, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer);
-
-     */
-
-    // Keep legacy spruce textures
-    final GeneratedRecipe
-        SHAFTLESS_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsLegacyBlocks.SPRUCE_SHAFTLESS_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        LARGE_SHAFTLESS_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsLegacyBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_SHAFTLESS_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::shaftlessCogwheelTransformer),
-        HALF_SHAFT_SPRUCE_COGWHEEL = deployedCogwheel(ExtendedCogwheelsLegacyBlocks.SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer),
-        LARGE_HALF_SHAFT_SPRUCE_COGWHEEL = largeDeployedCogwheel(ExtendedCogwheelsLegacyBlocks.SPRUCE_SHAFTLESS_COGWHEEL, ExtendedCogwheelsLegacyBlocks.LARGE_SPRUCE_HALF_SHAFT_COGWHEEL,
-            ExtendedCogwheelsLegacyBlocks.DefaultMaterial.SPRUCE, ExtendedCogwheelsRecipeTransformers::halfShaftCogwheelTransformer);
 
     private record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
 
