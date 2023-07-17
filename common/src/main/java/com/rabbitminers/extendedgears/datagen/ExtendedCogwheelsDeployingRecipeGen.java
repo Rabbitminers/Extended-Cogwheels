@@ -1,13 +1,14 @@
 package com.rabbitminers.extendedgears.datagen;
 
 import com.mojang.datafixers.util.Function5;
+import com.rabbitminers.extendedgears.base.data.CogwheelConstants;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsLegacyBlocks;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
@@ -69,12 +70,24 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
 
     @Deprecated
     private <T extends Enum<T> & ICogwheelMaterial> CogwheelRecipePair<T> smallAndLargeDeployedRecipe(CogwheelMaterialList<? extends Block, T> smallCogwheels,
-           CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType,  Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
+           CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
         return new CogwheelRecipePair<>(deployedCogwheelMapper(smallCogwheels, materialType, transformer),
                 largeDeployedCogwheelMapper(smallCogwheels, largeCogwheels, materialType, transformer));
     }
 
+    private Couple<GeneratedRecipe> smallAndLargeDeployedRecipe(Couple<BlockEntry<?>> blocks) {
+        GeneratedRecipe small = create(blocks.getFirst().getId().getPath(), b ->
+                b.require(I.shaft()).require(I.planks()).output(blocks.getFirst().get()));
+        GeneratedRecipe large = create(blocks.getSecond().getId().getPath(), b ->
+                b.require(blocks.getFirst().get()).require(I.planks()).output(blocks.getSecond().get()));
+        return Couple.create(small, large);
+    }
 
+    Couple<GeneratedRecipe>
+            HALF_SHAFT = smallAndLargeDeployedRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
+            SHAFTLESSS = smallAndLargeDeployedRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS);
+
+    @Deprecated
     private record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
 
     }

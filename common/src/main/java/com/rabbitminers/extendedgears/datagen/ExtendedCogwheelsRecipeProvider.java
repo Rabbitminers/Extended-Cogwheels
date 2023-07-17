@@ -4,6 +4,9 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +33,10 @@ public class ExtendedCogwheelsRecipeProvider extends RecipeProvider {
 
         static ItemLike shaft() {
             return AllBlocks.SHAFT.get();
+        }
+
+        static TagKey<Item> planks() {
+            return ItemTags.PLANKS;
         }
     }
 
