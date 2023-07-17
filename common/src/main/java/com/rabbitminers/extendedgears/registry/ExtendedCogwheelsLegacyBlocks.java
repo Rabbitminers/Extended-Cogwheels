@@ -67,6 +67,7 @@ public class ExtendedCogwheelsLegacyBlocks {
 				.transform(commonCogwheelTransformer(isLarge, ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.METAL_COGWHEEL.tag));
 	}
 
+	/*
 	// Wooden Cogwheels
 
 	public static final WoodenBlockList<CustomCogwheelBlock> WOODEN_COGWHEELS = new WoodenBlockList<>(wood ->
@@ -184,6 +185,7 @@ public class ExtendedCogwheelsLegacyBlocks {
 			return this.smallIngredient;
 		}
 	}
+	 */
 
 	public static void init() {
 		ExtendedCogwheels.LOGGER.info("Registering blocks for " + ExtendedCogwheels.NAME);

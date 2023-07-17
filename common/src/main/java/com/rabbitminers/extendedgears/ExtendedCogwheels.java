@@ -1,7 +1,6 @@
 package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
-import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
@@ -31,19 +30,9 @@ public class ExtendedCogwheels {
     public static void init() {
         ExtendedCogwheelsTags.init();
         ExtendedCogwheelsItems.init();
-        // ExtendedCogwheelsLegacyBlocks.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();
-
-        registerConfig(ModConfig.Type.CLIENT, ExtendedCogwheelsConfig.CLIENT_CONFIG);
-        registerConfig(ModConfig.Type.SERVER, ExtendedCogwheelsConfig.SERVER_CONFIG);
-
-        Path configDir = configDir();
-
-        ExtendedCogwheelsConfig.loadConfig(ExtendedCogwheelsConfig.CLIENT_CONFIG, configDir.resolve(MOD_ID + "-client.toml"));
-        ExtendedCogwheelsConfig.loadConfig(ExtendedCogwheelsConfig.SERVER_CONFIG, configDir.resolve(MOD_ID + "-common.toml"));
-
     }
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
