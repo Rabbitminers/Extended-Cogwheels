@@ -3,7 +3,7 @@ package com.rabbitminers.extendedgears.base.util;
 import net.minecraft.core.Direction;
 
 public class DirectionHelpers {
-    public static boolean isDirectionPosotive(Direction.AxisDirection dir) {
+    public static boolean isDirectionPositive(Direction.AxisDirection dir) {
         return dir == Direction.AxisDirection.POSITIVE;
     }
 
