@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Function;
 
+@Deprecated
 public class MetalBlockList<T extends Block> extends CogwheelMaterialList<T, MetalCogwheel> {
     public MetalBlockList(Function<MetalCogwheel, BlockEntry<? extends T>> filler) {
         super(MetalCogwheel.class, filler);

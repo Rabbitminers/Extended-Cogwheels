@@ -22,6 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated
 public class LegacyHalfShaftCogwheelBlock extends CustomCogwheelBlock {
     public VoxelShaper voxelShape = shapeBuilder(box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D))
             .add(6.0D, 8, 6.0D, 10.0D, 16, 10.0D).forDirectional();

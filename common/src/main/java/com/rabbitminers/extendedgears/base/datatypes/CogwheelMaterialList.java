@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
+@Deprecated
 public class CogwheelMaterialList<T extends Block, E extends Enum<E> & ICogwheelMaterial>
         implements Iterable<BlockEntry<T>> {
 

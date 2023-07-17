@@ -7,6 +7,7 @@ import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 
+@Deprecated
 public class CustomCogwheelBlock extends CogWheelBlock implements ICustomCogwheel {
     private final ICogwheelMaterial material;
 

@@ -7,7 +7,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
-
+@Deprecated
 public enum WoodenCogwheel implements ICogwheelMaterial {
     DARK_OAK(Items.DARK_OAK_BUTTON, Items.DARK_OAK_PLANKS),
     OAK(Items.OAK_BUTTON, Items.OAK_PLANKS),

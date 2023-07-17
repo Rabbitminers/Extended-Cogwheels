@@ -3,7 +3,6 @@ package com.rabbitminers.extendedgears.cogwheels;
 import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
-import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
@@ -20,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.directionFromValue;
-import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPosotive;
+import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPositive;
 import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.shapeBuilder;
 
 public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelModelProvider {
@@ -35,7 +34,7 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelMo
         super(large, properties);
 
         registerDefaultState(this.defaultBlockState().setValue(AXIS_DIRECTION,
-                isDirectionPosotive(Direction.AxisDirection.POSITIVE)));
+                isDirectionPositive(Direction.AxisDirection.POSITIVE)));
     }
 
     public static HalfShaftCogwheelBlock small(Properties properties) {
@@ -70,7 +69,7 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelMo
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace().getOpposite();
-        boolean isDirectionPosotive = isDirectionPosotive(direction.getAxisDirection());
+        boolean isDirectionPosotive = isDirectionPositive(direction.getAxisDirection());
         Direction.Axis axisFromDirection = direction.getAxis();
         if (context.getPlayer() == null)
             return super.getStateForPlacement(context);

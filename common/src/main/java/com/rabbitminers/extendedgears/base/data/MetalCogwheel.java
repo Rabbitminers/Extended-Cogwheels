@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated
 public enum MetalCogwheel implements ICogwheelMaterial {
     IRON(Items.IRON_NUGGET, Items.IRON_INGOT),
     STEEL(TagUtils.steelNugget(), TagUtils.steelIngot()),
