@@ -112,9 +112,8 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     }
 
     private GeneratedRecipe smallToLargeRecipe(Couple<BlockEntry<?>> blocks) {
-        return create(blocks.getSecond()).unlockedBy(I::andesite)
-                .viaShapeless(b -> b.requires(I.shaft())
-                        .requires(I.planks()));
+        return create("small_" + blocks.getSecond().getId().getPath() + "_to_large", blocks.getSecond())
+                .unlockedBy(I::andesite).viaShapeless(b -> b.requires(blocks.getFirst().get()).requires(I.planks()));
     }
 
     Couple<GeneratedRecipe>
