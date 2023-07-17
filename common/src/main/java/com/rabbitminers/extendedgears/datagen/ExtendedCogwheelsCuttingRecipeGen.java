@@ -2,9 +2,11 @@ package com.rabbitminers.extendedgears.datagen;
 
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsLegacyBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.foundation.data.recipe.CuttingRecipeGen;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
@@ -32,6 +34,13 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
             map.put(material, cogwheelCuttingRecipe(input.get(material), output.get(material)));
         return map;
     }
+
+
+
+    GeneratedRecipe
+        LARGE = cogwheelCuttingRecipe(AllBlocks.LARGE_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL),
+        SMALL = cogwheelCuttingRecipe(AllBlocks.COGWHEEL, ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL);
+
 
     public ExtendedCogwheelsCuttingRecipeGen(DataGenerator dataGenerator) {
         super(dataGenerator);

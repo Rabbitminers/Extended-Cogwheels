@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+@Deprecated
 public class TagUtils {
     @ExpectPlatform
     public static TagKey<Item> steelIngot() {
