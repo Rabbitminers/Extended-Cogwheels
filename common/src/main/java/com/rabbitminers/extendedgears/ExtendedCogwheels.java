@@ -20,7 +20,7 @@ import java.nio.file.Path;
 public class ExtendedCogwheels {
     // Keep extended gears as to not break past worlds
     public static final String MOD_ID = "extendedgears";
-    public static final String NAME = "Extended Gears";
+    public static final String NAME = "Extended Cogwheels";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     public static final int DATA_FIXER_VERSION = 1;
 
