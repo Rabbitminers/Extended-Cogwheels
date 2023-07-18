@@ -22,7 +22,7 @@ import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.directio
 import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPositive;
 import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.shapeBuilder;
 
-public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelModelProvider {
+public class HalfShaftCogwheelBlock extends CogWheelBlock {
     public VoxelShaper voxelShape = shapeBuilder(box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D))
             .add(6.0D, 8, 6.0D, 10.0D, 16, 10.0D).forDirectional();
     public VoxelShaper largeVoxelShape = shapeBuilder(box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D))
@@ -77,11 +77,6 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelMo
                 .setValue(AXIS_DIRECTION, context.getPlayer()
                         .isShiftKeyDown() != isDirectionPosotive)
                 .setValue(AXIS, axisFromDirection);
-    }
-
-    @Override
-    public PartialModel getTemplate(boolean large) {
-        return large ? ExtendedCogwheelsPartials.LARGE_HALF_SHAFT_COGWHEEL : ExtendedCogwheelsPartials.HALF_SHAFT_COGWHEEL;
     }
 
     @Override
