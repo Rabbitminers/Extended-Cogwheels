@@ -1,7 +1,6 @@
 package com.rabbitminers.extendedgears.mixin;
 
 import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
-import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
@@ -55,6 +54,8 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         this.material = material;
     }
 
+    // TODO: Reimplement limits
+    /*
     private int getStressLimit() {
         Integer stressLimit = null;
         if (getBlockState().getBlock() instanceof ICustomCogwheel cogwheel)
@@ -83,6 +84,7 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         if (shouldBreak)
             level.destroyBlock(worldPosition, true);
     }
+     */
 
     protected void redraw() {
         if (!isVirtual())

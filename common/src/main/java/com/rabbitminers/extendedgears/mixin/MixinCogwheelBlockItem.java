@@ -1,22 +1,16 @@
 package com.rabbitminers.extendedgears.mixin;
 
 import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
-import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -28,6 +22,9 @@ public class MixinCogwheelBlockItem extends BlockItem {
         super(block, properties);
     }
 
+    // TODO: Reimplement limits
+
+    /*
     private int getStressLimit(Block block) {
         Integer stressLimit = null;
         if (block instanceof ICustomCogwheel cogwheel)
@@ -65,4 +62,6 @@ public class MixinCogwheelBlockItem extends BlockItem {
 
         super.appendHoverText(stack, level, components, isAdvanced);
     }
+
+     */
 }
