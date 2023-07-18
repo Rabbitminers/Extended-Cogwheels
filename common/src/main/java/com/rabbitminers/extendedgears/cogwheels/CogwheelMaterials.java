@@ -6,8 +6,12 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.datatypes.ItemPredicate;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.Create;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -28,35 +32,39 @@ public class CogwheelMaterials {
         // Following tags used in data-gen
         // https://github.com/Creators-of-Create/Create/blob/HEAD/src/main/java/com/simibubi/create/foundation/data/recipe/CreateRecipeProvider.java#L96
 
-        create(Blocks.COPPER_BLOCK, "block/copper_cogwheel")
+        create(Blocks.COPPER_BLOCK)
                 .condition(Items.COPPER_INGOT)
                 .condition(AllTags.forgeItemTag("plates/copper"))
+                .vanilla()
+                .texture(Create.asResource("block/cogwheel"), ExtendedCogwheels.asResource("block/copper_cogwheel"))
+                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_copper_cogwheel"))
                 .build();
 
-        create(Blocks.IRON_BLOCK, "block/iron_cogwheel")
+        create(Blocks.IRON_BLOCK)
                 .condition(Items.IRON_INGOT)
                 .condition(AllTags.forgeItemTag("plates/iron"))
+                .vanilla()
+                .texture(Create.asResource("block/cogwheel"), ExtendedCogwheels.asResource("block/iron_cogwheel"))
+                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_iron_cogwheel"))
                 .build();
 
-        create(AllBlocks.BRASS_BLOCK.get(), "block/brass_cogwheel")
-                .chunky()
+        create(AllBlocks.BRASS_BLOCK.get())
                 .condition(AllTags.forgeItemTag("plates/brass"))
                 .condition(AllTags.forgeItemTag("ingots/brass"))
+                .chunky()
+                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/brass_cogwheel"))
                 .build();
 
-        create(AllBlocks.INDUSTRIAL_IRON_BLOCK.get(), "block/steel_cogwheel")
-                .chunky()
+        create(AllBlocks.INDUSTRIAL_IRON_BLOCK.get())
                 .condition(AllTags.forgeItemTag("plates/steel"))
                 .condition(AllTags.forgeItemTag("ingots/steel"))
+                .chunky()
+                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/steel_cogwheel"))
                 .build();
     }
 
-    public static CogwheelMaterialBuilder create(Block block, ResourceLocation texture) {
-        return new CogwheelMaterialBuilder(block.defaultBlockState(), texture);
-    }
-
-    private static CogwheelMaterialBuilder create(Block block, String texture) {
-        return create(block, ExtendedCogwheels.asResource(texture));
+    public static CogwheelMaterialBuilder create(Block block) {
+        return new CogwheelMaterialBuilder(block.defaultBlockState());
     }
 
     public static Optional<CogwheelMaterial> of(BlockState state) {
@@ -76,11 +84,8 @@ public class CogwheelMaterials {
         ITEM_TO_MATERIAL_MAP.put(predicate, state);
     }
 
-    public record CogwheelMaterial(StitchedSprite texture, PartialModel smallModel, PartialModel largeModel) {
-        public static CogwheelMaterial of(ResourceLocation texture, PartialModel smallModel, PartialModel largeModel) {
-            return new CogwheelMaterial(new StitchedSprite(texture), smallModel, largeModel);
-        }
-
+    public record CogwheelMaterial(Reference2ReferenceOpenHashMap<TextureAtlasSprite, TextureAtlasSprite> texture,
+                                   PartialModel smallModel, PartialModel largeModel) {
         public PartialModel getModel(boolean isLarge) {
             return isLarge ? largeModel : smallModel;
         }
@@ -89,14 +94,20 @@ public class CogwheelMaterials {
     public static class CogwheelMaterialBuilder {
         private final List<ItemPredicate> predicates = new ArrayList<>();
         private final BlockState state;
-        private final ResourceLocation texture;
+        private final Reference2ReferenceOpenHashMap<TextureAtlasSprite, TextureAtlasSprite> textures;
+
         private NonNullSupplier<PartialModel>
                 small = () -> ExtendedCogwheelsPartials.COGWHEEL,
                 large = () -> ExtendedCogwheelsPartials.LARGE_COGWHEEL;
 
-        public CogwheelMaterialBuilder(BlockState state, ResourceLocation texture) {
+        public CogwheelMaterialBuilder(BlockState state) {
             this.state = state;
-            this.texture = texture;
+            this.textures = new Reference2ReferenceOpenHashMap<>();
+        }
+
+        public CogwheelMaterialBuilder texture(ResourceLocation old, ResourceLocation replacement) {
+            textures.put(new StitchedSprite(old).get(), new StitchedSprite(replacement).get());
+            return this;
         }
 
         public CogwheelMaterialBuilder condition(Item predicate) {
@@ -115,6 +126,12 @@ public class CogwheelMaterials {
             return this;
         }
 
+        public CogwheelMaterialBuilder vanilla() {
+            small = () -> AllPartialModels.SHAFTLESS_COGWHEEL;
+            large = () -> AllPartialModels.SHAFTLESS_LARGE_COGWHEEL;
+            return this;
+        }
+
         public CogwheelMaterialBuilder smallModel(@NotNull PartialModel partialModel) {
             small = () -> partialModel;
             return this;
@@ -126,8 +143,12 @@ public class CogwheelMaterials {
         }
 
         public void build() {
-            MATERIAL_MAP.put(state, CogwheelMaterial.of(texture, small.get(), large.get()));
+            MATERIAL_MAP.put(state, new CogwheelMaterial(textures, small.get(), large.get()));
             predicates.forEach(predicate -> addItemCondition(predicate, state));
         }
+    }
+
+    public static void init() {
+
     }
 }

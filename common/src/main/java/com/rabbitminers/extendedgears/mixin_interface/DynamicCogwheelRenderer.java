@@ -64,7 +64,7 @@ public class DynamicCogwheelRenderer {
             Optional<CogwheelMaterial> material = CogwheelMaterials.of(state);
             if (material.isEmpty())
                 return BakedModelHelper.generateModel(template, sprite -> null);
-            map.put(STRIPPED_LOG_TEMPLATE.get(), material.get().texture().get());
+            map = material.get().texture();
         }
 
         return BakedModelHelper.generateModel(template, map::get);

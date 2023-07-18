@@ -1,6 +1,7 @@
 package com.rabbitminers.extendedgears;
 
 import com.rabbitminers.extendedgears.base.lang.ExtendedCogwheelsLanguageProvider;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
@@ -33,6 +34,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();
+        CogwheelMaterials.init();
     }
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
