@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
 import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
@@ -16,7 +17,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+
+import java.util.Optional;
 
 @Mixin(BracketedKineticBlockEntity.class)
 public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity implements IDynamicMaterialBlockEntity {
@@ -33,20 +37,29 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
 
     @Override
     public InteractionResult applyMaterialIfValid(ItemStack stack) {
-        if (!(stack.getItem()instanceof BlockItem blockItem))
-            return InteractionResult.PASS;
-        BlockState material = blockItem.getBlock()
-                .defaultBlockState();
-        if (material == this.material)
-            return InteractionResult.PASS;
-        if (!material.is(BlockTags.PLANKS))
-            return InteractionResult.PASS;
-        if (level.isClientSide() && !isVirtual())
+        if (level == null || (level.isClientSide() && !isVirtual()))
             return InteractionResult.SUCCESS;
+        @Nullable BlockState material = getModelState(stack);
+        if (material == null)
+            return InteractionResult.PASS;
         this.material = material;
         notifyUpdate();
         level.levelEvent(2001, worldPosition, Block.getId(material));
         return InteractionResult.SUCCESS;
+    }
+
+    @Nullable
+    public BlockState getModelState(ItemStack stack) {
+        Optional<BlockState> custom = CogwheelMaterials.of(stack);
+        if (custom.isPresent() && custom.get() != this.material)
+            return custom.get();
+        if (!(stack.getItem() instanceof BlockItem blockItem))
+            return null;
+        BlockState material = blockItem.getBlock().defaultBlockState();
+        if (!material.is(BlockTags.PLANKS))
+            return null;
+        if (material == this.material) return null;
+        return material;
     }
 
     @Override
