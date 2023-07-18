@@ -1,6 +1,9 @@
 package com.rabbitminers.extendedgears.mixin_interface;
 
+import com.jozufozu.flywheel.core.PartialModel;
 import com.jozufozu.flywheel.core.StitchedSprite;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials.CogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
@@ -33,29 +36,38 @@ public class DynamicCogwheelRenderer {
 
     @Nullable
     public static BakedModel generateModel(CogwheelModelKey key) {
-        return generateModel(key.large() ? ExtendedCogwheelsPartials.LARGE_SHAFTLESS_COGWHEEL.get()
-                : ExtendedCogwheelsPartials.SHAFTLESS_COGWHEEL.get(), key.material());
+        Optional<CogwheelMaterial> material = CogwheelMaterials.of(key.material());
+        PartialModel model = material.isPresent() ? material.get().getModel(key.large())
+                : standardCogwheelModel(key.large());
+        return generateModel(model.get(),key.material());
     }
 
-    public static BakedModel generateModel(BakedModel template, BlockState planksBlockState) {
-        Block planksBlock = planksBlockState.getBlock();
+    public static PartialModel standardCogwheelModel(boolean isLarge) {
+        return isLarge ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
+    }
+
+    public static BakedModel generateModel(BakedModel template, BlockState state) {
+        Block planksBlock = state.getBlock();
         ResourceLocation id = RegisteredObjects.getKeyOrThrow(planksBlock);
         String path = id.getPath();
+
+        Map<TextureAtlasSprite, TextureAtlasSprite> map = new Reference2ReferenceOpenHashMap<>();
 
         if (path.endsWith("_planks")) {
             String namespace = id.getNamespace();
             String wood = path.substring(0, path.length() - 7);
             BlockState logBlockState = getStrippedLogState(namespace, wood);
 
-            Map<TextureAtlasSprite, TextureAtlasSprite> map = new Reference2ReferenceOpenHashMap<>();
-
             map.put(STRIPPED_LOG_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.SOUTH));
             map.put(STRIPPED_LOG_TOP_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.UP));
-
-            return BakedModelHelper.generateModel(template, map::get);
+        } else {
+            Optional<CogwheelMaterial> material = CogwheelMaterials.of(state);
+            if (material.isEmpty())
+                return BakedModelHelper.generateModel(template, sprite -> null);
+            map.put(STRIPPED_LOG_TEMPLATE.get(), material.get().texture().get());
         }
 
-        return BakedModelHelper.generateModel(template, sprite -> null);
+        return BakedModelHelper.generateModel(template, map::get);
     }
 
     public static BlockState getStrippedLogState(String namespace, String wood) {
