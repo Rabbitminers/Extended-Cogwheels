@@ -5,6 +5,9 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.base.data.CogwheelConstants;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
 import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.utility.Couple;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -14,6 +17,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -116,13 +120,30 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 .unlockedBy(I::andesite).viaShapeless(b -> b.requires(blocks.getFirst().get()).requires(I.planks()));
     }
 
-    Couple<GeneratedRecipe>
-        HALF_SHAFT = cogwheelRecipes(CogwheelConstants.HALF_SHAFT_COGWHEELS),
-        SHAFTLESS = cogwheelRecipes(CogwheelConstants.SHAFTLESS_COGWHEELS);
-
     GeneratedRecipe
-        SMALL_TO_LARGE_HALF_SHAFT = smallToLargeRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
-        SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS);
+
+    HALF_SHAFT = create(ExtendedCogwheelsBlocks.HALF_SHAFT_COGWHEEL).unlockedBy(I::andesite)
+            .viaShapeless(b -> b.requires(I.andesite())
+                    .requires(I.planks())),
+
+    LARGE_HALF_SHAFT = create(ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_COGWHEEL)
+            .unlockedBy(I::andesite).viaShapeless(b -> b.requires(I.andesite())
+                    .requires(I.planks())
+                    .requires(I.planks())),
+
+    SHAFTLESS = create(ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL).unlockedBy(I::andesite)
+            .viaShapeless(b -> b.requires(I.buttons())
+                    .requires(I.planks())),
+
+    LARGE_SHAFTLESS = create(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL)
+            .unlockedBy(I::andesite).viaShapeless(b -> b.requires(I.buttons())
+                    .requires(I.planks())
+                    .requires(I.planks()));
+    ;
+    GeneratedRecipe
+
+    SMALL_TO_LARGE_HALF_SHAFT = smallToLargeRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
+    SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS);
 
     @Deprecated
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> inputMaterialSet, E input, E output) {

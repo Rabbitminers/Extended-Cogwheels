@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "create:large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "create:large_cogwheel",
+      "required": false
+    },
+    "extendedgears:large_half_shaft_cogwheel",
+    "extendedgears:large_shaftless_cogwheel"
+  ]
+}

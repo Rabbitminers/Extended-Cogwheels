@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "create:cogwheel",
+      "required": false
+    },
+    "extendedgears:half_shaft_cogwheel",
+    "extendedgears:shaftless_cogwheel"
+  ]
+}

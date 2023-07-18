@@ -38,6 +38,10 @@ public class ExtendedCogwheelsRecipeProvider extends RecipeProvider {
         static TagKey<Item> planks() {
             return ItemTags.PLANKS;
         }
+
+        static TagKey<Item> buttons() {
+            return ItemTags.BUTTONS;
+        }
     }
 
     protected GeneratedRecipe register(GeneratedRecipe recipe) {

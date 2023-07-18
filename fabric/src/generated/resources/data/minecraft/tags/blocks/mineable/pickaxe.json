@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "extendedgears:half_shaft_cogwheel",
+    "extendedgears:large_half_shaft_cogwheel",
+    "extendedgears:shaftless_cogwheel",
+    "extendedgears:large_shaftless_cogwheel"
+  ]
+}
