@@ -2,6 +2,7 @@ package com.rabbitminers.extendedgears.mixin_interface;
 
 import com.jozufozu.flywheel.core.StitchedSprite;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
 import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
@@ -32,8 +33,8 @@ public class DynamicCogwheelRenderer {
 
     @Nullable
     public static BakedModel generateModel(CogwheelModelKey key) {
-        return key.state().getBlock() instanceof ICogwheelModelProvider cogwheelModelProvider
-            ? generateModel(cogwheelModelProvider.getTemplate(key.large()).get(), key.material()) : null;
+        return generateModel(key.large() ? ExtendedCogwheelsPartials.LARGE_SHAFTLESS_COGWHEEL.get()
+                : ExtendedCogwheelsPartials.SHAFTLESS_COGWHEEL.get(), key.material());
     }
 
     public static BakedModel generateModel(BakedModel template, BlockState planksBlockState) {

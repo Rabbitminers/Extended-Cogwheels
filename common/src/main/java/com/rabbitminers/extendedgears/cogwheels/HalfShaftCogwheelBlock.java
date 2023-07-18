@@ -51,7 +51,7 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements ICogwheelMo
         super.createBlockStateDefinition(builder);
     }
 
-    public Direction.AxisDirection getAxisDirection(BlockState state) {
+    public static Direction.AxisDirection getAxisDirection(BlockState state) {
         return state.getValue(AXIS_DIRECTION) ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE;
     }
 
