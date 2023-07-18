@@ -37,14 +37,14 @@ public class ShaftlessCogwheelBlock extends CogWheelBlock implements ICogwheelMo
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
-                                 BlockHitResult ray) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
+                                          BlockHitResult ray) {
         return super.use(state, world, pos, player, hand, ray);
     }
 
     @Override
     public PartialModel getTemplate(boolean large) {
-        return large ? ExtendedCogwheelsPartials.LARGE_SHAFTLESS_COGWHEEL : ExtendedCogwheelsPartials.SHAFTLESS_COGWHEEL;
+        return large ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
     }
 
     @Override

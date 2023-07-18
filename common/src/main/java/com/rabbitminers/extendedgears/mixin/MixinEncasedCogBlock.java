@@ -4,15 +4,12 @@ import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
-import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -22,9 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EncasedCogwheelBlock.class)
 public class MixinEncasedCogBlock extends Block implements ICogwheelModelProvider {
@@ -44,7 +39,7 @@ public class MixinEncasedCogBlock extends Block implements ICogwheelModelProvide
 
     @Override
     public PartialModel getTemplate(boolean large) {
-        return large ? ExtendedCogwheelsPartials.LARGE_SHAFTLESS_COGWHEEL : ExtendedCogwheelsPartials.SHAFTLESS_COGWHEEL;
+        return large ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
     }
 
     @Redirect(
