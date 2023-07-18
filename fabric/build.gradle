@@ -81,8 +81,7 @@ dependencies {
 
     // Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
     // See root gradle.properties to choose which to use at runtime.
-    switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {
-        case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
+    switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
         case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"); break
         case "emi": modLocalRuntime("dev.emi:emi:${emi_version}"); break
         case "disabled": break
