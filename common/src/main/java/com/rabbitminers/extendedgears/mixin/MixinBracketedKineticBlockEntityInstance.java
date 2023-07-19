@@ -123,8 +123,8 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
         return getRotatingMaterial().model(key, () -> {
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             BlockState state = key.state();
-            AxisDirection axisDirection = state.getBlock() instanceof HalfShaftCogwheelBlock halfShaftCogwheelBlock
-                    ? halfShaftCogwheelBlock.getAxisDirection(state)
+            AxisDirection axisDirection = state.getBlock() instanceof HalfShaftCogwheelBlock
+                    ? HalfShaftCogwheelBlock.getAxisDirection(state)
                     : AxisDirection.POSITIVE;
             Direction dir = Direction.fromAxisAndDirection(state.getValue(RotatedPillarKineticBlock.AXIS), axisDirection);
             PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();

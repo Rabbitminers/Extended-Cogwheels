@@ -8,6 +8,7 @@
   ],
   "mixins": [
     "MixinAllBlockEntityTypes",
+    "MixinAllBlocks",
     "MixinBracketedKineticBlockEntity",
     "MixinBracketedKineticBlockEntityInstance",
     "MixinBracketedKineticBlockEntityRenderer",
