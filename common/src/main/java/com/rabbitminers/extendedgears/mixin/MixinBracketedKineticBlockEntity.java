@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.rabbitminers.extendedgears.cogwheels.CogwheelLimits;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
 import com.rabbitminers.extendedgears.cogwheels.legacy.ICustomCogwheel;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
@@ -67,37 +68,13 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         this.material = material;
     }
 
-    // TODO: Reimplement limits
-    /*
-    private int getStressLimit() {
-        Integer stressLimit = null;
-        if (getBlockState().getBlock() instanceof ICustomCogwheel cogwheel)
-            stressLimit = ExtendedCogwheelsConfig.getStressLimitByMaterial(cogwheel.getMaterial());
-        return stressLimit == null ? ExtendedCogwheelsConfig.SPRUCE_COGWHEEL_STRESS_LIMITS.get()
-                : stressLimit;
-    }
-
-    private int getRotationalSpeedLimit() {
-        Integer stressLimit = null;
-        if (getBlockState().getBlock() instanceof ICustomCogwheel cogwheel)
-            stressLimit = ExtendedCogwheelsConfig.getRotationLimitByMaterial(cogwheel.getMaterial());
-        return stressLimit == null ? ExtendedCogwheelsConfig.SPRUCE_COGWHEEL_ROTATION_LIMITS.get()
-                : stressLimit;
-    }
-
     public void tick() {
         super.tick();
-        if (!(this.getBlockState().getBlock() instanceof ICogWheel)
-                || level == null || level.isClientSide)
-            return;
-        boolean shouldBreak = (ExtendedCogwheelsConfig.APPLY_ROTATION_LIMITS.get()
-                && Math.abs(speed) > getRotationalSpeedLimit())
-                || (ExtendedCogwheelsConfig.APPLY_STRESS_LIMITS.get()
-                && Math.abs(capacity) > getStressLimit());
-        if (shouldBreak)
-            level.destroyBlock(worldPosition, true);
+        if (material == null) return;
+        boolean shouldBreak = (Math.abs(speed) > CogwheelLimits.getStressLimit(this.material))
+                || (Math.abs(capacity) > CogwheelLimits.getStressLimit(this.material));
+        level.destroyBlock(worldPosition, true);
     }
-     */
 
     protected void redraw() {
         if (!isVirtual())
