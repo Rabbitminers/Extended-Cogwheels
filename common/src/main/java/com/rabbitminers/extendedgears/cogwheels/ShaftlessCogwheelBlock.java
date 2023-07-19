@@ -8,6 +8,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
+import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -28,6 +30,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import static com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock.AXIS;
+import static com.simibubi.create.foundation.block.ProperWaterloggedBlock.WATERLOGGED;
 
 public class ShaftlessCogwheelBlock extends CogWheelBlock implements ICogwheelModelProvider {
     public VoxelShape voxelShape = Block.box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D);
@@ -54,7 +57,8 @@ public class ShaftlessCogwheelBlock extends CogWheelBlock implements ICogwheelMo
             boolean isLarge = ICogWheel.isLargeCog(state);
             BlockState newState = isLarge ? AllBlocks.LARGE_COGWHEEL.getDefaultState()
                     : AllBlocks.COGWHEEL.getDefaultState();
-            newState = newState.setValue(AXIS, state.getValue(AXIS));
+            newState = newState.setValue(AXIS, state.getValue(AXIS))
+                    .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
             BlockEntity oldBe = level.getBlockEntity(pos);
             if (!(oldBe instanceof IDynamicMaterialBlockEntity oldDyn))
                 return InteractionResult.FAIL;
