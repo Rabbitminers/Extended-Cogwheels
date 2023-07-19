@@ -34,9 +34,7 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
             map.put(material, cogwheelCuttingRecipe(input.get(material), output.get(material)));
         return map;
     }
-
-
-
+    
     GeneratedRecipe
         LARGE = cogwheelCuttingRecipe(AllBlocks.LARGE_COGWHEEL, ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL),
         SMALL = cogwheelCuttingRecipe(AllBlocks.COGWHEEL, ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL);

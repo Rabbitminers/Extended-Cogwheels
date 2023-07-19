@@ -8,6 +8,8 @@ import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
+import com.simibubi.create.foundation.data.recipe.StandardRecipeGen;
 import com.simibubi.create.foundation.utility.Couple;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -143,7 +145,19 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     GeneratedRecipe
 
     SMALL_TO_LARGE_HALF_SHAFT = smallToLargeRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
-    SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS);
+    SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS),
+    SHAFTLESS_TO_STANDARD = create(AllBlocks.COGWHEEL).unlockedBy(I::andesite)
+            .viaShapeless(b -> b.requires(ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL.get())
+                    .requires(I.planks())),
+    LARGE_SHAFTLESS_TO_STANDARD = create(AllBlocks.LARGE_COGWHEEL).unlockedBy(I::andesite)
+            .viaShapeless(b -> b.requires(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL.get())
+            .requires(I.planks())),
+    PISTON_EXTENSION_POLE = create(AllBlocks.PISTON_EXTENSION_POLE).returns(8)
+            .unlockedBy(I::andesite).viaShaped(b -> b.define('A', I.andesite())
+                    .define('P', ItemTags.PLANKS)
+                    .pattern("A")
+                    .pattern("P")
+                    .pattern("A"));
 
     @Deprecated
     private <T extends Block, E extends Enum<E> & ICogwheelMaterial> GeneratedRecipe cogwheelSmeltingRecipe(CogwheelMaterialList<T, E> inputMaterialSet, E input, E output) {
