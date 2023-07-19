@@ -41,8 +41,9 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
 
     @Shadow protected abstract PoseStack rotateToAxis(Direction.Axis axis);
 
+    @Nullable protected CogwheelModelKey key;
+
     protected boolean large;
-    protected CogwheelModelKey key;
 
     public MixinBracketedKineticBlockEntityInstance(MaterialManager materialManager, BracketedKineticBlockEntity blockEntity) {
         super(materialManager, blockEntity);
@@ -112,8 +113,10 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
 
     @Override
     public boolean shouldReset() {
-        return super.shouldReset() || (blockEntity instanceof IDynamicMaterialBlockEntity dynamicMaterialBlockEntity
-                && key.material() != dynamicMaterialBlockEntity.getMaterial());
+        boolean changed = false;
+        if (blockEntity instanceof IDynamicMaterialBlockEntity dynamicMaterialBlockEntity && key != null)
+            changed = key.material() != dynamicMaterialBlockEntity.getMaterial();
+        return super.shouldReset() || changed;
     }
 
     @Override

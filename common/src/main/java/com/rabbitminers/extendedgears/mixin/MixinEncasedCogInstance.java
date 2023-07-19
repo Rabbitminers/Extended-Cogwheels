@@ -31,6 +31,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -53,7 +54,7 @@ public class MixinEncasedCogInstance extends KineticBlockEntityInstance<KineticB
 
     protected KineticBlockEntity blockEntity;
     protected boolean large;
-    protected CogwheelModelKey key;
+    @Nullable protected CogwheelModelKey key;
 
 
     public MixinEncasedCogInstance(MaterialManager materialManager, KineticBlockEntity blockEntity) {
@@ -87,7 +88,7 @@ public class MixinEncasedCogInstance extends KineticBlockEntityInstance<KineticB
     @Override
     public boolean shouldReset() {
         return super.shouldReset() || (blockEntity instanceof IDynamicMaterialBlockEntity dynamicMaterialBlockEntity
-                && key.material() != dynamicMaterialBlockEntity.getMaterial());
+                && key != null && key.material() != dynamicMaterialBlockEntity.getMaterial());
     }
 
     @Redirect(
@@ -99,6 +100,7 @@ public class MixinEncasedCogInstance extends KineticBlockEntityInstance<KineticB
     )
     public Instancer<RotatingData> changeCogwheelModel(Material<RotatingData> instance, PartialModel partial, BlockState referenceState,
                Direction dir, Supplier<PoseStack> modelTransform) {
+        if (key == null) return instance.getModel(partial);
         return instance.model(key, () -> {
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();
