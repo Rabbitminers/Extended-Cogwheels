@@ -13,6 +13,7 @@ import com.rabbitminers.extendedgears.mixin_interface.DynamicCogwheelRenderer;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.decoration.copycat.CopycatModel;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
@@ -119,7 +120,6 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
     protected Instancer<RotatingData> getModel() {
         if (key == null)
             return super.getModel();
-
         return getRotatingMaterial().model(key, () -> {
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             BlockState state = key.state();

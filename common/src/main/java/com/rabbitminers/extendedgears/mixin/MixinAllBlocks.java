@@ -1,10 +1,10 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.minecraft.client.renderer.RenderType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -25,6 +25,6 @@ public class MixinAllBlocks {
             remap = false
     )
     private static <T extends CogWheelBlock, P> BlockBuilder<T, P> changeLayerType(BlockBuilder<T, P> instance, NonNullSupplier<T> block) {
-        return instance.initialProperties(block).addLayer(() -> RenderType::translucent);
+        return instance.initialProperties(block).transform(ExtendedCogwheelsBlocks.renderTypeTransformer());
     }
 }
