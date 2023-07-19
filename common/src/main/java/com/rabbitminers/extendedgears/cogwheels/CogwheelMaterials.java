@@ -11,7 +11,6 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -23,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-
 public class CogwheelMaterials {
     private static final Map<BlockState, CogwheelMaterial> MATERIAL_MAP = new HashMap<>();
     private static final Map<ItemPredicate, BlockState> ITEM_TO_MATERIAL_MAP = new HashMap<>();
@@ -84,7 +82,7 @@ public class CogwheelMaterials {
         ITEM_TO_MATERIAL_MAP.put(predicate, state);
     }
 
-    public record CogwheelMaterial(Reference2ReferenceOpenHashMap<TextureAtlasSprite, TextureAtlasSprite> texture,
+    public record CogwheelMaterial(Reference2ReferenceOpenHashMap<StitchedSprite, StitchedSprite> texture,
                                    PartialModel smallModel, PartialModel largeModel) {
         public PartialModel getModel(boolean isLarge) {
             return isLarge ? largeModel : smallModel;
@@ -94,7 +92,7 @@ public class CogwheelMaterials {
     public static class CogwheelMaterialBuilder {
         private final List<ItemPredicate> predicates = new ArrayList<>();
         private final BlockState state;
-        private final Reference2ReferenceOpenHashMap<TextureAtlasSprite, TextureAtlasSprite> textures;
+        private final Reference2ReferenceOpenHashMap<StitchedSprite, StitchedSprite> textures;
 
         private NonNullSupplier<PartialModel>
                 small = () -> ExtendedCogwheelsPartials.COGWHEEL,
@@ -106,7 +104,7 @@ public class CogwheelMaterials {
         }
 
         public CogwheelMaterialBuilder texture(ResourceLocation old, ResourceLocation replacement) {
-            textures.put(new StitchedSprite(old).get(), new StitchedSprite(replacement).get());
+            textures.put(new StitchedSprite(old), new StitchedSprite(replacement));
             return this;
         }
 
