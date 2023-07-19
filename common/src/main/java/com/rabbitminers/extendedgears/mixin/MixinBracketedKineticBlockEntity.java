@@ -73,7 +73,8 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         if (material == null) return;
         boolean shouldBreak = (Math.abs(speed) > CogwheelLimits.getStressLimit(this.material))
                 || (Math.abs(capacity) > CogwheelLimits.getStressLimit(this.material));
-        level.destroyBlock(worldPosition, true);
+        if (shouldBreak)
+            level.destroyBlock(worldPosition, true);
     }
 
     protected void redraw() {
