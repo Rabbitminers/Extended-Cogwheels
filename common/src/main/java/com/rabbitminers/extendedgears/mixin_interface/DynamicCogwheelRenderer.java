@@ -39,7 +39,7 @@ public class DynamicCogwheelRenderer {
         Optional<CogwheelMaterial> material = CogwheelMaterials.of(key.material());
         PartialModel model = material.isPresent() ? material.get().getModel(key.large())
                 : standardCogwheelModel(key.large());
-        return generateModel(model.get(),key.material());
+        return generateModel(model.get(), key.material());
     }
 
     public static PartialModel standardCogwheelModel(boolean isLarge) {

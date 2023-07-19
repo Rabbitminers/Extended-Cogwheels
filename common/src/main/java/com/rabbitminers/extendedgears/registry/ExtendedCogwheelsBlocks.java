@@ -8,6 +8,7 @@ import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
+import com.simibubi.create.content.trains.track.TrackBlock;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
@@ -15,7 +16,10 @@ import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MaterialColor;
 
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
@@ -27,14 +31,22 @@ public class ExtendedCogwheelsBlocks {
                 .properties(p -> p.color(MaterialColor.DIRT))
                 .transform(BlockStressDefaults.setNoImpact())
                 .transform(axeOrPickaxe())
+                .transform(renderTypeTransformer())
                 .blockstate(BlockStateGen.axisBlockProvider(false))
                 .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
-                .addLayer(() -> RenderType::translucent)
                 .item(CogwheelBlockItem::new)
                 .tag(isLarge ? ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.LARGE_COGWHEEL.tag
                         : ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.SMALL_COGWHEEL.tag)
                 .tag(ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.COGWHEEL.tag)
                 .build();
+    }
+
+    public static <B extends Block, P> NonNullUnaryOperator<BlockBuilder<B, P>> renderTypeTransformer() {
+        return b -> b.properties(Properties::noOcclusion)
+                .addLayer(() -> RenderType::solid)
+                .addLayer(() -> RenderType::cutout)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .addLayer(() -> RenderType::translucent);
     }
 
     private static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
