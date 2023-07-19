@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
+    "extendedgears:half_shaft_cogwheel",
+    "extendedgears:shaftless_cogwheel",
     {
       "id": "create:cogwheel",
       "required": false
-    },
-    "extendedgears:half_shaft_cogwheel",
-    "extendedgears:shaftless_cogwheel"
+    }
   ]
 }
