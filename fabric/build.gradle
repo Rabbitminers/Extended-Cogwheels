@@ -8,16 +8,21 @@ architectury {
 }
 
 loom {
-    accessWidenerPath.set(project(":common").loom.accessWidenerPath)
+    Project common = project(":common")
+    Project fabric = project(":fabric")
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+
     runs {
-        create("data") {
-            inherit(getByName("client"))
-            name("Minecraft Data")
-            property("fabric-api.datagen")
-            property("fabric-api.datagen.modid", mod_id)
-            property("fabric-api.datagen.output-dir", project(":fabric").file("src/generated/resources").absolutePath)
-            property("fabric-api.datagen.strict-validation")
-            property("fabric-api.datagen.assets-dir", project(":fabric").file("src/main/resources/assets").absolutePath)
+        datagen {
+            client()
+
+            name "Minecraft Data"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${common.file("src/generated/resources")}"
+            vmArg "-Dfabric-api.datagen.modid=${archives_base_name}"
+            vmArg "-Dporting_lib.datagen.existing_resources=${common.file("src/main/resources")}"
+
+            environmentVariable("DATAGEN", "TRUE")
         }
     }
 }
@@ -39,19 +44,6 @@ repositories {
     maven { url = "https://maven.cafeteria.dev/releases" } // Fake Player API
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
     maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
-    maven {
-        url = "https://maven.saps.dev/minecraft"
-        content {
-            includeGroup "dev.latvian.mods"
-        }
-    }  // saps.dev Maven (KubeJS and Rhino)
-    maven {
-        // Shedaniel's maven (Architectury API)
-        url = "https://maven.architectury.dev"
-        content {
-            includeGroup "dev.architectury"
-        }
-    }
 }
 
 dependencies {
@@ -66,22 +58,13 @@ dependencies {
     modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
 
     // Development QOL
-    // modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
+    modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
     modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
-
-    // Kubejs
-    // Loom (Fabric / Quilt / Architectury)
-    modImplementation("dev.latvian.mods:kubejs-fabric:${kubejs_version}")
-
-    modLocalRuntime("curse.maven:byg-391378:4039377");
-    modLocalRuntime("curse.maven:terrablender-565956:3957975");
-
-    // these two are unfortunately needed since fg.deobf doesn't respect transitive dependencies yet
-    // implementation "dev.latvian.mods:rhino:${rhino_version}"
 
     // Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
     // See root gradle.properties to choose which to use at runtime.
-    switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
+    switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {
+        case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_fabric_version}"); break
         case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"); break
         case "emi": modLocalRuntime("dev.emi:emi:${emi_version}"); break
         case "disabled": break
@@ -95,21 +78,12 @@ dependencies {
 //    modCompileOnly("dev.emi:emi:${emi_version}")
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDir("src/generated/resources")
-            exclude("**/.cache")
-        }
-    }
-}
-
 processResources {
     from(rootProject.file("common/src/main/resources")) {
         include("**/**")
         duplicatesStrategy = DuplicatesStrategy.WARN
     }
-    // and common generated resources
+
     from(rootProject.file("common/src/generated/resources")) {
         include("**/**")
         exclude("**/.cache")
@@ -147,6 +121,14 @@ remapJar {
 jar {
     classifier "dev"
 }
+
+sourceSets.main {
+    resources {
+        srcDir("src/generated/resources")
+        exclude("src/generated/resources/.cache")
+    }
+}
+
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar

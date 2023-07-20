@@ -7,12 +7,30 @@ architectury {
     forge()
 }
 
+// def generatedResources = file("../common/src/generated")
+// def generatedResources = file("../forge/src/generated")
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
     forge {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+    }
+
+    runs {
+        data {
+            data()
+            name "Forge Datagen"
+
+            programArgs "--all", "--mod", archives_base_name
+            vmArg '-Dforge.logging.markers=REGISTRIES'
+            vmArg '-Dforge.logging.console.level=debug'
+            programArgs "--output", "${project.rootProject.file("forge/src/generated/resources")}"
+            programArgs "--existing", "${project.rootProject.file("common/src/main/resources")}"
+            programArgs "--existing-mod", "create"
+            programArgs "--flat"
+        }
     }
 }
 
@@ -35,9 +53,9 @@ repositories {
         }
     }
     maven {
-        url = "https://maven.saps.dev/minecraft"
+        url 'https://www.cursemaven.com'
         content {
-            includeGroup "dev.latvian.mods"
+            includeGroup "curse.maven"
         }
     }
 }
@@ -51,15 +69,22 @@ dependencies {
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
     modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
     modImplementation("com.jozufozu.flywheel:flywheel-forge-${flywheel_forge_minecraft_version}:${flywheel_forge_version}")
+    /*
+    modImplementation("curse.maven:worldedit-225608:3697298")
+    modImplementation("curse.maven:davesbuildingextended-568645:4258159")
 
-    // KubeJS
-    modImplementation("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    modImplementation("curse.maven:se-499980:3842421")
+    modImplementation("curse.maven:su-412082:4548315")
 
+    modImplementation("curse.maven:db-362528:3965454")
+
+    modImplementation("curse.maven:createdeco-509285:4554163")
+     */
     // Development QOL
-//    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
+    // modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
 
     // if you would like to add integration with JEI, uncomment this line.
-//    modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
+    // modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
 }
 
 processResources {
@@ -88,34 +113,12 @@ processResources {
     }
 }
 
-def generatedResources = file("src/generated")
-
-sourceSets {
-    main {
-        resources {
-            srcDir("src/generated/resources")
-            exclude("**/.cache")
-        }
-    }
-
-}
-
 loom {
     forge {
         mixinConfig(
                 "examplemod-common.mixins.json",
                 "examplemod.mixins.json"
         )
-    }
-
-    runs {
-        data {
-            data()
-            programArgs "--all", "--mod", mod_id
-            programArgs('--existing', project(':common').file('src/main/resources').absolutePath)
-            programArgs('--existing', file('src/main/resources').absolutePath)
-            programArgs "--output", generatedResources.absolutePath
-        }
     }
 }
 
@@ -136,6 +139,14 @@ remapJar {
 jar {
     classifier "dev"
 }
+
+sourceSets.main {
+    resources {
+        srcDir("src/generated/resources")
+        exclude("src/generated/resources/.cache")
+    }
+}
+
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
