@@ -46,12 +46,9 @@ public class DynamicCogwheelRenderer {
         return isLarge ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
     }
 
-    public static BakedModel generateModel(BakedModel template, BlockState state) {
-        Block planksBlock = state.getBlock();
-        ResourceLocation id = RegisteredObjects.getKeyOrThrow(planksBlock);
-        String path = id.getPath();
-
+    public static BakedModel generateModel(BakedModel template, ResourceLocation id) {
         Map<TextureAtlasSprite, TextureAtlasSprite> map = new Reference2ReferenceOpenHashMap<>();
+        String path = id.getPath();
 
         if (path.endsWith("_planks")) {
             String namespace = id.getNamespace();
@@ -61,7 +58,7 @@ public class DynamicCogwheelRenderer {
             map.put(STRIPPED_LOG_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.SOUTH));
             map.put(STRIPPED_LOG_TOP_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.UP));
         } else {
-            Optional<CogwheelMaterial> material = CogwheelMaterials.of(state);
+            Optional<CogwheelMaterial> material = CogwheelMaterials.of(id);
             if (material.isEmpty())
                 return BakedModelHelper.generateModel(template, sprite -> null);
             material.get().texture().forEach((old, replacement) -> map.put(old.get(), replacement.get()));

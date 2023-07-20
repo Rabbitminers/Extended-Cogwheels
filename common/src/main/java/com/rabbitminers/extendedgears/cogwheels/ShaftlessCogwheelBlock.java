@@ -13,6 +13,7 @@ import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -62,7 +63,7 @@ public class ShaftlessCogwheelBlock extends CogWheelBlock implements ICogwheelMo
             BlockEntity oldBe = level.getBlockEntity(pos);
             if (!(oldBe instanceof IDynamicMaterialBlockEntity oldDyn))
                 return InteractionResult.FAIL;
-            BlockState material = oldDyn.getMaterial();
+            ResourceLocation material = oldDyn.getMaterial();
             level.setBlock(pos, newState, 3);
             if (!player.isCreative())
                 heldItem.shrink(1);

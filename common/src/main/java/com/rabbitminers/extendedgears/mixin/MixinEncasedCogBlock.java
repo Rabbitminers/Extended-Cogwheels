@@ -7,6 +7,8 @@ import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +54,7 @@ public class MixinEncasedCogBlock extends Block implements ICogwheelModelProvide
     public void transferMaterial(Level level, BlockPos pos, BlockState state) {
         if (!(level.getBlockEntity(pos) instanceof IDynamicMaterialBlockEntity cogWheelBlockEntity))
             return;
-        BlockState material = cogWheelBlockEntity.getMaterial();
+        ResourceLocation material = cogWheelBlockEntity.getMaterial();
         KineticBlockEntity.switchToBlockState(level, pos, state);
         if (!(level.getBlockEntity(pos) instanceof IDynamicMaterialBlockEntity encasedBlockEntity))
             return;
