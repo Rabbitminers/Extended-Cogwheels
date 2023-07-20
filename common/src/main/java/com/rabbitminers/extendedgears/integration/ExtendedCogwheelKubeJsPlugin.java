@@ -32,6 +32,10 @@ public class ExtendedCogwheelKubeJsPlugin extends KubeJSPlugin {
                 (location) -> new KubeJsCogwheelBuilder(location, true, SHAFTLESS));
     }
 
+    public void afterInit() {
+        
+    }
+
     public static CreateRegistrate registrate() {
         return REGISTRATE;
     }
