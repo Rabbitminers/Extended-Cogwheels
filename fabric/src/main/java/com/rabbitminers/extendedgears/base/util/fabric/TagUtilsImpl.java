@@ -1,8 +1,6 @@
 package com.rabbitminers.extendedgears.base.util.fabric;
 
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsTags;
-import com.simibubi.create.AllItems;
-import com.simibubi.create.AllTags;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
