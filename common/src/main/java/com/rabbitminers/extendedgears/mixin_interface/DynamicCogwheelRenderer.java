@@ -22,6 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -34,10 +35,9 @@ public class DynamicCogwheelRenderer {
 
     public static final String[] LOG_SUFFIXES = new String[] { "_log", "_stem" };
 
-    @Nullable
-    public static BakedModel generateModel(CogwheelModelKey key) {
-        Optional<CogwheelMaterial> material = CogwheelMaterials.of(key.material());
-        PartialModel model = material.isPresent() ? material.get().getModel(key.large())
+    public static @NotNull BakedModel generateModel(CogwheelModelKey key) {
+        CogwheelMaterial material = CogwheelMaterials.of(key.material());
+        PartialModel model = material != null ? material.getModel(key.large())
                 : standardCogwheelModel(key.large());
         return generateModel(model.get(), key.material());
     }
@@ -58,10 +58,10 @@ public class DynamicCogwheelRenderer {
             map.put(STRIPPED_LOG_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.SOUTH));
             map.put(STRIPPED_LOG_TOP_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.UP));
         } else {
-            Optional<CogwheelMaterial> material = CogwheelMaterials.of(id);
-            if (material.isEmpty())
+            CogwheelMaterial material = CogwheelMaterials.of(id);
+            if (material == null)
                 return BakedModelHelper.generateModel(template, sprite -> null);
-            material.get().texture().forEach((old, replacement) -> map.put(old.get(), replacement.get()));
+            material.texture().forEach((old, replacement) -> map.put(old.get(), replacement.get()));
         }
 
         return BakedModelHelper.generateModel(template, map::get);

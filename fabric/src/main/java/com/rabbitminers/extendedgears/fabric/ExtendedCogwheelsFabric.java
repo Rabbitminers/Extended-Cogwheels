@@ -9,7 +9,6 @@ public class ExtendedCogwheelsFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ExtendedCogwheels.init();
-        ExtendedCogwheelsLegacyBlocks.REGISTRATE.register();
-        CogwheelMaterials.commonSetup();
+        ExtendedCogwheels.registrate().register();
     }
 }

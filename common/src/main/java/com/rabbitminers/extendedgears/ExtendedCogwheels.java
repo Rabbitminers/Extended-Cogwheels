@@ -34,6 +34,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();
+        CogwheelMaterials.init();
     }
 
     public static void gatherData(DataGenerator gen, boolean isServer) {

@@ -3,14 +3,11 @@ package com.rabbitminers.extendedgears.cogwheels;
 import com.jozufozu.flywheel.core.PartialModel;
 import com.jozufozu.flywheel.core.StitchedSprite;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
-import com.rabbitminers.extendedgears.base.datatypes.BlockStateWrapper;
 import com.rabbitminers.extendedgears.base.datatypes.ItemPredicate;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,8 +16,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -28,8 +25,9 @@ public class CogwheelMaterials {
     public static final Map<ResourceLocation, CogwheelMaterial> MATERIAL_MAP = new HashMap<>();
     public static final Map<ItemPredicate, ResourceLocation> ITEM_TO_MATERIAL_MAP = new HashMap<>();
 
-    public static Optional<CogwheelMaterial> of(ResourceLocation location) {
-        return Optional.ofNullable(MATERIAL_MAP.get(location));
+    @Nullable
+    public static CogwheelMaterial of(ResourceLocation location) {
+        return MATERIAL_MAP.get(location);
     }
 
     public static Optional<ResourceLocation> of(ItemStack stack) {
@@ -39,26 +37,30 @@ public class CogwheelMaterials {
                 .findFirst();
     }
 
-    public static void clientSetup() {
+    public static void clientInit() {
         createMaterial("copper")
                 .vanilla()
                 .texture(Create.asResource("block/cogwheel"), ExtendedCogwheels.asResource("block/copper_cogwheel"))
-                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_copper_cogwheel"));
+                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_copper_cogwheel"))
+                .build();
 
         createMaterial("iron")
                 .vanilla()
                 .texture(Create.asResource("block/cogwheel"), ExtendedCogwheels.asResource("block/iron_cogwheel"))
-                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_iron_cogwheel"));
+                .texture(Create.asResource("block/large_cogwheel"), ExtendedCogwheels.asResource("block/large_iron_cogwheel"))
+                .build();
 
         createMaterial("brass")
                 .chunky()
-                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/brass_cogwheel"));
+                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/brass_cogwheel"))
+                .build();
 
         createMaterial("steel")
                 .chunky()
-                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/steel_cogwheel"));
+                .texture(new ResourceLocation("block/stripped_spruce_log"), ExtendedCogwheels.asResource("block/steel_cogwheel"))
+                .build();
     }
-    public static void commonSetup() {
+    public static void init() {
         createCondition("copper")
                 .condition(Items.COPPER_INGOT)
                 .condition(AllTags.forgeItemTag("plates/copper"));

@@ -10,6 +10,6 @@ public class ExtendedCogwheelsClient {
     public static void init() {
         BUFFER_CACHE.registerCompartment(DynamicCogwheelRenderer.COGWHEEL);
         ExtendedCogwheelsPartials.init();
-        CogwheelMaterials.clientSetup();
+        CogwheelMaterials.clientInit();
     }
 }
