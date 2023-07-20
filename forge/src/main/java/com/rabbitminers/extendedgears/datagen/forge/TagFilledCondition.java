@@ -38,6 +38,11 @@ public class TagFilledCondition implements ICondition {
         return true;
     }
 
+    @Override
+    public boolean test() {
+        return false;
+    }
+
     public String toString() {
         return "tag_filled(\"" + this.tag.location() + "\")";
     }
