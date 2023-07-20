@@ -5,7 +5,8 @@
 		"0": "create:block/cogwheel_axis",
 		"3": "create:block/axis_top",
 		"4": "block/stripped_spruce_log_top",
-		"5": "block/stripped_spruce_log"
+		"5": "block/stripped_spruce_log",
+		"particle": "block/stripped_spruce_log"
 	},
 	"elements": [
 		{

@@ -3,7 +3,8 @@
 	"parent": "create:block/large_wheels",
 	"textures": {
 		"4": "block/stripped_spruce_log_top",
-		"5": "block/stripped_spruce_log"
+		"5": "block/stripped_spruce_log",
+		"particle": "block/stripped_spruce_log"
 	},
 	"elements": [
 		{
