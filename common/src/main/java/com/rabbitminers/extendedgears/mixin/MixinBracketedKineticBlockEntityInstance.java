@@ -131,7 +131,7 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
                     : AxisDirection.POSITIVE;
             Direction dir = Direction.fromAxisAndDirection(state.getValue(RotatedPillarKineticBlock.AXIS), axisDirection);
             PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();
-            return new BlockModel(model, Blocks.AIR.defaultBlockState(), transform);
+            return BlockModel.of(model, Blocks.AIR.defaultBlockState(), transform);
         });
     }
 
