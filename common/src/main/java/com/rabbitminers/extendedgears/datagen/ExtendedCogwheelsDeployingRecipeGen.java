@@ -26,55 +26,6 @@ public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProces
         super(generator);
     }
 
-    private static String boolToSize(boolean isLarge) {
-        return isLarge ? "large" : "small";
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe deployedCogwheel(BlockEntry<?> smallCogwheeel, T material,
-            Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create(smallCogwheeel.get().asItem() + "_cogwheel", b -> {
-            b = whenTagsPopulated(b, material.getRecipeTags());
-            return transformer.apply(b, material, smallCogwheeel, null, false);
-        });
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe largeDeployedCogwheel(BlockEntry<?> smallCogwheel, BlockEntry<?> largeCogwheel,
-            T material, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return create(largeCogwheel.get().asItem() + "_cogwheel", b -> {
-            b = whenTagsPopulated(b, material.getRecipeTags());
-            return transformer.apply(b, material, smallCogwheel, largeCogwheel, true);
-        });
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> deployedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels,
-           Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        Map<T, GeneratedRecipe> map = new EnumMap<T, GeneratedRecipe>(materialType);
-        for (T material : materialType.getEnumConstants()) {
-            map.put(material, deployedCogwheel(cogwheels.get(material), material, transformer));
-        }
-        return map;
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> largeDeployedCogwheelMapper(CogwheelMaterialList<? extends Block, T> smallCogwheels,
-        CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        Map<T, GeneratedRecipe> map = new EnumMap<T, GeneratedRecipe>(materialType);
-        for (T material : materialType.getEnumConstants()) {
-            map.put(material, largeDeployedCogwheel(smallCogwheels.get(material), largeCogwheels.get(material), material, transformer));
-        }
-        return map;
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> CogwheelRecipePair<T> smallAndLargeDeployedRecipe(CogwheelMaterialList<? extends Block, T> smallCogwheels,
-           CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType, Function5<ProcessingRecipeBuilder, T, BlockEntry<?>, BlockEntry<?>, Boolean, ProcessingRecipeBuilder> transformer) {
-        return new CogwheelRecipePair<>(deployedCogwheelMapper(smallCogwheels, materialType, transformer),
-                largeDeployedCogwheelMapper(smallCogwheels, largeCogwheels, materialType, transformer));
-    }
-
     private Couple<GeneratedRecipe> smallAndLargeDeployedRecipe(Couple<BlockEntry<?>> blocks) {
         GeneratedRecipe small = create(blocks.getFirst().getId().getPath(), b ->
                 b.require(I.shaft()).require(I.planks()).output(blocks.getFirst().get()));

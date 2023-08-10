@@ -24,7 +24,6 @@ public class ExtendedCogwheels {
     public static final String NAME = "Extended Cogwheels";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     public static final int DATA_FIXER_VERSION = 1;
-
     private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID)
             .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
 
@@ -39,11 +38,19 @@ public class ExtendedCogwheels {
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
         if (isServer) {
+            #if MC_18
             gen.addProvider(new LangMerger(gen, MOD_ID, "Extended Cogwheels",
                     ExtendedCogwheelsLanguageProvider.values()));
             gen.addProvider(ExtendedCogwheelsStandardRecipeGen.create(gen));
             gen.addProvider(ExtendedCogwheelsDeployingRecipeGen.create(gen));
             gen.addProvider(ExtendedCogwheelsCuttingRecipeGen.create(gen));
+            #else
+            gen.addProvider(true, new LangMerger(gen, MOD_ID, "Extended Cogwheels",
+                    ExtendedCogwheelsLanguageProvider.values()));
+            gen.addProvider(true, ExtendedCogwheelsStandardRecipeGen.create(gen));
+            gen.addProvider(true, ExtendedCogwheelsDeployingRecipeGen.create(gen));
+            gen.addProvider(true, ExtendedCogwheelsCuttingRecipeGen.create(gen));
+            #endif
         }
     }
 

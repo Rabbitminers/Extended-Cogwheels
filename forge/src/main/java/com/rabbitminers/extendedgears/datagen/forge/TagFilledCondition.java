@@ -38,7 +38,7 @@ public class TagFilledCondition implements ICondition {
         return true;
     }
 
-    @Override
+    #if MC_18 @Override #endif
     public boolean test() {
         return false;
     }

@@ -18,13 +18,16 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.crypto.Data;
+#if MC_18
+import net.minecraft.data.HashCache;
+#else
+import net.minecraft.data.CachedOutput;
+#endif
 
 @SuppressWarnings("UnstableApiUsage")
 public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwheelsRecipeProvider {
@@ -50,14 +53,13 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
         GENERATORS.add(new ItemApplicationRecipeGen(gen));
 
         gen.addProvider(new DataProvider() {
-
             @Override
             public String getName() {
                 return "Extended Cogwheels' Processing Recipes";
             }
 
             @Override
-            public void run(HashCache dc) throws IOException {
+            public void run(#if MC_18 HashCache #else CachedOutput #endif dc) throws IOException {
                 GENERATORS.forEach(g -> {
                     try {
                         g.run(dc);

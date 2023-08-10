@@ -9,7 +9,12 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+#if MC_18
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+#else
+import net.minecraftforge.data.event.GatherDataEvent;
+#endif
+
 
 @Mod(ExtendedCogwheels.MOD_ID)
 public class ExtendedCogwheelsForge {

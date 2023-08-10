@@ -8,7 +8,6 @@ import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
 import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -23,9 +22,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+#if MC_18
+import java.util.Random;
+#else
+import net.minecraft.util.RandomSource;
+#endif
 
 public class DynamicCogwheelRenderer {
     public static final Compartment<CogwheelModelKey> COGWHEEL = new Compartment<>();
@@ -85,7 +91,12 @@ public class DynamicCogwheelRenderer {
                 .getBlockModel(state);
         if (model == null)
             return null;
+        #if MC_18
         Random random = new Random(42L);
+        #else
+        RandomSource random = RandomSource.create();
+        random.setSeed(42L);
+        #endif
         List<BakedQuad> quads = model.getQuads(state, side, random);
         if (!quads.isEmpty()) {
             return quads.get(0)
