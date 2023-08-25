@@ -43,7 +43,7 @@ public class MixinBracketedKineticBlockEntityRenderer extends KineticBlockEntity
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             BlockState state1 = key.state();
             AxisDirection axisDirection = state1.getBlock() instanceof HalfShaftCogwheelBlock halfShaftCogwheelBlock
-                    ? halfShaftCogwheelBlock.getAxisDirection(state1)
+                    ? HalfShaftCogwheelBlock.getAxisDirection(state1)
                     : AxisDirection.POSITIVE;
             Direction dir = Direction.fromAxisAndDirection(state1.getValue(RotatedPillarKineticBlock.AXIS), axisDirection);
             PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();

@@ -80,7 +80,7 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
 
         Direction facing = Direction.fromAxisAndDirection(axis, direction);
 
-        PartialModel shaftModel = getShaftModelFromBlockState(blockState.getBlock());
+        @Nullable PartialModel shaftModel = getShaftModelFromBlockState(blockState.getBlock());
         if (shaftModel == null)
             return;
 

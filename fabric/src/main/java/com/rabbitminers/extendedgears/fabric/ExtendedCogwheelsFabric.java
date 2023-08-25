@@ -10,5 +10,6 @@ public class ExtendedCogwheelsFabric implements ModInitializer {
     public void onInitialize() {
         ExtendedCogwheels.init();
         ExtendedCogwheels.registrate().register();
+        CogwheelMaterials.init();
     }
 }

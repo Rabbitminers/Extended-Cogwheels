@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "com.rabbitminers.extendedgears.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "extendedgears-common-refmap.json",
   "client": [
     "client.MixinHotbarStorage"
   ],

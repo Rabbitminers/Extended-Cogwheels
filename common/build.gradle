@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/examplemod.accesswidener")
+    accessWidenerPath = file("src/main/resources/extendedcogwheels.accesswidener")
 }
 
 repositories {
@@ -40,14 +40,6 @@ dependencies {
     // All dependencies except Flywheel and Registrate are NOT safe to use!
     // Flywheel and Registrate must also be used carefully due to differences.
     modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
-
-    // Kubejs
-    // Loom (Fabric / Quilt / Architectury)
-    // modImplementation("dev.latvian.mods:kubejs-fabric:${kubejs_version}")
-
-    // these two are unfortunately needed since fg.deobf doesn't respect transitive dependencies yet
-    // implementation "dev.latvian.mods:rhino:${rhino_version}"
-    // implementation "dev.architectury:architectury-fabric:${architectury_version}"
 }
 
 publishing {

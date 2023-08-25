@@ -69,22 +69,6 @@ dependencies {
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
     modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
     modImplementation("com.jozufozu.flywheel:flywheel-forge-${flywheel_forge_minecraft_version}:${flywheel_forge_version}")
-    /*
-    modImplementation("curse.maven:worldedit-225608:3697298")
-    modImplementation("curse.maven:davesbuildingextended-568645:4258159")
-
-    modImplementation("curse.maven:se-499980:3842421")
-    modImplementation("curse.maven:su-412082:4548315")
-
-    modImplementation("curse.maven:db-362528:3965454")
-
-    modImplementation("curse.maven:createdeco-509285:4554163")
-     */
-    // Development QOL
-    // modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
-
-    // if you would like to add integration with JEI, uncomment this line.
-    // modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
 }
 
 processResources {
@@ -116,8 +100,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "examplemod-common.mixins.json",
-                "examplemod.mixins.json"
+                "extendedcogwheels-common.mixins.json",
+                "extendedcogwheels.mixins.json"
         )
     }
 }

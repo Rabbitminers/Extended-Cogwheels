@@ -8,6 +8,5 @@ public class ExtendedCogwheelsClientImpl implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ExtendedCogwheelsClient.init();
-        CogwheelMaterials.clientInit();
     }
 }

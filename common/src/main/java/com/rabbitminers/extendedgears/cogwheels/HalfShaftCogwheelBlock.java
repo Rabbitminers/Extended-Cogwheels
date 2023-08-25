@@ -1,8 +1,5 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
-import com.jozufozu.flywheel.core.PartialModel;
-import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
