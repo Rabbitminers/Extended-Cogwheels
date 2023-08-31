@@ -54,7 +54,6 @@ public abstract class MixinNbtUtils {
             String block = updateBlockIfNeeded(original);
             if (block.equals(original)) return;
             tag.putString("Name", block);
-            System.out.println(tag);
         }
     }
 
