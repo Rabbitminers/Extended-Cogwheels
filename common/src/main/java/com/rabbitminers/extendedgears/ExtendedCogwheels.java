@@ -33,7 +33,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
         ExtendedCogwheelsDataFixers.init();
-        CogwheelMaterials.init();
+        ExtendedCogwheelsPackets.PACKETS.registerC2SListener();
     }
 
     public static void gatherData(DataGenerator gen, boolean isServer) {
