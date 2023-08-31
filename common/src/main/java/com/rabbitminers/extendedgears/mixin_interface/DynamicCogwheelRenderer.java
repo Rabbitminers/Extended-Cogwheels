@@ -27,11 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-#if MC_18
 import java.util.Random;
-#else
-import net.minecraft.util.RandomSource;
-#endif
 
 public class DynamicCogwheelRenderer {
     public static final Compartment<CogwheelModelKey> COGWHEEL = new Compartment<>();
@@ -91,12 +87,9 @@ public class DynamicCogwheelRenderer {
                 .getBlockModel(state);
         if (model == null)
             return null;
-        #if MC_18
+
         Random random = new Random(42L);
-        #else
-        RandomSource random = RandomSource.create();
-        random.setSeed(42L);
-        #endif
+
         List<BakedQuad> quads = model.getQuads(state, side, random);
         if (!quads.isEmpty()) {
             return quads.get(0)

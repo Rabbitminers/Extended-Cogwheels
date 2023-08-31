@@ -38,7 +38,8 @@ public class TagFilledCondition implements ICondition {
         return true;
     }
 
-    #if MC_18 @Override #endif
+    @Override
+    @SuppressWarnings("Deprecated")
     public boolean test() {
         return false;
     }

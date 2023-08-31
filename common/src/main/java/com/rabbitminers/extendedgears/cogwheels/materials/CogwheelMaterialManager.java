@@ -29,7 +29,7 @@ public class CogwheelMaterialManager {
     public static void fillItemMap() {
         for (CogwheelMaterial material : MATERIALS.values()) {
             for (Ingredient ingredient : material.items) {
-                for (ItemStack itemStack : ingredient.itemStacks) {
+                for (ItemStack itemStack : ingredient.getItems()) {
                     ITEM_TO_MATERIALS.put(itemStack.getItem(), material);
                 }
             }

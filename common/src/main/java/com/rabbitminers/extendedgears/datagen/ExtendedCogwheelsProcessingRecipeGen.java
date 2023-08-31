@@ -23,11 +23,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
-#if MC_18
 import net.minecraft.data.HashCache;
-#else
-import net.minecraft.data.CachedOutput;
-#endif
 
 @SuppressWarnings("UnstableApiUsage")
 public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwheelsRecipeProvider {
@@ -59,7 +55,7 @@ public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwh
             }
 
             @Override
-            public void run(#if MC_18 HashCache #else CachedOutput #endif dc) throws IOException {
+            public void run(HashCache dc) throws IOException {
                 GENERATORS.forEach(g -> {
                     try {
                         g.run(dc);
