@@ -51,11 +51,11 @@ ext {
         modmenu_version = "3.2.5"
         lazydfu_version = "0.1.2"
     } else if (minecraft_version == '1.19.2') {
-        qm_version = "21"
+        qm_version = "22"
         parchment_version = "2022.11.27"
 
         fabric_loader_version = "0.14.22"
-        fabric_api_version = "0.76.0+1.19.2"
+        fabric_api_version = "0.76.1+1.19.2"
 
         forge_version = "43.2.21"
 
@@ -66,7 +66,7 @@ ext {
         flywheel_forge_minecraft_version = "1.19.2"
         flywheel_forge_version = "0.6.9-18"
 
-        fabric_recipe_viewer = "REI"
+        fabric_recipe_viewer = "Undefined"
         jei_version = "11.2.0.254"
         rei_version = "9.1.580"
         emi_version = "0.6.1+1.19.2"
@@ -142,7 +142,7 @@ allprojects {
         annotationProcessor 'systems.manifold:manifold-preprocessor:2023.1.14'
         testAnnotationProcessor 'systems.manifold:manifold-preprocessor:2023.1.14'
 
-        annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+        // annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     }
 
     tasks.withType(JavaCompile) {

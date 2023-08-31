@@ -2,6 +2,7 @@ package com.rabbitminers.extendedgears.forge;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -23,6 +24,7 @@ public class ExtendedCogwheelsForge {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ExtendedCogwheels.registrate().registerEventListeners(eventBus);
         ExtendedCogwheels.init();
+        CogwheelMaterials.init();
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT,
                 () -> ExtendedCogwheelsClient::init);
