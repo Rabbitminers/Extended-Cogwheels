@@ -1,8 +1,70 @@
-# Extended Cogwheels (Multiloader)
+<h1 align="center">Extended Cogwheels (Multiloader)  
 
-[Forge & Fabric, 1.18.2 & 1.19.2] Adding more cogwheels to the createmod aswell as providing progression systems to modpack developers through configurations
+<p align="center">
+    <img src="logo.png" style="width: 10em">
+</p>
 
-### KubeJS Integration
+<a href="https://www.curseforge.com/minecraft/mc-mods/create/files"><img src="https://img.shields.io/badge/Available%20for-MC%201.18.2 TO 1.20.1-c70039" alt="Supported Versions"></a>
+<a href="https://www.curseforge.com/minecraft/mc-mods/create-extended-cogs"><img src="https://cf.way2muchnoise.eu/739973.svg" alt="CF"></a>
+<a href="https://www.curseforge.com/minecraft/mc-mods/create-extended-cogwheels-fabric"><img src="https://cf.way2muchnoise.eu/815006.svg" alt="CF"></a>
+<a href="https://github.com/Creators-of-Create/Create/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Rabbitminers/Extended-Cogwheels?style=flat&color=900c3f" alt="License"></a>
+<a href="https://discord.gg/GJsQadv9Mc"><img src="https://img.shields.io/discord/1069326955742244884?color=5865f2&label=Discord&style=flat" alt="Discord"></a>
+
+</h1>
+
+<p align="center">
+[Forge & Fabric, 1.18.2, 1.19.2 & 1.20.1] Adding more cogwheels to the create mod aswell as providing progression systems to modpack developers through configurations
+</p>
+
+<br />
+
+<hr/>
+
+### Datapack Integration
+
+As of 2.1 on 0.5.1 and above you are able to add new cogwheel materials through datapacks. You can find a guide on how to set up a datapack on the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Tutorials/Creating_a_data_pack). Once you have that set up under your namespace directory create a new directory called `cogwheels` which you can then add new materials to following this schema:
+
+```js
+{
+  // The ingredients are what the player can use on a cogwheel
+  // to get your new material. You can use both items and tags
+  // and specify as many as you like.
+  "ingredients": [
+    {
+      "tag": "some_mod:some_tag"
+    },
+    {
+      "item": "some_mod:some_item"
+    }
+  ],
+  // Here you can specify overwrites to the block models textures
+  // put the resource location of one of your models current
+  // textures under old and specify the new texture's location in
+  // replacement. You can set as many of these as you need.
+  "textures": [
+    {
+      "old": "create:small_cogwheel",
+      "replacement": "some_mod:new_texture"
+    }
+  ],
+  // Unless you need to replace the model, for example for brass
+  // and copper cogwheels you do not need to specify the models
+  // and they will default to the "vanilla" cogwheel models
+  "small_model": "create:cogwheel_shaftless",
+  "large_model": "create:large_cogwheel_shaftless",
+  // These limits will only be applied if limits are enabled in
+  // config. If you do not specify these fields they will default
+  "speed_limit": 128, // Defaults to the speed limit set in config 
+  "stress_limit": 2048 // Defaults to 2^31 (no limit)
+}
+```
+
+And that's it you can now use your new cogwheels. If you want to add custom assets you can include them in KubeJS or a Resource Pack.
+
+---
+
+### KubeJS Integration (Deprecated)
+KubeJS support has been deprecated please use datapacks to add new cogwheels
 
 As of version 2.1 and above extended cogwheels has allows for you to create your own custom cogwheels easily with KubeJS (when both mods are present)
 
