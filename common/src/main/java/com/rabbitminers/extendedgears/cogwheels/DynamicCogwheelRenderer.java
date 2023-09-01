@@ -1,10 +1,11 @@
-package com.rabbitminers.extendedgears.mixin_interface;
+package com.rabbitminers.extendedgears.cogwheels;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.jozufozu.flywheel.core.StitchedSprite;
-import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
-import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials.CogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
+import com.rabbitminers.extendedgears.cogwheels.materials.ClientCogwheelMaterial;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
 import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
@@ -18,10 +19,14 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -38,7 +43,7 @@ public class DynamicCogwheelRenderer {
     public static final String[] LOG_SUFFIXES = new String[] { "_log", "_stem" };
 
     public static @NotNull BakedModel generateModel(CogwheelModelKey key) {
-        CogwheelMaterial material = CogwheelMaterials.of(key.material());
+        ClientCogwheelMaterial material = CogwheelMaterialManager.clientOf(key.material());
         PartialModel model = material != null ? material.getModel(key.large())
                 : standardCogwheelModel(key.large());
         return generateModel(model.get(), key.material());
@@ -60,10 +65,10 @@ public class DynamicCogwheelRenderer {
             map.put(STRIPPED_LOG_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.SOUTH));
             map.put(STRIPPED_LOG_TOP_TEMPLATE.get(), getSpriteOnSide(logBlockState, Direction.UP));
         } else {
-            CogwheelMaterial material = CogwheelMaterials.of(id);
+            ClientCogwheelMaterial material = CogwheelMaterialManager.clientOf(id);
             if (material == null)
                 return BakedModelHelper.generateModel(template, sprite -> null);
-            material.texture().forEach((old, replacement) -> map.put(old.get(), replacement.get()));
+            material.textures().forEach((old, replacement) -> map.put(old.get(), replacement.get()));
         }
 
         return BakedModelHelper.generateModel(template, map::get);
@@ -79,6 +84,21 @@ public class DynamicCogwheelRenderer {
                 return state.get();
         }
         return Blocks.OAK_LOG.defaultBlockState();
+    }
+
+    @Nullable
+    public static ResourceLocation getModelKey(ItemStack stack, ResourceLocation current) {
+        ResourceLocation custom = CogwheelMaterialManager.of(stack);
+        if (custom != null && custom != current)
+            return custom;
+        if (!(stack.getItem() instanceof BlockItem blockItem))
+            return null;
+        BlockState state = blockItem.getBlock().defaultBlockState();
+        if (!state.is(BlockTags.PLANKS))
+            return null;
+        ResourceLocation material = Registry.ITEM.getKey(stack.getItem());
+        if (material == current) return null;
+        return material;
     }
 
     public static TextureAtlasSprite getSpriteOnSide(BlockState state, Direction side) {
