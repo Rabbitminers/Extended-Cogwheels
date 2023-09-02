@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "tag": "forge:ingots/brass"
+    },
+    {
+      "tag": "c:ingots/brass"
+    },
+    {
+      "tag": "forge:plates/brass"
+    },
+    {
+      "tag": "c:plates/brass"
+    },
+    {
+      "item": "create:brass_ingot"
+    }
+ ]
+}
