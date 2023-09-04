@@ -100,8 +100,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "extendedcogwheels-common.mixins.json",
-                "extendedcogwheels.mixins.json"
+                "extendedgears-common.mixins.json",
+                "extendedgears.mixins.json"
         )
     }
 }

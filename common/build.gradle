@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/extendedcogwheels.accesswidener")
+    accessWidenerPath = file("src/main/resources/extendedgears.accesswidener")
 }
 
 repositories {
@@ -21,13 +21,6 @@ repositories {
             includeGroup "dev.latvian.mods"
         }
     }  // saps.dev Maven (KubeJS and Rhino)
-    maven {
-        // Shedaniel's maven (Architectury API)
-        url = "https://maven.architectury.dev"
-        content {
-            includeGroup "dev.architectury"
-        }
-    }
 }
 
 dependencies {
