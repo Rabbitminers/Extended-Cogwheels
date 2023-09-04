@@ -14,13 +14,19 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MaterialColor;
+
+import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 
@@ -33,12 +39,17 @@ public class ExtendedCogwheelsBlocks {
                 .transform(axeOrPickaxe())
                 .transform(renderTypeTransformer())
                 .blockstate(BlockStateGen.axisBlockProvider(false))
-                .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
+                .onRegister(CreateRegistrate.blockModel(cogwheelModelSupplier()))
                 .item(CogwheelBlockItem::new)
-                .tag(isLarge ? ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.LARGE_COGWHEEL.tag
-                        : ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.SMALL_COGWHEEL.tag)
-                .tag(ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.COGWHEEL.tag)
+                .tag(isLarge ? ExtendedCogwheelsTags.LARGE_COGWHEEL
+                        : ExtendedCogwheelsTags.SMALL_COGWHEEL)
+                .tag(ExtendedCogwheelsTags.COGWHEEL)
                 .build();
+    }
+
+    @ExpectPlatform
+    public static Supplier<NonNullFunction<BakedModel, ? extends BakedModel>> cogwheelModelSupplier() {
+        throw new AssertionError();
     }
 
     public static <B extends Block, P> NonNullUnaryOperator<BlockBuilder<B, P>> renderTypeTransformer() {

@@ -3,12 +3,10 @@ package com.rabbitminers.extendedgears.mixin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
-import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
-import com.rabbitminers.extendedgears.mixin_interface.DynamicCogwheelRenderer;
+import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogRenderer;
@@ -51,7 +49,7 @@ public class MixinEncasedCogRenderer extends KineticBlockEntityRenderer<SimpleKi
         return ExtendedCogwheelsClient.BUFFER_CACHE.get(DynamicCogwheelRenderer.COGWHEEL, key, () -> {
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             BlockState state1 = key.state();
-            Direction dir = Direction.fromAxisAndDirection(state1.getValue(EncasedCogwheelBlock.AXIS), Direction.AxisDirection.POSITIVE);
+            Direction dir = Direction.fromAxisAndDirection(state1.getValue(RotatedPillarKineticBlock.AXIS), Direction.AxisDirection.POSITIVE);
             PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();
             return BakedModelRenderHelper.standardModelRender(model, Blocks.AIR.defaultBlockState(), transform);
         });

@@ -2,10 +2,8 @@ package com.rabbitminers.extendedgears.base.data;
 
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider;
 import com.rabbitminers.extendedgears.base.datatypes.IngredientProvider.Namespace;
-import com.rabbitminers.extendedgears.base.util.TagUtils;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -1,7 +1,8 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.rabbitminers.extendedgears.cogwheels.CogwheelLimits;
-import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
+import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
@@ -43,7 +44,8 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
     public InteractionResult applyMaterialIfValid(ItemStack stack) {
         if (level == null || (level.isClientSide() && !isVirtual()))
             return InteractionResult.SUCCESS;
-        @Nullable ResourceLocation material = getModelKey(stack);
+        @Nullable
+        ResourceLocation material = DynamicCogwheelRenderer.getModelKey(stack, this.material);
         if (material == null)
             return InteractionResult.PASS;
         this.material = material;
@@ -52,31 +54,15 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         return InteractionResult.SUCCESS;
     }
 
-    @Nullable
-    public ResourceLocation getModelKey(ItemStack stack) {
-        Optional<ResourceLocation> custom = CogwheelMaterials.of(stack);
-        if (custom.isPresent() && custom.get() != this.material)
-            return custom.get();
-        if (!(stack.getItem() instanceof BlockItem blockItem))
-            return null;
-        BlockState state = blockItem.getBlock().defaultBlockState();
-        if (!state.is(BlockTags.PLANKS))
-            return null;
-        ResourceLocation material = Registry.ITEM.getKey(stack.getItem());
-        if (material == this.material) return null;
-        return material;
-    }
-
     @Override
     public void applyMaterial(ResourceLocation material) {
         this.material = material;
     }
-
-    public void tick() {
-        super.tick();
+    @Override
+    public void lazyTick() {
         if (material == null || level == null) return;
-        boolean shouldBreak = (Math.abs(speed) > CogwheelLimits.getStressLimit(this.material))
-                || (Math.abs(capacity) > CogwheelLimits.getStressLimit(this.material));
+        boolean shouldBreak = (Math.abs(speed) > CogwheelMaterialManager.getSpeedLimit(this.material))
+                || (Math.abs(capacity) > CogwheelMaterialManager.getStressLimit(this.material));
         if (shouldBreak)
             level.destroyBlock(worldPosition, true);
     }

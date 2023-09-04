@@ -7,6 +7,7 @@ import com.rabbitminers.extendedgears.cogwheels.materials.ClientCogwheelMaterial
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.model.BakedModelHelper;
 import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
@@ -20,7 +21,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;

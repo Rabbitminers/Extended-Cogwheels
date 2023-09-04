@@ -1,8 +1,9 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.rabbitminers.extendedgears.cogwheels.CogwheelMaterials;
+import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
+import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
@@ -11,7 +12,6 @@ import com.simibubi.create.foundation.utility.RegisteredObjects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
@@ -49,28 +49,14 @@ public class MixinSimpleKineticBlockEntity extends KineticBlockEntity implements
             return InteractionResult.SUCCESS;
         if (level == null || (level.isClientSide() && !isVirtual()))
             return InteractionResult.SUCCESS;
-        @Nullable ResourceLocation material = getModelKey(stack);
+        @Nullable
+        ResourceLocation material = DynamicCogwheelRenderer.getModelKey(stack, this.material);
         if (material == null)
             return InteractionResult.PASS;
         this.material = material;
         notifyUpdate();
         level.levelEvent(2001, worldPosition, Block.getId(getBlockState()));
         return InteractionResult.SUCCESS;
-    }
-
-    @Nullable
-    public ResourceLocation getModelKey(ItemStack stack) {
-        Optional<ResourceLocation> custom = CogwheelMaterials.of(stack);
-        if (custom.isPresent() && custom.get() != this.material)
-            return custom.get();
-        if (!(stack.getItem() instanceof BlockItem blockItem))
-            return null;
-        BlockState state = blockItem.getBlock().defaultBlockState();
-        if (!state.is(BlockTags.PLANKS))
-            return null;
-        ResourceLocation material = Registry.ITEM.getKey(stack.getItem());
-        if (material == this.material) return null;
-        return material;
     }
 
     @Override

@@ -34,19 +34,15 @@ public class ExtendedCogwheelsLegacyBlocks {
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> cogwheelItemTransformer(boolean isLarge, TagKey<Item> materialType) {
 		return b -> b
-				.loot((p, l) -> p.dropOther(l, isLarge ? AllBlocks.LARGE_COGWHEEL.get()
-						: AllBlocks.COGWHEEL.get()))
 				.item(CogwheelBlockItem::new)
 				.tag(materialType)
-				.tag(isLarge ? ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.LARGE_COGWHEEL.tag
-						: ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.SMALL_COGWHEEL.tag)
-				.tag(ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.COGWHEEL.tag)
+				.tag(isLarge ? ExtendedCogwheelsTags.LARGE_COGWHEEL : ExtendedCogwheelsTags.SMALL_COGWHEEL)
+				.tag(ExtendedCogwheelsTags.COGWHEEL)
 				.build();
 	}
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> commonCogwheelTransformer(boolean isLarge, TagKey<Item> materialType) {
 		return b -> b.blockstate(BlockStateGen.axisBlockProvider(false))
-				.onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
 				.transform(BlockStressDefaults.setNoImpact())
 				.transform(cogwheelItemTransformer(isLarge, materialType));
 	}
@@ -55,16 +51,14 @@ public class ExtendedCogwheelsLegacyBlocks {
 		return b -> b.initialProperties(SharedProperties::wooden)
 				.properties(p -> p.sound(SoundType.WOOD))
 				.properties(p -> p.color(MaterialColor.DIRT))
-				.transform(TagGen.axeOrPickaxe())
-				.transform(commonCogwheelTransformer(isLarge, ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.WOODEN_COGWHEEL.tag));
+				.transform(TagGen.axeOrPickaxe());
 	}
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> metalCogwheelTransformer(boolean isLarge) {
 		return b -> b.initialProperties(SharedProperties::softMetal)
 				.properties(p -> p.sound(SoundType.METAL))
 				.properties(p -> p.color(MaterialColor.METAL))
-				.transform(TagGen.pickaxeOnly())
-				.transform(commonCogwheelTransformer(isLarge, ExtendedCogwheelsTags.ExtendedCogwheelsItemTags.METAL_COGWHEEL.tag));
+				.transform(TagGen.pickaxeOnly());
 	}
 
 	public static void init() {
