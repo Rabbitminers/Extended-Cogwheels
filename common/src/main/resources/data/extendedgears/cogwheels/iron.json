@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "forge:plates/iron"
+    },
+    {
+      "tag": "c:plates/iron"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ]
+}

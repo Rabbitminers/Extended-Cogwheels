@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "tag": "forge:ingots/steel"
+    },
+    {
+      "tag": "c:ingots/steel"
+    },
+    {
+      "tag": "forge:plates/steel"
+    },
+    {
+      "tag": "c:plates/steel"
+    }
+  ]
+}
