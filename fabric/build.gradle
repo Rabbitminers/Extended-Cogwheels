@@ -104,6 +104,14 @@ processResources {
     }
 }
 
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.module.name == "fabric-loader") {
+            useVersion(fabric_loader_version)
+        }
+    }
+}
+
 shadowJar {
     exclude "architectury.common.json"
 
@@ -113,9 +121,9 @@ shadowJar {
 
 remapJar {
     injectAccessWidener = true
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier null
+    archiveClassifier = null
 }
 
 jar {

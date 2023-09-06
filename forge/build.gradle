@@ -101,7 +101,7 @@ loom {
     forge {
         mixinConfig(
                 "extendedgears-common.mixins.json",
-                "extendedgears.mixins.json"
+                // "extendedgears.mixins.json"
         )
     }
 }
@@ -111,13 +111,13 @@ shadowJar {
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
-    classifier "dev-shadow"
+    archiveClassifier = "dev-shadow"
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier null
+    archiveClassifier = null
 }
 
 jar {
