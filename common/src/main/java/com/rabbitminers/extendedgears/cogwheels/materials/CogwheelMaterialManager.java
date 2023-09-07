@@ -6,7 +6,6 @@ import com.rabbitminers.extendedgears.base.util.Env;
 import com.rabbitminers.extendedgears.base.networking.PlayerSelection;
 import com.rabbitminers.extendedgears.base.networking.S2CPacket;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPackets;
-import com.simibubi.create.content.equipment.potatoCannon.PotatoProjectileTypeManager;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
