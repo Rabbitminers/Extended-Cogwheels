@@ -4,6 +4,7 @@
   "package": "com.rabbitminers.extendedgears.mixin.forge",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "MixinClientPacketListener"
   ],
   "mixins": [
   ],

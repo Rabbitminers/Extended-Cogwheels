@@ -7,24 +7,24 @@
     "client.MixinHotbarStorage"
   ],
   "mixins": [
+    "AccessorBlockEntityType",
     "MixinAllBlockEntityTypes",
     "MixinAllBlocks",
     "MixinBracketedKineticBlockEntity",
     "MixinBracketedKineticBlockEntityInstance",
     "MixinBracketedKineticBlockEntityRenderer",
-    "MixinChunkSerializer",
     "MixinCogwheelBlock",
     "MixinCogwheelBlockItem",
     "MixinEncasedCogBlock",
     "MixinEncasedCogInstance",
     "MixinEncasedCogRenderer",
-    "MixinIOWorker",
+    "MixinItemStack",
     "MixinNbtUtils",
-    "MixinPlayerEntity",
     "MixinSimpleKineticBlockEntity",
     "MixinStructure"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "plugin": "com.rabbitminers.extendedgears.mixin.ExtendedCogwheelsMixinPlugin"
 }
