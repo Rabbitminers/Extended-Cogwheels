@@ -58,6 +58,7 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
     public void applyMaterial(ResourceLocation material) {
         this.material = material;
     }
+
     @Override
     public void lazyTick() {
         if (material == null || level == null) return;
@@ -68,6 +69,8 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
     }
 
     protected void redraw() {
+        if (level == null)
+            return;
         if (!isVirtual())
             requestModelDataUpdate();
         if (hasLevel()) {

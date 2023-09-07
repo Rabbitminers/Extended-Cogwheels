@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder;
@@ -31,10 +32,10 @@ public class MixinAllBlockEntityTypes {
             NonNullSupplier<T>[] blocks
     ) {
         instance.validBlocks(
-                ExtendedCogwheelsBlocks.HALF_SHAFT_COGWHEEL,
                 ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL,
-                ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_COGWHEEL,
-                ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL
+                ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL,
+                ExtendedCogwheelsBlocks.HALF_SHAFT_COGWHEEL,
+                ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_COGWHEEL
         );
 
         return instance.validBlocks(blocks);

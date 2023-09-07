@@ -8,8 +8,8 @@ import com.jozufozu.flywheel.util.transform.TransformStack;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.rabbitminers.extendedgears.cogwheels.CogwheelModelKey;
 import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
-import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
+import com.rabbitminers.extendedgears.mixin_interface.CogwheelTypeProvider;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
@@ -52,7 +52,7 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
     public void onInit(MaterialManager materialManager, BracketedKineticBlockEntity blockEntity, CallbackInfo ci) {
         if (blockEntity instanceof IDynamicMaterialBlockEntity dynamicMaterialBlockEntity &&
                 !blockEntity.getBlockState().is(AllBlocks.SHAFT.get())) {
-            this.large = blockEntity.getBlockState().getBlock() instanceof ICogWheel cogWheel && cogWheel.isLargeCog();
+            this.large = ICogWheel.isLargeCog(blockState);
             this.key = new CogwheelModelKey(large, getRenderedBlockState(), dynamicMaterialBlockEntity.getMaterial());
         }
     }
@@ -79,7 +79,7 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
 
         Direction facing = Direction.fromAxisAndDirection(axis, direction);
 
-        @Nullable PartialModel shaftModel = getShaftModelFromBlockState(blockState.getBlock());
+        @Nullable PartialModel shaftModel = getShaftModel(blockState.getBlock());
         if (shaftModel == null)
             return;
 
@@ -101,12 +101,14 @@ public abstract class MixinBracketedKineticBlockEntityInstance extends SingleRot
     }
 
     @Nullable
-    public PartialModel getShaftModelFromBlockState(Block block) {
-        if (block instanceof HalfShaftCogwheelBlock)
-            return AllPartialModels.SHAFT_HALF;
-        if (block instanceof ShaftlessCogwheelBlock)
-            return null;
-        return AllPartialModels.COGWHEEL_SHAFT;
+    public PartialModel getShaftModel(Block block) {
+        if (!(block instanceof CogwheelTypeProvider provider))
+            return AllPartialModels.COGWHEEL_SHAFT;
+        return switch (provider.getType()) {
+            case STANDARD -> AllPartialModels.COGWHEEL_SHAFT;
+            case HALF_SHAFT -> AllPartialModels.SHAFT_HALF;
+            case SHAFLTESS -> null;
+        };
     }
 
 
