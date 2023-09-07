@@ -9,8 +9,7 @@ architectury {
 
 loom {
     Project common = project(":common")
-    Project fabric = project(":fabric")
-    accessWidenerPath = project(":common").loom.accessWidenerPath
+    accessWidenerPath = common.loom.accessWidenerPath
 
     runs {
         datagen {
@@ -70,12 +69,6 @@ dependencies {
         case "disabled": break
         default: println("Unknown recipe viewer specified: ${fabric_recipe_viewer}. Must be JEI, REI, EMI, or disabled.")
     }
-    // if you would like to add integration with them, uncomment them here.
-//    modCompileOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_fabric_version}")
-//    modCompileOnly("mezz.jei:jei-${minecraft_version}-common:${jei_fabric_version}")
-//    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}")
-//    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}")
-//    modCompileOnly("dev.emi:emi:${emi_version}")
 }
 
 processResources {
@@ -104,13 +97,6 @@ processResources {
     }
 }
 
-configurations.configureEach {
-    resolutionStrategy.eachDependency {
-        if (requested.module.name == "fabric-loader") {
-            useVersion(fabric_loader_version)
-        }
-    }
-}
 
 shadowJar {
     exclude "architectury.common.json"
@@ -121,22 +107,14 @@ shadowJar {
 
 remapJar {
     injectAccessWidener = true
-    inputFile.set shadowJar.archiveFile
+    inputFile = shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier = null
+    classifier null
 }
 
 jar {
     classifier "dev"
 }
-
-sourceSets.main {
-    resources {
-        srcDir("src/generated/resources")
-        exclude("src/generated/resources/.cache")
-    }
-}
-
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
@@ -147,6 +125,13 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
+    }
+}
+
+sourceSets.main {
+    resources { // include generated resources in resources
+        srcDir("src/generated/resources")
+        exclude("src/generated/resources/.cache")
     }
 }
 

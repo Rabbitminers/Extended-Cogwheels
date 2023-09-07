@@ -7,13 +7,13 @@ architectury {
     forge()
 }
 
-// def generatedResources = file("../common/src/generated")
-// def generatedResources = file("../forge/src/generated")
-
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
     forge {
+        mixinConfig("extendedgears-common.mixins.json")
+        mixinConfig("extendedgears.mixins.json")
+
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
     }
@@ -97,40 +97,23 @@ processResources {
     }
 }
 
-loom {
-    forge {
-        mixinConfig(
-                "extendedgears-common.mixins.json",
-                // "extendedgears.mixins.json"
-        )
-    }
-}
-
 shadowJar {
     exclude "fabric.mod.json"
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
-    archiveClassifier = "dev-shadow"
+    classifier "dev-shadow"
 }
 
 remapJar {
-    inputFile.set shadowJar.archiveFile
+    inputFile = shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier = null
+    classifier null
 }
 
 jar {
     classifier "dev"
 }
-
-sourceSets.main {
-    resources {
-        srcDir("src/generated/resources")
-        exclude("src/generated/resources/.cache")
-    }
-}
-
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
