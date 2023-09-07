@@ -4,17 +4,15 @@ import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.datagen.HalfShaftGenerator;
+import com.rabbitminers.extendedgears.mixin.AccessorBlockEntityType;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
-import com.simibubi.create.content.trains.track.TrackBlock;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -22,10 +20,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MaterialColor;
+import com.google.common.collect.ImmutableSet;
 
+import java.util.Set;
 import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
@@ -40,6 +40,7 @@ public class ExtendedCogwheelsBlocks {
                 .transform(renderTypeTransformer())
                 .blockstate(BlockStateGen.axisBlockProvider(false))
                 .onRegister(CreateRegistrate.blockModel(cogwheelModelSupplier()))
+                .onRegister(ExtendedCogwheelsBlocks::addToBlockEntityType)
                 .item(CogwheelBlockItem::new)
                 .tag(isLarge ? ExtendedCogwheelsTags.LARGE_COGWHEEL
                         : ExtendedCogwheelsTags.SMALL_COGWHEEL)
@@ -83,5 +84,20 @@ public class ExtendedCogwheelsBlocks {
 
     public static void init() {
 
+    }
+
+    public static void addToBlockEntityType(CogWheelBlock block) {
+        BlockEntityType<?> type;
+        try {
+            type = block.getBlockEntityType();
+        } catch (NullPointerException ignored) {
+            return;
+        }
+        Set<Block> validBlocks = ((AccessorBlockEntityType) type).getValidBlocks();
+        validBlocks = new ImmutableSet.Builder<Block>()
+                .add(validBlocks.toArray(Block[]::new))
+                .add(block)
+                .build();
+        ((AccessorBlockEntityType) type).setValidBlocks(validBlocks);
     }
 }
