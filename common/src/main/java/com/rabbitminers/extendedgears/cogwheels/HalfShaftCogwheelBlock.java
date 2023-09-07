@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
+import com.rabbitminers.extendedgears.mixin_interface.CogwheelTypeProvider;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.BlockPos;
@@ -19,7 +20,7 @@ import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.directio
 import static com.rabbitminers.extendedgears.base.util.DirectionHelpers.isDirectionPositive;
 import static com.rabbitminers.extendedgears.cogwheels.legacy.LegacyHalfShaftCogwheelBlock.shapeBuilder;
 
-public class HalfShaftCogwheelBlock extends CogWheelBlock {
+public class HalfShaftCogwheelBlock extends CogWheelBlock implements CogwheelTypeProvider {
     public VoxelShaper voxelShape = shapeBuilder(box(2.0D, 6.0D, 2.0D, 14.0D, 10.0D, 14.0D))
             .add(6.0D, 8, 6.0D, 10.0D, 16, 10.0D).forDirectional();
     public VoxelShaper largeVoxelShape = shapeBuilder(box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D))
@@ -79,5 +80,10 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock {
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         return face.getAxis() == state.getValue(AXIS) && face.getAxisDirection() == directionFromValue(state.getValue(AXIS_DIRECTION));
+    }
+
+    @Override
+    public CogwheelType getType() {
+        return CogwheelType.HALF_SHAFT;
     }
 }
