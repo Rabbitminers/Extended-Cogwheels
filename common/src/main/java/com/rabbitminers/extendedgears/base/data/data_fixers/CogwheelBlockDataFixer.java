@@ -31,16 +31,6 @@ public class CogwheelBlockDataFixer extends DataFix {
     @Override
     public TypeRewriteRule makeRule() {
         return TypeRewriteRule.seq(
-            /*
-            this.fixTypeEverywhereTyped(this.name + "for block_entity", this.getInputSchema().getType(References.BLOCK_ENTITY), typed -> typed.update(DSL.remainderFinder(), dynamic -> {
-                Optional<String> optional = dynamic.get("id").asString().result();
-                if (optional.isPresent() && optional.get().equals("extendedgears:customcogwheeltileentity")) {
-                    dynamic = dynamic.set("id", dynamic.createString("create:simple_kinetic"));
-                    return dynamic;
-                }
-                return dynamic;
-            })),
-             */
             this.fixTypeEverywhereTyped(this.name + " for block_state", this.getInputSchema().getType(References.BLOCK_STATE), typed -> typed.update(DSL.remainderFinder(), dynamic -> {
                 Optional<String> optional = dynamic.get("Name").asString().result();
                 String fixBlock = fixBlock(optional);
