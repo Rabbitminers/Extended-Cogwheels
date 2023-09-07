@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsFabric"
+      "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsImpl"
     ],
     "client": [
       "com.rabbitminers.extendedgears.fabric.ExtendedCogwheelsClientImpl"
@@ -26,8 +26,8 @@
     ]
   },
   "mixins": [
-    "extendedgears.json",
-    "extendedgears-common.mixins.json"
+    "extendedgears-common.mixins.json",
+    "extendedgears.mixins.json"
   ],
   "depends": {
     "minecraft": "${minecraft_version}",
