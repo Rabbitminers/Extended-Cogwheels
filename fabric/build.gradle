@@ -1,5 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "me.modmuss50.mod-publish-plugin"
 }
 
 architectury {
@@ -43,6 +44,14 @@ repositories {
     maven { url = "https://maven.cafeteria.dev/releases" } // Fake Player API
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
     maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+}
+
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.module.name == "fabric-loader") {
+            useVersion(fabric_loader_version)
+        }
+    }
 }
 
 dependencies {
@@ -97,29 +106,73 @@ processResources {
     }
 }
 
+sourceSets.main {
+    resources { // include generated resources in resources
+        srcDir("src/generated/resources")
+        exclude("src/generated/resources/.cache")
+    }
+}
+
+def getGitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def hasUnstaged = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'status', '--porcelain'
+        standardOutput = stdout
+    }
+    def result = stdout.toString().replaceAll("M gradlew", "").trim()
+    if (!result.isEmpty())
+        println("Found stageable results:\n${result}\n")
+    return !result.isEmpty()
+}
+
 
 shadowJar {
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
-    classifier "dev-shadow"
+    archiveClassifier = "dev-shadow"
 }
 
 remapJar {
     injectAccessWidener = true
-    inputFile = shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier null
+    archiveClassifier = null
 }
 
 jar {
-    classifier "dev"
+    archiveClassifier = "dev"
+
+    String gitHash =  "\"${getGitHash()}" + (hasUnstaged() ? "-modified" : "") + "\""
+
+    manifest {
+        attributes([
+                "Git-Hash": gitHash
+        ])
+    }
 }
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
+
+    String gitHash =  "\"${getGitHash()}" + (hasUnstaged() ? "-modified" : "") + "\""
+
+    manifest {
+        attributes([
+                "Git-Hash": gitHash
+        ])
+    }
 }
 
 components.java {
@@ -128,10 +181,33 @@ components.java {
     }
 }
 
-sourceSets.main {
-    resources { // include generated resources in resources
-        srcDir("src/generated/resources")
-        exclude("src/generated/resources/.cache")
+publishMods {
+    file = remapJar.archiveFile
+    version = "$mod_version-fabric-mc$minecraft_version"
+    changelog = getChangelogText("Fabric", true)
+    type = STABLE
+    displayName = "Extended Cogwheels $mod_version Fabric $minecraft_version"
+    modLoaders.add("fabric")
+    modLoaders.add("quilt")
+
+    curseforge {
+        projectId = curseforge_fabric_id
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        requires {
+            slug = "create-fabric"
+        }
+    }
+
+    modrinth {
+        projectId = modrinth_fabric_id
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        requires {
+            slug = "create-fabric"
+        }
     }
 }
 

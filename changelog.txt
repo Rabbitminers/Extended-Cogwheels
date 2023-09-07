@@ -1,0 +1,19 @@
+v2.1.0:
+- Unlimited compatibility (for wood at least), you can now use any wood type on cogwheels - absolutely any, the textures will be dynamically mapped.
+- Encasing, you can now encase any cogwheel even with different materials.
+- No more messy inventories, creative mode tabs or JEI pages all cogwheel materials have been merged into just one block for each shape. Simply click them with the material you want once they are placed.
+- Overhauled textures & models, steel & iron cogwheels now have new textures as well as new chunky models for some cogwheels.
+- Brass Cogwheels (These use the new chunky models)
+- For balancing reasons shaftless and half shaft cogwheels can no longer be used in recipes in place of standard cogwheels.
+- Cogwheel limits now need to be set using KubeJS
+- You can now click a shaftless cogwheel with a shaft to change it to a standard one.
+- Better placement helpers for half shaft cogwheels.
+- Better API for custom cogwheel materials (KubeJS)
+- Added more detailed tags for shaftless & half shaft cogwheels.
+- Made cogwheel limits check lazy
+- Fixed the little mismatch in rotation between cogwheels and shafts that would occasionally occur
+- Fixed startup crash on 0.5.1 (You would hope so)
+- Fixed sequenced recipes being invalidated
+- Fixed piston extension pole recipe being overwritten
+- Fixed invalid copper recipes
+- Fixed encasing reverting cogwheels
