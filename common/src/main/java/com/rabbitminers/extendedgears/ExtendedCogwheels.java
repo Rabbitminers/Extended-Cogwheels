@@ -30,7 +30,7 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
-        ExtendedCogwheelsDataFixers.init();
+        // ExtendedCogwheelsDataFixers.init();
         ExtendedCogwheelsCogwheelMaterials.init();
         ExtendedCogwheelsPackets.PACKETS.registerC2SListener();
     }
