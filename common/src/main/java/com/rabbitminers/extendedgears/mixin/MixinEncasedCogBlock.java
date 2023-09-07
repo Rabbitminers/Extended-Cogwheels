@@ -1,13 +1,9 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.jozufozu.flywheel.core.PartialModel;
-import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EncasedCogwheelBlock.class)
-public class MixinEncasedCogBlock extends Block implements ICogwheelModelProvider {
+public class MixinEncasedCogBlock extends Block {
     public MixinEncasedCogBlock(Properties properties) {
         super(properties);
     }
@@ -37,11 +33,6 @@ public class MixinEncasedCogBlock extends Block implements ICogwheelModelProvide
         if (!(be instanceof IDynamicMaterialBlockEntity dyn) || level.isClientSide)
             return resp;
         return dyn.applyMaterialIfValid(player.getItemInHand(hand));
-    }
-
-    @Override
-    public PartialModel getTemplate(boolean large) {
-        return large ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
     }
 
     @Redirect(

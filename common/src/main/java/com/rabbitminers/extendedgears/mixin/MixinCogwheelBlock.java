@@ -1,11 +1,9 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.jozufozu.flywheel.core.PartialModel;
-import com.rabbitminers.extendedgears.mixin_interface.ICogwheelModelProvider;
+import com.rabbitminers.extendedgears.cogwheels.CogwheelType;
+import com.rabbitminers.extendedgears.mixin_interface.CogwheelTypeProvider;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.content.kinetics.simpleRelays.AbstractSimpleShaftBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -23,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CogWheelBlock.class)
-public class MixinCogwheelBlock extends AbstractSimpleShaftBlock implements ICogwheelModelProvider {
+public class MixinCogwheelBlock extends AbstractSimpleShaftBlock implements CogwheelTypeProvider {
     public MixinCogwheelBlock(Properties properties) {
         super(properties);
     }
@@ -38,12 +36,12 @@ public class MixinCogwheelBlock extends AbstractSimpleShaftBlock implements ICog
     }
 
     @Override
-    public PartialModel getTemplate(boolean large) {
-        return large ? ExtendedCogwheelsPartials.LARGE_COGWHEEL : ExtendedCogwheelsPartials.COGWHEEL;
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
-        return RenderShape.ENTITYBLOCK_ANIMATED;
+    public CogwheelType getType() {
+        return CogwheelType.STANDARD;
     }
 }
