@@ -35,7 +35,7 @@ public class ExtendedCogwheelsDataFixers {
 
         DataFixerBuilder builder = new DataFixerBuilder(ExtendedCogwheels.DATA_FIXER_VERSION);
         addFixers(builder);
-        api.registerFixer(ExtendedCogwheels.DATA_FIXER_VERSION, builder.build(Util.bootstrapExecutor()));
+        api.registerFixer(ExtendedCogwheels.DATA_FIXER_VERSION, builder.buildOptimized(Util.bootstrapExecutor()));
     }
 
     private static void addFixers(DataFixerBuilder builder) {

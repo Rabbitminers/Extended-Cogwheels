@@ -2,17 +2,16 @@ package com.rabbitminers.extendedgears.forge;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
-import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
 import com.rabbitminers.extendedgears.config.forge.ExtendedCogwheelsConfigImpl;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod(ExtendedCogwheels.MOD_ID)
 public class ExtendedCogwheelsForge {

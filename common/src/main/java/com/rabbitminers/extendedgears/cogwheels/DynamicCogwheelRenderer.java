@@ -18,6 +18,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -91,7 +92,8 @@ public class DynamicCogwheelRenderer {
         if (model == null)
             return null;
 
-        Random random = new Random(42L);
+        RandomSource random = RandomSource.create();
+        random.setSeed(42L);
 
         List<BakedQuad> quads = model.getQuads(state, side, random);
         if (!quads.isEmpty()) {
