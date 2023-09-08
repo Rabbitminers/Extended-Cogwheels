@@ -73,17 +73,6 @@ dependencies {
 }
 
 processResources {
-    from(rootProject.file("common/src/main/resources")) {
-        include("**/**")
-        duplicatesStrategy = DuplicatesStrategy.WARN
-    }
-
-    from(rootProject.file("common/src/generated/resources")) {
-        include("**/**")
-        exclude("**/.cache")
-        duplicatesStrategy = DuplicatesStrategy.WARN
-    }
-
     // set up properties for filling into metadata
     Map<String, String> properties = Map.of(
             "version", version as String,
@@ -166,6 +155,13 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
+    }
+}
+
+sourceSets.main {
+    resources { // include generated resources in resources
+        srcDir("src/generated/resources")
+        exclude("src/generated/resources/.cache")
     }
 }
 
