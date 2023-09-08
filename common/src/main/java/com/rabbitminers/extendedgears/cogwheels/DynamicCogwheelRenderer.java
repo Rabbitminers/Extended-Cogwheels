@@ -84,21 +84,6 @@ public class DynamicCogwheelRenderer {
         return Blocks.OAK_LOG.defaultBlockState();
     }
 
-    @Nullable
-    public static ResourceLocation getModelKey(ItemStack stack, ResourceLocation current) {
-        ResourceLocation custom = CogwheelMaterialManager.of(stack);
-        if (custom != null && custom != current)
-            return custom;
-        if (!(stack.getItem() instanceof BlockItem blockItem))
-            return null;
-        BlockState state = blockItem.getBlock().defaultBlockState();
-        if (!state.is(BlockTags.PLANKS))
-            return null;
-        ResourceLocation material = Registry.ITEM.getKey(stack.getItem());
-        if (material == current) return null;
-        return material;
-    }
-
     public static TextureAtlasSprite getSpriteOnSide(BlockState state, Direction side) {
         BakedModel model = Minecraft.getInstance()
                 .getBlockRenderer()

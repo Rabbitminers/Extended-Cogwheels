@@ -1,5 +1,6 @@
 package com.rabbitminers.extendedgears.mixin;
 
+import com.rabbitminers.extendedgears.base.util.MaterialHelpers;
 import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
@@ -45,7 +46,7 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
         if (level == null || (level.isClientSide() && !isVirtual()))
             return InteractionResult.SUCCESS;
         @Nullable
-        ResourceLocation material = DynamicCogwheelRenderer.getModelKey(stack, this.material);
+        ResourceLocation material = MaterialHelpers.getModelKey(stack, this.material);
         if (material == null)
             return InteractionResult.PASS;
         this.material = material;
