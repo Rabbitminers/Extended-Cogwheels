@@ -4,13 +4,13 @@
       "tag": "forge:ingots/brass"
     },
     {
-      "tag": "c:ingots/brass"
+      "tag": "c:brass_ingots"
     },
     {
       "tag": "forge:plates/brass"
     },
     {
-      "tag": "c:plates/brass"
+      "tag": "c:brass_plates"
     },
     {
       "item": "create:brass_ingot"
