@@ -183,16 +183,18 @@ components.java {
 
 publishMods {
     file = remapJar.archiveFile
-    version = "$mod_version-fabric-mc$minecraft_version"
     changelog = getChangelogText("Fabric", true)
     type = STABLE
+
+    version = "$mod_version-$minecraft_version-$raw_create_version-fabric"
     displayName = "Extended Cogwheels $mod_version Fabric $minecraft_version"
+
     modLoaders.add("fabric")
     modLoaders.add("quilt")
 
     curseforge {
         projectId = curseforge_fabric_id
-        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersions.add(minecraft_version)
 
         requires {
@@ -202,7 +204,7 @@ publishMods {
 
     modrinth {
         projectId = modrinth_fabric_id
-        accessToken = System.getenv("MODRINTH_TOKEN")
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         minecraftVersions.add(minecraft_version)
 
         requires {
@@ -219,8 +221,7 @@ publishing {
         }
     }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Add repositories to publish to here.
+        // TODO: Setup maven
     }
 }

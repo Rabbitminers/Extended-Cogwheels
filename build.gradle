@@ -15,6 +15,7 @@ subprojects {
 
     loom {
         silentMojangMappingsLicense()
+
         runs.configureEach {
             vmArg("-Dmixin.debug.export=true")
             vmArg("-Dmixin.env.remapRefMap=true")
@@ -73,10 +74,10 @@ allprojects {
     archivesBaseName = rootProject.archives_base_name
     group = rootProject.maven_group
 
-    // Formats the mod version to include the loader, Minecraft version, and build number (if present)
-    // example: 1.0.0+fabric-1.18.2-100
+    // Mod version - Minecraft Version - Create Version - Loader
+    // e.g 2.1.0-1.18.2-0.5.1-fabric
     String buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-    version = "${mod_version}+${project.name}-${minecraft_version}" + (buildNumber != null ? "-${buildNumber}" : "")
+    version = "${mod_version}-${minecraft_version}-${raw_create_version}-${project.name}" + (buildNumber != null ? "-${buildNumber}" : "")
 
     repositories {
         //
@@ -99,7 +100,7 @@ allprojects {
     }
 }
 
-// 'borrowed' from Create
+// https://github.com/Layers-of-Railways/Railway/blob/1.19/dev/build.gradle
 String getChangelogText(String loader, boolean recent) {
     def changelogFile = file(recent ? 'recent_changelog.txt' : 'changelog.txt')
     String str = ''
@@ -112,7 +113,6 @@ String getChangelogText(String loader, boolean recent) {
         if (it.size() > 1) {
             def temp = it
             if (lineCount == 0) {
-                temp = "Extended Cogwheels ${version}"
                 temp = "<span style=\"font-size: 18px; color: #333399;\">Extended Cogwheels v${mod_version}</span>&nbsp;&nbsp;<em>for Minecraft $loader ${minecraft_version}</em><br/>"
             } else if (it.startsWith('-')) {
                 temp = "&nbsp;&nbsp;&nbsp;$temp<br/>"
