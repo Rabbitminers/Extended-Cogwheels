@@ -21,12 +21,6 @@ public class LegacyShaftlessCogwheelTileEntity extends CustomCogwheelBlockEntity
     }
 
     @Override
-    public void onLoad() {
-        if (level == null) return;
-        level.setBlockEntity(AllBlockEntityTypes.BRACKETED_KINETIC.create(getBlockPos(), getBlockState()));
-    }
-
-    @Override
     public void onDataPacket(@NotNull Connection connection, @NotNull ClientboundBlockEntityDataPacket packet) {
         super.onDataPacket(connection, packet);
     }

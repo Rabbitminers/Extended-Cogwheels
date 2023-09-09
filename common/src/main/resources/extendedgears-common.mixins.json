@@ -8,6 +8,7 @@
   ],
   "mixins": [
     "AccessorBlockEntityType",
+    "AccessorLangMerger",
     "MixinAllBlockEntityTypes",
     "MixinAllBlocks",
     "MixinBracketedKineticBlockEntity",
@@ -18,8 +19,6 @@
     "MixinEncasedCogBlock",
     "MixinEncasedCogInstance",
     "MixinEncasedCogRenderer",
-    "MixinItemStack",
-    "MixinNbtUtils",
     "MixinSimpleKineticBlockEntity",
     "MixinStructure"
   ],

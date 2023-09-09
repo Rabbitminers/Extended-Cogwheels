@@ -15,6 +15,8 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -76,7 +78,7 @@ public class DynamicCogwheelRenderer {
     public static BlockState getStrippedLogState(String namespace, String wood) {
         for (String suffix : LOG_SUFFIXES) {
             Optional<BlockState> state =
-                    Registry.BLOCK.getHolder(ResourceKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(namespace,  "stripped_" + wood + suffix)))
+                    BuiltInRegistries.BLOCK.getHolder(ResourceKey.create(Registries.BLOCK, new ResourceLocation(namespace,  "stripped_" + wood + suffix)))
                             .map(Holder::value)
                             .map(Block::defaultBlockState);
             if (state.isPresent())

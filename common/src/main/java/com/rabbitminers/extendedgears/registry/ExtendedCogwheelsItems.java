@@ -11,13 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public class ExtendedCogwheelsItems {
     private static final CreateRegistrate REGISTRATE = ExtendedCogwheels.registrate();
 
-    public static final CreativeModeTab itemGroup = new CreativeModeTab(getNextAvailableTabId(), ExtendedCogwheels.MOD_ID) {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL.asStack();
-        }
-    };
-
     public static void init() {
 
     }

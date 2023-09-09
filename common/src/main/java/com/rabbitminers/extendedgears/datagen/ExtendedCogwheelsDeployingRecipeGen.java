@@ -12,6 +12,8 @@ import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataGenerator.PackGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -22,7 +24,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProcessingRecipeGen {
-    public ExtendedCogwheelsDeployingRecipeGen(DataGenerator generator) {
+    public ExtendedCogwheelsDeployingRecipeGen(PackOutput generator) {
         super(generator);
     }
 

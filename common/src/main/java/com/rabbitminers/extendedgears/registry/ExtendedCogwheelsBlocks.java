@@ -22,19 +22,25 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.material.MaterialColor;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.Set;
 import java.util.function.Supplier;
 
+import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsCreativeModeTabs.MAIN_TAB_KEY;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 
 public class ExtendedCogwheelsBlocks {
+
+    static {
+        ExtendedCogwheelsCreativeModeTabs.useModTab(MAIN_TAB_KEY);
+    }
+
     public static <B extends CogWheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> cogwheelTransformer(boolean isLarge) {
         return b -> b.initialProperties(SharedProperties::stone)
                 .properties(p -> p.sound(SoundType.WOOD))
-                .properties(p -> p.color(MaterialColor.DIRT))
+                .properties(p -> p.mapColor(MapColor.DIRT))
                 .transform(BlockStressDefaults.setNoImpact())
                 .transform(axeOrPickaxe())
                 .transform(renderTypeTransformer())

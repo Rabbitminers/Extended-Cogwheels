@@ -11,6 +11,7 @@ import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("UnstableApiUsage")
 public abstract class ExtendedCogwheelsProcessingRecipeGen extends ExtendedCogwheelsRecipeProvider {
-    public ExtendedCogwheelsProcessingRecipeGen(DataGenerator generator) {
+    public ExtendedCogwheelsProcessingRecipeGen(PackOutput generator) {
         super(generator);
     }
 

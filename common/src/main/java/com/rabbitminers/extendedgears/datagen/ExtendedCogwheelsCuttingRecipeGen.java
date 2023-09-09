@@ -10,6 +10,7 @@ import com.simibubi.create.foundation.data.recipe.CuttingRecipeGen;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.level.block.Block;
 
@@ -40,7 +41,7 @@ public class ExtendedCogwheelsCuttingRecipeGen extends ExtendedCogwheelsProcessi
         SMALL = cogwheelCuttingRecipe(AllBlocks.COGWHEEL, ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL);
 
 
-    public ExtendedCogwheelsCuttingRecipeGen(DataGenerator dataGenerator) {
+    public ExtendedCogwheelsCuttingRecipeGen(PackOutput dataGenerator) {
         super(dataGenerator);
     }
 

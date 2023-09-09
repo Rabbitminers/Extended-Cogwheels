@@ -9,6 +9,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.LangMerger;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,10 +24,10 @@ public class ExtendedCogwheels {
     public static final String NAME = "Extended Cogwheels";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     public static final int DATA_FIXER_VERSION = 1;
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID)
-            .creativeModeTab(() -> ExtendedCogwheelsItems.itemGroup);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ExtendedCogwheels.MOD_ID);
 
     public static void init() {
+        ExtendedCogwheelsCreativeModeTabs.init();
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
@@ -35,14 +36,12 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsPackets.PACKETS.registerC2SListener();
     }
 
-    public static void gatherData(DataGenerator gen, boolean isServer) {
-        if (isServer) {
-            gen.addProvider(true, new LangMerger(gen, MOD_ID, "Extended Cogwheels",
-                    ExtendedCogwheelsLanguageProvider.values()));
-            gen.addProvider(true, ExtendedCogwheelsStandardRecipeGen.create(gen));
-            gen.addProvider(true, ExtendedCogwheelsDeployingRecipeGen.create(gen));
-            gen.addProvider(true, ExtendedCogwheelsCuttingRecipeGen.create(gen));
-        }
+    public static void gatherData(DataGenerator.PackGenerator gen) {
+        gen.addProvider(ExtendedCogwheelsStandardRecipeGen::new);
+        gen.addProvider(ExtendedCogwheelsCuttingRecipeGen::new);
+        gen.addProvider(ExtendedCogwheelsDeployingRecipeGen::new);
+        gen.addProvider((PackOutput output) -> ExtendedCogwheelsLanguageProvider
+                .createMerger(output, MOD_ID, "Extended Cogwheels", ExtendedCogwheelsLanguageProvider.values()));
     }
 
     @ExpectPlatform

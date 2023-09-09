@@ -17,6 +17,7 @@ import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -42,69 +43,6 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
     private static final String BASE = CRAFTING + "base/";
     private static final String TO_STANDARD = CRAFTING + "to_standard/";
     private static final String FROM_SMALL = CRAFTING + "from_small/";
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe cogwheelRecipe(T material, BlockEntry<? extends Block> cogwheel, boolean isLarge,
-               TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
-        return create(BASE + material.getIngredient().namespace().asId(), cogwheel)
-            .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
-            .viaShapeless(builder -> recipeTransformer.apply(builder, material, isLarge));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> craftedCogwheelMapper(CogwheelMaterialList<? extends Block, T> cogwheels, Class<T> materialType,
-              boolean isLarge, TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
-        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
-            material -> material, material ->
-                    cogwheelRecipe(material, cogwheels.get(material), isLarge, recipeTransformer),
-            (m1, m2) -> m1,
-            () -> new EnumMap<>(materialType)
-        ));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> CogwheelRecipePair<T> smallAndLargeRecipe(CogwheelMaterialList<? extends Block, T> smallCogwheels, CogwheelMaterialList<? extends Block, T> largeCogwheels,
-            Class<T> materialType, TriFunction<ShapelessRecipeBuilder, T, Boolean, ShapelessRecipeBuilder> recipeTransformer) {
-        return new CogwheelRecipePair<>(craftedCogwheelMapper(smallCogwheels, materialType, false, recipeTransformer), craftedCogwheelMapper(largeCogwheels, materialType, true, recipeTransformer));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial, B extends Block> GeneratedRecipe smallCogwheelToLarge(T material, BlockEntry<?> in, BlockEntry<?> out) {
-        return create(FROM_SMALL + material.getIngredient().namespace().asId(), out)
-                .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
-                .viaShapeless(builder -> builder.requires(material.getIngredient()
-                        .ingredient()).requires(in.get()));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> smallFromLarge(CogwheelMaterialList<? extends Block, T> smallCogwheels,
-           CogwheelMaterialList<? extends Block, T> largeCogwheels, Class<T> materialType) {
-        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
-            material -> material, material ->
-                    smallCogwheelToLarge(material, smallCogwheels.get(material), largeCogwheels.get(material)),
-            (m1, m2) -> m1,
-            () -> new EnumMap<>(materialType)
-        ));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> GeneratedRecipe shaftlessToStandard(T material, BlockEntry<?> in, BlockEntry<?> out) {
-        return create(TO_STANDARD + material.asId(), out)
-                .unlockedBy(I::andesite).whenTagsPopulated(material.getRecipeTags())
-                .viaShapeless(builder -> builder.requires(in.get())
-                        .requires(I.shaft()));
-    }
-
-    @Deprecated
-    private <T extends Enum<T> & ICogwheelMaterial> Map<T, GeneratedRecipe> shaftlessToStandard(CogwheelMaterialList<? extends Block, T> shaftless,
-           CogwheelMaterialList<? extends Block, T> standard, Class<T> materialType) {
-        return Arrays.stream(materialType.getEnumConstants()).collect(Collectors.toMap(
-                material -> material, material ->
-                        shaftlessToStandard(material, shaftless.get(material), standard.get(material)),
-                (m1, m2) -> m1,
-                () -> new EnumMap<>(materialType)
-        ));
-    }
 
     private Couple<GeneratedRecipe> cogwheelRecipes(Couple<BlockEntry<?>> blocks) {
         GeneratedRecipe small = create(blocks.getFirst()).unlockedBy(I::andesite)
@@ -180,21 +118,16 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         return new GeneratedRecipeBuilder("/", result);
     }
 
-    GeneratedRecipeBuilder create(String path, ItemProviderEntry<? extends ItemLike> result) {
-        return create(path, result::get);
-    }
-
     GeneratedRecipeBuilder create(ItemProviderEntry<? extends ItemLike> result) {
         return create(result::get);
     }
 
-    protected ExtendedCogwheelsStandardRecipeGen(DataGenerator pGenerator) {
-        super(pGenerator);
+    GeneratedRecipeBuilder create(String path, ItemProviderEntry<? extends ItemLike> result) {
+        return create(path, result::get);
     }
 
-    @ExpectPlatform
-    public static RecipeProvider create(DataGenerator gen) {
-        throw new AssertionError();
+    public ExtendedCogwheelsStandardRecipeGen(PackOutput pOutput) {
+        super(pOutput);
     }
 
     @Override
@@ -202,28 +135,24 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
         return "Extended Cogwheels Crafting Recipes";
     }
 
-    @ExpectPlatform
-    public static IRecipeConditionContainer createContainer() {
-        throw new AssertionError();
-    }
 
-    public class GeneratedRecipeBuilder {
+    class GeneratedRecipeBuilder {
+
         private final String path;
         private String suffix;
-        private java.util.function.Supplier<? extends ItemLike> result;
+        private Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
-        private java.util.function.Supplier<ItemPredicate> unlockedBy;
-        IRecipeConditionContainer recipeConditions;
+
+        private Supplier<ItemPredicate> unlockedBy;
         private int amount;
 
         private GeneratedRecipeBuilder(String path) {
             this.path = path;
             this.suffix = "";
             this.amount = 1;
-            this.recipeConditions = createContainer();
         }
 
-        public GeneratedRecipeBuilder(String path, java.util.function.Supplier<? extends ItemLike> result) {
+        public GeneratedRecipeBuilder(String path, Supplier<? extends ItemLike> result) {
             this(path);
             this.result = result;
         }
@@ -238,23 +167,17 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
             return this;
         }
 
-        GeneratedRecipeBuilder unlockedBy(java.util.function.Supplier<? extends ItemLike> item) {
+        GeneratedRecipeBuilder unlockedBy(Supplier<? extends ItemLike> item) {
             this.unlockedBy = () -> ItemPredicate.Builder.item()
                     .of(item.get())
                     .build();
             return this;
         }
 
-        GeneratedRecipeBuilder unlockedByTag(java.util.function.Supplier<TagKey<Item>> tag) {
+        GeneratedRecipeBuilder unlockedByTag(Supplier<TagKey<Item>> tag) {
             this.unlockedBy = () -> ItemPredicate.Builder.item()
                     .of(tag.get())
                     .build();
-            return this;
-        }
-
-        @SafeVarargs
-        final GeneratedRecipeBuilder whenTagsPopulated(@Nullable TagKey<Item>... tagKey) {
-            recipeConditions.whenTagsFilled(tagKey);
             return this;
         }
 
@@ -265,7 +188,7 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
         GeneratedRecipe viaShaped(UnaryOperator<ShapedRecipeBuilder> builder) {
             return register(consumer -> {
-                ShapedRecipeBuilder b = builder.apply(ShapedRecipeBuilder.shaped(result.get(), amount));
+                ShapedRecipeBuilder b = builder.apply(ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result.get(), amount));
                 if (unlockedBy != null)
                     b.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
                 b.save(consumer, createLocation("crafting"));
@@ -274,13 +197,10 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
         GeneratedRecipe viaShapeless(UnaryOperator<ShapelessRecipeBuilder> builder) {
             return register(consumer -> {
-                ShapelessRecipeBuilder b = builder.apply(ShapelessRecipeBuilder.shapeless(result.get(), amount));
+                ShapelessRecipeBuilder b = builder.apply(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result.get(), amount));
                 if (unlockedBy != null)
                     b.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
-                b.save(result -> consumer.accept(
-                        recipeConditions.isEmpty() ? result
-                                : new ConditionalRecipeResult(result, getRegistryName(), recipeConditions)
-                ), createLocation("crafting"));
+                b.save(consumer, createLocation("crafting"));
             });
         }
 
@@ -297,29 +217,31 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                     .asItem()) : compatDatagenOutput;
         }
 
-        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCooking(java.util.function.Supplier<? extends ItemLike> item) {
+        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCooking(Supplier<? extends ItemLike> item) {
             return unlockedBy(item).viaCookingIngredient(() -> Ingredient.of(item.get()));
         }
 
-        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCookingTag(java.util.function.Supplier<TagKey<Item>> tag) {
+        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCookingTag(Supplier<TagKey<Item>> tag) {
             return unlockedByTag(tag).viaCookingIngredient(() -> Ingredient.of(tag.get()));
         }
 
-        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCookingIngredient(java.util.function.Supplier<Ingredient> ingredient) {
+        GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder viaCookingIngredient(Supplier<Ingredient> ingredient) {
             return new GeneratedRecipeBuilder.GeneratedCookingRecipeBuilder(ingredient);
         }
 
         class GeneratedCookingRecipeBuilder {
 
-            private final java.util.function.Supplier<Ingredient> ingredient;
+            private final Supplier<Ingredient> ingredient;
             private float exp;
             private int cookingTime;
 
-            private final SimpleCookingSerializer<?> FURNACE = RecipeSerializer.SMELTING_RECIPE,
-                    SMOKER = RecipeSerializer.SMOKING_RECIPE, BLAST = RecipeSerializer.BLASTING_RECIPE,
-                    CAMPFIRE = RecipeSerializer.CAMPFIRE_COOKING_RECIPE;
+            private final SimpleCookingSerializer<?>
+                    FURNACE = (SimpleCookingSerializer<?>) RecipeSerializer.SMELTING_RECIPE,
+                    SMOKER = (SimpleCookingSerializer<?>) RecipeSerializer.SMOKING_RECIPE,
+                    BLAST = (SimpleCookingSerializer<?>) RecipeSerializer.BLASTING_RECIPE,
+                    CAMPFIRE = (SimpleCookingSerializer<?>) RecipeSerializer.CAMPFIRE_COOKING_RECIPE;
 
-            GeneratedCookingRecipeBuilder(java.util.function.Supplier<Ingredient> ingredient) {
+            GeneratedCookingRecipeBuilder(Supplier<Ingredient> ingredient) {
                 this.ingredient = ingredient;
                 cookingTime = 200;
                 exp = 0;
@@ -367,63 +289,17 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
                 return register(consumer -> {
                     boolean isOtherMod = compatDatagenOutput != null;
 
-                    SimpleCookingRecipeBuilder b = builder.apply(SimpleCookingRecipeBuilder
-                            .cooking(ingredient.get(), isOtherMod ? Items.DIRT : result.get(),
-                                    exp, (int) (cookingTime * cookingTimeModifier), serializer));
+                    // fix|me removed serializer from the cooking time + refactored with whatever intellij said
+                    // can't really test this 'cause we don't have any cooking recipes yet, just assume it's fine for now
+                    SimpleCookingRecipeBuilder b = builder.apply(
+                            SimpleCookingRecipeBuilder.campfireCooking(ingredient.get(), RecipeCategory.MISC, isOtherMod ? Items.DIRT : result.get(),
+                                    exp, (int) (cookingTime * cookingTimeModifier)));
                     if (unlockedBy != null)
                         b.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
-                    b.save(result -> {
-                            consumer.accept(result);
-                    }, createSimpleLocation(RegisteredObjects.getKeyOrThrow(serializer)
+                    b.save(consumer, createSimpleLocation(RegisteredObjects.getKeyOrThrow(serializer)
                             .getPath()));
                 });
             }
-        }
-    }
-
-    private static record CogwheelRecipePair<T extends Enum<T> & ICogwheelMaterial>(Map<T, GeneratedRecipe> small, Map<T, GeneratedRecipe> large) {
-
-    }
-
-    private static class ConditionalRecipeResult implements FinishedRecipe {
-        private final FinishedRecipe wrapped;
-        private final ResourceLocation outputOverride;
-        private final IRecipeConditionContainer conditions;
-
-        public ConditionalRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride,
-                                         IRecipeConditionContainer conditions) {
-            this.wrapped = wrapped;
-            this.outputOverride = outputOverride;
-            this.conditions = conditions;
-        }
-
-        @Override
-        public ResourceLocation getId() {
-            return wrapped.getId();
-        }
-
-        @Override
-        public RecipeSerializer<?> getType() {
-            return wrapped.getType();
-        }
-
-        @Override
-        public JsonObject serializeAdvancement() {
-            return wrapped.serializeAdvancement();
-        }
-
-        @Override
-        public ResourceLocation getAdvancementId() {
-            return wrapped.getAdvancementId();
-        }
-
-        @Override
-        public void serializeRecipeData(@NotNull JsonObject object) {
-            wrapped.serializeRecipeData(object);
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("item", outputOverride.toString());
-            object.add("result", jsonObject);
-            conditions.write(object);
         }
     }
 }

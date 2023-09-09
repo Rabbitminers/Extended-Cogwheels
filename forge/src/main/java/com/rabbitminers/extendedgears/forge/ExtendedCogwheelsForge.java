@@ -3,6 +3,8 @@ package com.rabbitminers.extendedgears.forge;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
 import com.rabbitminers.extendedgears.config.forge.ExtendedCogwheelsConfigImpl;
+import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsCreativeModeTabs;
+import com.rabbitminers.extendedgears.registry.forge.ExtendedCogwheelsCreativeModeTabsImpl;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -21,6 +23,7 @@ public class ExtendedCogwheelsForge {
 
         ExtendedCogwheels.registrate().registerEventListeners(eventBus);
         ExtendedCogwheels.init();
+        ExtendedCogwheelsCreativeModeTabsImpl.registerForge(eventBus);
 
         ExtendedCogwheelsConfigImpl.register(ModLoadingContext.get());
 
@@ -31,7 +34,6 @@ public class ExtendedCogwheelsForge {
     }
 
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator gen = event.getGenerator();
-        ExtendedCogwheels.gatherData(gen, true);
+        // TODO
     }
 }
