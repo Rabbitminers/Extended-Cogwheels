@@ -146,12 +146,14 @@ public class ExtendedCogwheelsStandardRecipeGen extends ExtendedCogwheelsRecipeP
 
     SMALL_TO_LARGE_HALF_SHAFT = smallToLargeRecipe(CogwheelConstants.HALF_SHAFT_COGWHEELS),
     SMALL_TO_LARGE_SHAFTLESS = smallToLargeRecipe(CogwheelConstants.SHAFTLESS_COGWHEELS),
+
     SHAFTLESS_TO_STANDARD = create(AllBlocks.COGWHEEL).unlockedBy(I::andesite)
             .viaShapeless(b -> b.requires(ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL.get())
-                    .requires(I.planks())),
+                    .requires(I.andesite())),
     LARGE_SHAFTLESS_TO_STANDARD = create(AllBlocks.LARGE_COGWHEEL).unlockedBy(I::andesite)
             .viaShapeless(b -> b.requires(ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL.get())
-            .requires(I.planks())),
+            .requires(I.andesite())),
+
     PISTON_EXTENSION_POLE = create(AllBlocks.PISTON_EXTENSION_POLE).returns(8)
             .unlockedBy(I::andesite).viaShaped(b -> b.define('A', I.andesite())
                     .define('P', ItemTags.PLANKS)
