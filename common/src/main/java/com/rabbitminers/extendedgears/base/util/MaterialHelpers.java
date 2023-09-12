@@ -2,6 +2,8 @@ package com.rabbitminers.extendedgears.base.util;
 
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;
@@ -20,7 +22,7 @@ public class MaterialHelpers {
         BlockState state = blockItem.getBlock().defaultBlockState();
         if (!state.is(BlockTags.PLANKS))
             return null;
-        ResourceLocation material = Registry.ITEM.getKey(stack.getItem());
+        ResourceLocation material = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (material == current) return null;
         return material;
     }

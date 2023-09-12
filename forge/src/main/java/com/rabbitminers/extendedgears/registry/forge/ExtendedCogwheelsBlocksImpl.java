@@ -1,5 +1,7 @@
 package com.rabbitminers.extendedgears.registry.forge;
 
+import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.client.resources.model.BakedModel;

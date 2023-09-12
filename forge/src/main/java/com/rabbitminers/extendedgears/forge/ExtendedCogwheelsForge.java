@@ -3,9 +3,8 @@ package com.rabbitminers.extendedgears.forge;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.ExtendedCogwheelsClient;
 import com.rabbitminers.extendedgears.config.forge.ExtendedCogwheelsConfigImpl;
-import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsCreativeModeTabs;
 import com.rabbitminers.extendedgears.registry.forge.ExtendedCogwheelsCreativeModeTabsImpl;
-import net.minecraft.data.DataGenerator;
+import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -21,9 +20,9 @@ public class ExtendedCogwheelsForge {
         // registrate must be given the mod event bus on forge before registration
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ExtendedCogwheels.registrate().registerEventListeners(eventBus);
+        ExtendedCogwheelsCreativeModeTabsImpl.register(eventBus);
         ExtendedCogwheels.init();
-        ExtendedCogwheelsCreativeModeTabsImpl.registerForge(eventBus);
+        ExtendedCogwheels.registrate().registerEventListeners(eventBus);
 
         ExtendedCogwheelsConfigImpl.register(ModLoadingContext.get());
 

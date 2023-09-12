@@ -1,52 +1,115 @@
 package com.rabbitminers.extendedgears.registry;
 
-import java.util.Arrays;
+import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import com.rabbitminers.extendedgears.base.util.Env;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.architectury.injectables.annotations.ExpectPlatform;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import com.rabbitminers.extendedgears.ExtendedCogwheels;
-import dev.architectury.injectables.annotations.ExpectPlatform;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-
 public class ExtendedCogwheelsCreativeModeTabs {
-    public static final ResourceKey<CreativeModeTab> MAIN_TAB_KEY = makeKey("base");
-
-    public static final Supplier<CreativeModeTab> GROUP = wrapGroup("base", () -> createBuilder()
-            .title(Component.translatable("itemGroup.extendedgears"))
-            .icon(ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL::asStack)
-            .displayItems((params, output) -> output.acceptAll(Arrays.asList(
-                    ExtendedCogwheelsBlocks.HALF_SHAFT_COGWHEEL.asStack(),
-                    ExtendedCogwheelsBlocks.LARGE_HALF_SHAFT_COGWHEEL.asStack(),
-                    ExtendedCogwheelsBlocks.SHAFTLESS_COGWHEEL.asStack(),
-                    ExtendedCogwheelsBlocks.LARGE_SHAFTLESS_COGWHEEL.asStack()
-            )))
-            .build()
-    );
-
-
     @ExpectPlatform
-    public static Supplier<CreativeModeTab> wrapGroup(String id, Supplier<CreativeModeTab> sup) {
+    public static CreativeModeTab getBaseTab() {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static CreativeModeTab.Builder createBuilder() {
+    public static ResourceKey<CreativeModeTab> getBaseTabKey() {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
-    public static void useModTab(ResourceKey<CreativeModeTab> key) {
-        throw new AssertionError();
-    }
-
-    public static ResourceKey<CreativeModeTab> makeKey(String id) {
-        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ExtendedCogwheels.asResource(id));
-    }
 
     public static void init() {
-        // just to load class
+
+    }
+
+    public enum Tabs {
+        MAIN(ExtendedCogwheelsCreativeModeTabs::getBaseTabKey);
+
+        private final Supplier<ResourceKey<CreativeModeTab>> keySupplier;
+
+        Tabs(Supplier<ResourceKey<CreativeModeTab>> keySupplier) {
+            this.keySupplier = keySupplier;
+        }
+
+        public ResourceKey<CreativeModeTab> getKey() {
+            return keySupplier.get();
+        }
+    }
+
+    public static final class RegistrateDisplayItemsGenerator implements CreativeModeTab.DisplayItemsGenerator {
+
+        private final Tabs tab;
+
+        public RegistrateDisplayItemsGenerator(Tabs tab) {
+            this.tab = tab;
+        }
+
+        @Override
+        public void accept(CreativeModeTab.ItemDisplayParameters pParameters, CreativeModeTab.Output output) {
+            ResourceKey<CreativeModeTab> tab = this.tab.getKey();
+
+            List<Item> items = new LinkedList<>();
+            Predicate<Item> is3d = Env.unsafeRunForDist(
+                    () -> () -> item -> Minecraft.getInstance().getItemRenderer().getModel(new ItemStack(item), null, null, 0).isGui3d(),
+                    () -> () -> item -> false // don't crash servers
+            );
+            items.addAll(collectItems(tab, is3d, true));
+            items.addAll(collectBlocks(tab));
+            items.addAll(collectItems(tab, is3d, false));
+
+            for (Item item : items) {
+                output.accept(item);
+            }
+        }
+
+        private List<Item> collectBlocks(ResourceKey<CreativeModeTab> tab) {
+            List<Item> items = new ReferenceArrayList<>();
+            for (RegistryEntry<Block> entry : ExtendedCogwheels.registrate().getAll(Registries.BLOCK)) {
+                if (!isInCreativeTab(entry, tab))
+                    continue;
+                Item item = entry.get().asItem();
+                if (item == Items.AIR)
+                    continue;
+                items.add(item);
+            }
+            items = new ReferenceArrayList<>(new ReferenceLinkedOpenHashSet<>(items));
+            return items;
+        }
+
+        private List<Item> collectItems(ResourceKey<CreativeModeTab> tab, Predicate<Item> is3d, boolean special) {
+            List<Item> items = new ReferenceArrayList<>();
+
+            for (RegistryEntry<Item> entry : ExtendedCogwheels.registrate().getAll(Registries.ITEM)) {
+                if (!isInCreativeTab(entry, tab))
+                    continue;
+                Item item = entry.get();
+                if (item instanceof BlockItem || is3d.test(item) != special)
+                    continue;
+                items.add(item);
+            }
+            return items;
+        }
+    }
+
+    @ExpectPlatform
+    private static boolean isInCreativeTab(RegistryEntry<?> entry, ResourceKey<CreativeModeTab> tab) {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    public static void useBaseTab() {
+        throw new AssertionError();
+    }
+
+    public record TabInfo(ResourceKey<CreativeModeTab> key, CreativeModeTab tab) {
     }
 }

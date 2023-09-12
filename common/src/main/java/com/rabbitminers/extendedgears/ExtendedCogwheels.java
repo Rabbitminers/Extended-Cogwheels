@@ -5,6 +5,7 @@ import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsCuttingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsDeployingRecipeGen;
 import com.rabbitminers.extendedgears.datagen.ExtendedCogwheelsStandardRecipeGen;
 import com.rabbitminers.extendedgears.registry.*;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.LangMerger;
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -31,7 +32,6 @@ public class ExtendedCogwheels {
         ExtendedCogwheelsItems.init();
         ExtendedCogwheelsBlocks.init();
         ExtendedCogwheelsTileEntities.init();
-        // ExtendedCogwheelsDataFixers.init();
         ExtendedCogwheelsCogwheelMaterials.init();
         ExtendedCogwheelsPackets.PACKETS.registerC2SListener();
     }
@@ -42,11 +42,6 @@ public class ExtendedCogwheels {
         gen.addProvider(ExtendedCogwheelsDeployingRecipeGen::new);
         gen.addProvider((PackOutput output) -> ExtendedCogwheelsLanguageProvider
                 .createMerger(output, MOD_ID, "Extended Cogwheels", ExtendedCogwheelsLanguageProvider.values()));
-    }
-
-    @ExpectPlatform
-    public static void registerConfig(ModConfig.Type type, ForgeConfigSpec spec) {
-        throw new AssertionError();
     }
 
     @ExpectPlatform

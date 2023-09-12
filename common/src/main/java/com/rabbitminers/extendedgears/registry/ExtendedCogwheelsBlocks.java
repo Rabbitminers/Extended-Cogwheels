@@ -5,6 +5,7 @@ import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.datagen.HalfShaftGenerator;
 import com.rabbitminers.extendedgears.mixin.AccessorBlockEntityType;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
@@ -28,13 +29,12 @@ import net.minecraft.world.level.material.MapColor;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import static com.rabbitminers.extendedgears.registry.ExtendedCogwheelsCreativeModeTabs.MAIN_TAB_KEY;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 
 public class ExtendedCogwheelsBlocks {
 
     static {
-        ExtendedCogwheelsCreativeModeTabs.useModTab(MAIN_TAB_KEY);
+        ExtendedCogwheelsCreativeModeTabs.useBaseTab();
     }
 
     public static <B extends CogWheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> cogwheelTransformer(boolean isLarge) {

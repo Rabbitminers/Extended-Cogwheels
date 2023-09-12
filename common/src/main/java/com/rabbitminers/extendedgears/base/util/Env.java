@@ -14,6 +14,13 @@ public enum Env {
         return this == CURRENT;
     }
 
+    public static <T> T unsafeRunForDist(Supplier<Supplier<T>> clientTarget, Supplier<Supplier<T>> serverTarget) {
+        return switch (Env.CURRENT) {
+            case CLIENT -> clientTarget.get().get();
+            case SERVER -> serverTarget.get().get();
+        };
+    }
+
     @ApiStatus.Internal
     @ExpectPlatform
     public static Env getCurrent() {
