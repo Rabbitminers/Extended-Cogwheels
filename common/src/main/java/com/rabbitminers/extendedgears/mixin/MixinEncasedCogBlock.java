@@ -36,7 +36,10 @@ public class MixinEncasedCogBlock extends Block {
     }
 
     @Redirect(
-            method = "handleEncasing",
+            method = {
+                    "handleEncasing",
+                    "onWrenched"
+            },
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/simibubi/create/content/kinetics/base/KineticBlockEntity;switchToBlockState(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V"
