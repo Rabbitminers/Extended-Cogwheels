@@ -22,7 +22,7 @@
 
 ### Datapack Integration
 
-(In Beta Testing) you are able to add new cogwheel materials through datapacks. You can find a guide on how to set up a datapack on the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Tutorials/Creating_a_data_pack). Once you have that set up under your namespace directory create a new directory called `cogwheels` which you can then add new materials to following this schema:
+(In beta testing, not all functionality is currenlty avaialable) you are able to add new cogwheel materials through datapacks. You can find a guide on how to set up a datapack on the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Tutorials/Creating_a_data_pack). Once you have that set up under your namespace directory create a new directory called `cogwheels` which you can then add new materials to following this schema:
 
 ```js
 {
