@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
     id "me.modmuss50.mod-publish-plugin"
 }
 
@@ -64,7 +64,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
     // Create - dependencies are added transitively
-    modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
+    modImplementation("com.simibubi.create:create-fabric:${create_fabric_version}")
 
     // Development QOL
     modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
@@ -97,27 +97,28 @@ processResources {
     }
 }
 
-def getGitHash = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
+def getGitHash = {
+    def result = providers.exec {
         commandLine 'git', 'rev-parse', 'HEAD'
-        standardOutput = stdout
     }
-    return stdout.toString().trim()
+    result.standardOutput.asText.get().trim()
 }
 
-def hasUnstaged = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
+def hasUnstaged = {
+    def result = providers.exec {
         commandLine 'git', 'status', '--porcelain'
-        standardOutput = stdout
     }
-    def result = stdout.toString().replaceAll("M gradlew", "").trim()
-    if (!result.isEmpty())
-        println("Found stageable results:\n${result}\n")
-    return !result.isEmpty()
-}
 
+    def output = result.standardOutput.asText.get()
+            .replaceAll("M gradlew", "")
+            .trim()
+
+    if (!output.isEmpty()) {
+        println("Found stageable results:\n${output}\n")
+    }
+
+    !output.isEmpty()
+}
 
 shadowJar {
     exclude "architectury.common.json"

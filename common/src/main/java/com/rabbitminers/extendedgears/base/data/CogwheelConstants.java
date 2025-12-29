@@ -2,8 +2,8 @@ package com.rabbitminers.extendedgears.base.data;
 
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.createmod.catnip.data.Couple;
 
 public class CogwheelConstants {
     public static final Couple<BlockEntry<?>>

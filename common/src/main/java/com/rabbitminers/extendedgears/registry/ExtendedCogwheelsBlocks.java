@@ -5,8 +5,6 @@ import com.rabbitminers.extendedgears.cogwheels.HalfShaftCogwheelBlock;
 import com.rabbitminers.extendedgears.cogwheels.ShaftlessCogwheelBlock;
 import com.rabbitminers.extendedgears.datagen.HalfShaftGenerator;
 import com.rabbitminers.extendedgears.mixin.AccessorBlockEntityType;
-import com.simibubi.create.AllCreativeModeTabs;
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import com.simibubi.create.foundation.data.BlockStateGen;
@@ -41,7 +39,6 @@ public class ExtendedCogwheelsBlocks {
         return b -> b.initialProperties(SharedProperties::stone)
                 .properties(p -> p.sound(SoundType.WOOD))
                 .properties(p -> p.mapColor(MapColor.DIRT))
-                .transform(BlockStressDefaults.setNoImpact())
                 .transform(axeOrPickaxe())
                 .transform(renderTypeTransformer())
                 .blockstate(BlockStateGen.axisBlockProvider(false))

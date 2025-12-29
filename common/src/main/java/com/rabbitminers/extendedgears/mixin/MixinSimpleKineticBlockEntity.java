@@ -1,22 +1,16 @@
 package com.rabbitminers.extendedgears.mixin;
 
 import com.rabbitminers.extendedgears.base.util.MaterialHelpers;
-import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
-import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
-import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
-import com.simibubi.create.foundation.utility.NBTHelper;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
+import net.createmod.catnip.nbt.NBTHelper;
+import net.createmod.catnip.platform.CatnipServices;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -25,11 +19,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
-import java.util.Optional;
-
 @Mixin(SimpleKineticBlockEntity.class)
 public class MixinSimpleKineticBlockEntity extends KineticBlockEntity implements IDynamicMaterialBlockEntity {
-    public ResourceLocation material = RegisteredObjects.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
+    public ResourceLocation material = CatnipServices.REGISTRIES.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
 
     public MixinSimpleKineticBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
@@ -88,7 +80,7 @@ public class MixinSimpleKineticBlockEntity extends KineticBlockEntity implements
 
         material = NBTHelper.readResourceLocation(compound, "Material");
         if (material == null)
-            material = RegisteredObjects.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
+            material = CatnipServices.REGISTRIES.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
 
         if (clientPacket && prevMaterial != material)
             redraw();

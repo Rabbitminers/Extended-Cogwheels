@@ -1,42 +1,35 @@
 package com.rabbitminers.extendedgears.cogwheels;
 
-import com.jozufozu.flywheel.core.PartialModel;
-import com.jozufozu.flywheel.core.StitchedSprite;
 import com.rabbitminers.extendedgears.cogwheels.materials.ClientCogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
 import com.simibubi.create.foundation.model.BakedModelHelper;
-import com.simibubi.create.foundation.render.SuperByteBufferCache.Compartment;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
+import net.createmod.catnip.render.StitchedSprite;
+import net.createmod.catnip.render.SuperByteBufferCache;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import java.util.Random;
-
 public class DynamicCogwheelRenderer {
-    public static final Compartment<CogwheelModelKey> COGWHEEL = new Compartment<>();
+    public static final SuperByteBufferCache.Compartment<CogwheelModelKey> COGWHEEL = new SuperByteBufferCache.Compartment<>();
 
     public static final StitchedSprite STRIPPED_LOG_TEMPLATE = new StitchedSprite(new ResourceLocation("block/stripped_spruce_log"));
     public static final StitchedSprite STRIPPED_LOG_TOP_TEMPLATE = new StitchedSprite(new ResourceLocation("block/stripped_spruce_log_top"));

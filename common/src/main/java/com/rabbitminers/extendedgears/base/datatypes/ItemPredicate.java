@@ -1,6 +1,5 @@
 package com.rabbitminers.extendedgears.base.datatypes;
 
-import com.simibubi.create.foundation.data.recipe.StandardRecipeGen;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;

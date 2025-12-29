@@ -1,6 +1,5 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsBlocks;
 import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder;

@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.5.+" apply false
+    id "dev.architectury.loom" version "1.10.+" apply false
     id "me.modmuss50.mod-publish-plugin" version "0.3.4" apply false // https://github.com/modmuss50/mod-publish-plugin
 }
 
@@ -41,6 +41,7 @@ subprojects {
         }
         maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
         maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config Api Port
+        maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
     }
 
     dependencies {
@@ -71,7 +72,10 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    archivesBaseName = rootProject.archives_base_name
+    base {
+        archivesName = rootProject.archives_base_name
+    }
+
     group = rootProject.maven_group
 
     // Mod version - Minecraft Version - Create Version - Loader

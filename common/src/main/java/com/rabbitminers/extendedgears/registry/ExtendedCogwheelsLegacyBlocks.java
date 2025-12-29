@@ -2,12 +2,12 @@ package com.rabbitminers.extendedgears.registry;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.cogwheels.legacy.CustomCogwheelBlock;
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.simibubi.create.foundation.data.TagGen;
+import com.simibubi.create.infrastructure.config.CStress;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.tags.TagKey;
@@ -30,7 +30,6 @@ public class ExtendedCogwheelsLegacyBlocks {
 
 	public static <B extends CustomCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> commonCogwheelTransformer(boolean isLarge, TagKey<Item> materialType) {
 		return b -> b.blockstate(BlockStateGen.axisBlockProvider(false))
-				.transform(BlockStressDefaults.setNoImpact())
 				.transform(cogwheelItemTransformer(isLarge, materialType));
 	}
 

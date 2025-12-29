@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
     id "me.modmuss50.mod-publish-plugin"
 }
 
@@ -70,7 +70,9 @@ dependencies {
     // Create and its dependencies
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
     modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
-    modImplementation("com.jozufozu.flywheel:flywheel-forge-${flywheel_forge_minecraft_version}:${flywheel_forge_version}")
+    modImplementation("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_forge_version}")
+    modImplementation("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_forge_version}")
+
 }
 
 processResources {
@@ -88,25 +90,27 @@ processResources {
     }
 }
 
-def getGitHash = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
+def getGitHash = {
+    def result = providers.exec {
         commandLine 'git', 'rev-parse', 'HEAD'
-        standardOutput = stdout
     }
-    return stdout.toString().trim()
+    result.standardOutput.asText.get().trim()
 }
 
-def hasUnstaged = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
+def hasUnstaged = {
+    def result = providers.exec {
         commandLine 'git', 'status', '--porcelain'
-        standardOutput = stdout
     }
-    def result = stdout.toString().replaceAll("M gradlew", "").trim()
-    if (!result.isEmpty())
-        println("Found stageable results:\n${result}\n")
-    return !result.isEmpty()
+
+    def output = result.standardOutput.asText.get()
+            .replaceAll("M gradlew", "")
+            .trim()
+
+    if (!output.isEmpty()) {
+        println("Found stageable results:\n${output}\n")
+    }
+
+    !output.isEmpty()
 }
 
 def getFullGitHash = { ->

@@ -1,7 +1,8 @@
 package com.rabbitminers.extendedgears.registry;
 
-import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+
 public class ExtendedCogwheelsPartials {
     public static final PartialModel
         COGWHEEL = block("shaftless_cogwheel"),
@@ -10,7 +11,7 @@ public class ExtendedCogwheelsPartials {
         LARGE_CHUNKY_COGWHEEL = block("large_chunky_cogwheel");
 
     private static PartialModel block(String path) {
-        return new PartialModel(ExtendedCogwheels.asResource("block/" + path));
+        return PartialModel.of(ExtendedCogwheels.asResource("block/" + path));
     }
     public static void init() {
 

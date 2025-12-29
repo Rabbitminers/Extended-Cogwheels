@@ -1,9 +1,7 @@
 package com.rabbitminers.extendedgears.base.util;
 
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;

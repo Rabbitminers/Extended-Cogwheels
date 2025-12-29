@@ -10,10 +10,9 @@ import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogRenderer;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
-import com.simibubi.create.foundation.render.BakedModelRenderHelper;
-import com.simibubi.create.foundation.render.CachedBufferer;
-import com.simibubi.create.foundation.render.SuperByteBuffer;
+import net.createmod.catnip.render.CachedBuffers;
+import net.createmod.catnip.render.SuperBufferFactory;
+import net.createmod.catnip.render.SuperByteBuffer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -35,7 +34,7 @@ public class MixinEncasedCogRenderer extends KineticBlockEntityRenderer<SimpleKi
     @Inject(method = "renderSafe(Lcom/simibubi/create/content/kinetics/simpleRelays/SimpleKineticBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At("TAIL"))
     public void renderCasing(SimpleKineticBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
                              int light, int overlay, CallbackInfo ci) {
-        SuperByteBuffer casing = CachedBufferer.block(be.getBlockState());
+        SuperByteBuffer casing = CachedBuffers.block(be.getBlockState());
         casing.renderInto(ms, buffer.getBuffer(RenderType.solid()));
     }
 
@@ -50,8 +49,8 @@ public class MixinEncasedCogRenderer extends KineticBlockEntityRenderer<SimpleKi
             BakedModel model = DynamicCogwheelRenderer.generateModel(key);
             BlockState state1 = key.state();
             Direction dir = Direction.fromAxisAndDirection(state1.getValue(RotatedPillarKineticBlock.AXIS), Direction.AxisDirection.POSITIVE);
-            PoseStack transform = CachedBufferer.rotateToFaceVertical(dir).get();
-            return BakedModelRenderHelper.standardModelRender(model, Blocks.AIR.defaultBlockState(), transform);
+            PoseStack transform = CachedBuffers.rotateToFaceVertical(dir).get();
+            return SuperBufferFactory.getInstance().createForBlock(model, Blocks.AIR.defaultBlockState(), transform);
         });
     }
 }

@@ -4,21 +4,19 @@
   "package": "com.rabbitminers.extendedgears.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-
   ],
   "mixins": [
     "AccessorBlockEntityType",
-    "AccessorLangMerger",
     "MixinAllBlockEntityTypes",
     "MixinAllBlocks",
     "MixinBracketedKineticBlockEntity",
-    "MixinBracketedKineticBlockEntityInstance",
     "MixinBracketedKineticBlockEntityRenderer",
     "MixinCogwheelBlock",
     "MixinCogwheelBlockItem",
     "MixinEncasedCogBlock",
     "MixinEncasedCogInstance",
     "MixinEncasedCogRenderer",
+    "MixinLargeCogVisual",
     "MixinSimpleKineticBlockEntity"
   ],
   "injectors": {

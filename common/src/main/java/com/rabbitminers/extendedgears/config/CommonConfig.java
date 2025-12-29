@@ -1,11 +1,11 @@
 package com.rabbitminers.extendedgears.config;
 
-import com.simibubi.create.foundation.config.ConfigBase;
-import com.simibubi.create.foundation.config.ui.ConfigAnnotations;
+import net.createmod.catnip.config.ConfigBase;
+import net.createmod.catnip.config.ui.ConfigAnnotations;
 
 @SuppressWarnings("unused")
 public class CommonConfig extends ConfigBase {
-    public final ConfigBool disableDatafixer = b(false, "disableDatafixer", Comments.disableDatafixer, ConfigAnnotations.RequiresRestart.BOTH.asComment());
+    public final net.createmod.catnip.config.ConfigBase.ConfigBool disableDatafixer = b(false, "disableDatafixer", Comments.disableDatafixer, ConfigAnnotations.RequiresRestart.BOTH.asComment());
 
     @Override
     public String getName() {

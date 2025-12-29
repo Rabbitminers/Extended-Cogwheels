@@ -2,9 +2,9 @@ package com.rabbitminers.extendedgears.config.fabric;
 
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
 import com.rabbitminers.extendedgears.config.ExtendedCogwheelsConfig;
-import com.simibubi.create.foundation.config.ConfigBase;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import fuzs.forgeconfigapiport.api.config.v2.ModConfigEvents;
+import net.createmod.catnip.config.ConfigBase;
 import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.Map;

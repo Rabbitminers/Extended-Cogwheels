@@ -2,7 +2,7 @@ package com.rabbitminers.extendedgears.cogwheels;
 
 import com.rabbitminers.extendedgears.mixin_interface.CogwheelTypeProvider;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
-import com.simibubi.create.foundation.utility.VoxelShaper;
+import net.createmod.catnip.math.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -63,6 +63,23 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements CogwheelTyp
         return isLargeCog() ? largeVoxelShape.get(dir) : voxelShape.get(dir);
     }
 
+    // Credit for costena
+    @Override
+    public BlockState getRotatedBlockState(BlockState originalState, Direction targetedFace) {
+        if (targetedFace.getAxis() == originalState.getValue(AXIS))
+            return originalState;
+        Direction direction = VoxelShaper
+                .axisAsFace(originalState.getValue(AXIS));
+        if (!originalState.getValue(AXIS_DIRECTION))
+            direction = direction.getOpposite();
+        if (targetedFace.getAxisDirection() == Direction.AxisDirection.POSITIVE)
+            direction = direction.getClockWise(targetedFace.getAxis());
+        else
+            direction = direction.getCounterClockWise(targetedFace.getAxis());
+        return originalState
+                .setValue(AXIS, direction.getAxis())
+                .setValue(AXIS_DIRECTION, direction.getAxisDirection() == Direction.AxisDirection.POSITIVE);
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

@@ -1,6 +1,5 @@
 package com.rabbitminers.extendedgears.base.events;
 
-import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterial;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.Nullable;

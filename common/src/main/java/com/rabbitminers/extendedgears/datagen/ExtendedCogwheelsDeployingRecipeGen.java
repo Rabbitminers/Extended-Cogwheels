@@ -1,26 +1,21 @@
 package com.rabbitminers.extendedgears.datagen;
 
-import com.mojang.datafixers.util.Function5;
 import com.rabbitminers.extendedgears.base.data.CogwheelConstants;
 import com.rabbitminers.extendedgears.base.data.ICogwheelMaterial;
-import com.rabbitminers.extendedgears.base.datatypes.CogwheelMaterialList;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
-import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.createmod.catnip.data.Couple;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataGenerator.PackGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 import javax.annotation.Nullable;
-import java.util.EnumMap;
 import java.util.Map;
 
 public class ExtendedCogwheelsDeployingRecipeGen extends ExtendedCogwheelsProcessingRecipeGen {

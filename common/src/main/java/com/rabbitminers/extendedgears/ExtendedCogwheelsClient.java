@@ -1,12 +1,10 @@
 package com.rabbitminers.extendedgears;
 
-import com.jozufozu.flywheel.core.StitchedSprite;
 import com.rabbitminers.extendedgears.cogwheels.DynamicCogwheelRenderer;
 import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManager;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPackets;
 import com.rabbitminers.extendedgears.registry.ExtendedCogwheelsPartials;
-import com.simibubi.create.foundation.render.SuperByteBufferCache;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.createmod.catnip.render.SuperByteBufferCache;
 
 public class ExtendedCogwheelsClient {
     public static final SuperByteBufferCache BUFFER_CACHE = new SuperByteBufferCache();
